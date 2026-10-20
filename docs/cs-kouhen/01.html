@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：1章　アルゴリズムと計算量——「遅い」を説明する道具｜ずんだもんと学ぶコンピュータサイエンス：後編</title>
+<meta name="description" content="ずんだもんと学ぶコンピュータサイエンス：後編「1章　アルゴリズムと計算量——「遅い」を説明する道具」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：1章　アルゴリズムと計算量——「遅い」を説明する道具｜ずんだもんと学ぶコンピュータサイエンス：後編">
+<meta property="og:description" content="ずんだもんと学ぶコンピュータサイエンス：後編「1章　アルゴリズムと計算量——「遅い」を説明する道具」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/cs-kouhen/01.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/cs-kouhen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#C2571F;--accent-dark:#803313}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶコンピュータサイエンス：後編</p>
+  <h1>理解度チェック：1章　アルゴリズムと計算量——「遅い」を説明する道具</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-cs-kouhen/viewer/algorithms-complexity">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "cs-kouhen", "chapter": 1, "chapter_slug": "algorithms-complexity", "chapter_title": "1章　アルゴリズムと計算量——「遅い」を説明する道具", "questions": [{"type": "choice", "q": "「開発環境の1,000件では一瞬だったのに、本番の100万件で突然死んだ」。本文が説明する、この「本番だけ遅い」の古典的な原因はどれ？", "choices": ["データが少ないうちは遅い手順（線形探索など）でも速く見えるので、データが増えたときの増え方を予測していなかった", "本番サーバーの CPU が開発環境より遅い", "本番環境のネットワークが混雑している", "100万件を超えると Python がオーバーフローする"], "answer": 0, "explain": "プログラムは書いたとおりにしか動かず、何も考えずに書いたコードはたいてい「1ページ目から順にめくる」方法です。だから必要なのは「速いか遅いか」を測ることではなく、データが増えたらどうなるかを予測する道具＝計算量です。", "ref": "1.1"}, {"type": "choice", "q": "O(n²) の処理で、データ量が10倍になったら、処理時間はおよそ何倍になる？", "choices": ["10倍", "20倍", "100倍", "1000倍"], "answer": 2, "explain": "O(n²) は2乗で増えるので、10倍のデータで 100倍です。O(n) なら10倍、O(log n) なら「20回が23回になる」程度でほぼ無風。「データが10倍になったら？」と自問し、ループの入れ子を見たら身構えるのが現場の読み方です。", "ref": "1.2"}, {"type": "fill", "q": "「真ん中と比べて半分を捨てる」を繰り返し、O(log n) で探す方法を何という？（漢字4文字）", "accept": ["二分探索", "にぶんたんさく", "binary search", "バイナリサーチ"], "explain": "1回ごとに候補が半分になるので、回数は「n を半分にし続けて1になるまで」＝ log₂n です。100万件なら約20回、10億件でも約30回で済みます。", "ref": "1.3"}, {"type": "truefalse", "q": "二分探索は、ソートされていないデータに対しても使える。", "answer": false, "explain": "二分探索はソート済みのデータにしか使えません。「す行より前か後か」で半分を捨てられるのは、五十音順に並んでいるからです。「探すのが速い世界」は「並べて維持するコスト」を先に払った世界で、これがデータベースのインデックスの正体の半分です。", "ref": "1.3"}, {"type": "choice", "q": "ソートについて、本文が示す実務の結論はどれ？", "choices": ["O(n log n) のソートを自分で実装できるようになるべきである", "自分でソートは実装せず標準の sorted() を使い、「ソート済み」という状態の価値に気づくことが大事", "ソートは遅いので、できるだけ避ける", "バブルソートが最も実用的である"], "answer": 1, "explain": "どの言語の標準ソートも専門家が磨き抜いた O(n log n) の実装です。大事なのは「ソート済みなら二分探索ができる、重複が隣り合う、範囲の取り出しが一瞬」という価値に気づき、「毎回全件を舐める処理」を見たら「先に並べておけないか」と考える発想の切り替えです。", "ref": "1.4"}, {"type": "choice", "q": "100万件の中から1,000回探す実験の結果として、本文に近いものはどれ？", "choices": ["線形探索・二分探索・ハッシュのどれも 0.01 秒以下で、差はほとんどなかった", "ハッシュが最も遅く約10秒、線形探索が最も速かった", "二分探索が約10秒、線形探索が約0.002秒だった", "線形探索が約10秒、二分探索が約0.002秒、ハッシュが約0.0002秒だった"], "answer": 3, "explain": "線形探索は 100万件×1,000回＝最大10億回の比較、二分探索は 20回×1,000回＝2万回です。これが「桁の暴力」で、アルゴリズムの選択はサーバーを増強するよりずっと安くて効きます。検索が遅いとき最初に疑うべきは CPU のスペックではなく「探し方」です。", "ref": "1.5"}, {"type": "essay", "q": "後輩に「データベースにインデックスを張ると、なんで検索が速くなるんですか？」と聞かれた。この章で学んだ範囲（ソート済みと二分探索）を使って、3文くらいで説明してみよう。", "model": "ソート済みのデータなら、真ん中と比べて半分を捨てる二分探索ができるので、100万件でも約20回の比較で見つかります（O(log n)）。インデックスとは、検索を速くするために「並び順を維持し続ける別の台帳」のことで、この台帳があるから全件を先頭から舐める線形探索（O(n)）をしなくて済みます。そのかわり「並べて維持するコスト」を先に払っているので、タダではありません。", "points": ["ソート済みなら半分ずつ捨てられる（二分探索・O(log n)）ことに触れた", "インデックス＝並び順を維持する別の台帳、であることに触れた", "線形探索（O(n)）との対比、または維持コストがかかることに触れた"], "ref": "1.3〜1.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-cs-kouhen/viewer/algorithms-complexity"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

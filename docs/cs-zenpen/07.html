@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：7章　ネットワーク——「つながる」のしくみ｜ずんだもんと学ぶコンピュータサイエンス：前編</title>
+<meta name="description" content="ずんだもんと学ぶコンピュータサイエンス：前編「7章　ネットワーク——「つながる」のしくみ」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：7章　ネットワーク——「つながる」のしくみ｜ずんだもんと学ぶコンピュータサイエンス：前編">
+<meta property="og:description" content="ずんだもんと学ぶコンピュータサイエンス：前編「7章　ネットワーク——「つながる」のしくみ」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/cs-zenpen/07.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/cs-zenpen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#118F8D;--accent-dark:#0B595D}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶコンピュータサイエンス：前編</p>
+  <h1>理解度チェック：7章　ネットワーク——「つながる」のしくみ</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-cs-zenpen/viewer/networks">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "cs-zenpen", "chapter": 7, "chapter_slug": "networks", "chapter_title": "7章　ネットワーク——「つながる」のしくみ", "questions": [{"type": "choice", "q": "ネットワークを層（レイヤ）に分ける理由として、本文が挙げているものはどれ？", "choices": ["層の数が多いほど通信が速くなるから", "資格試験で出題されるから", "各層が独立に交換可能になる（Wi-Fi を有線に替えても HTTP は1文字も変わらない）から", "層ごとに別の会社が管理する決まりだから"], "answer": 2, "explain": "階層は抽象化の積み木のネットワーク版です。各層は自分の仕事だけをして上下の層の中身に口を出さないので、リンク層を替えてもアプリケーション層はそのまま使えます。層の連携方法がカプセル化（封筒の入れ子）です。", "ref": "7.1"}, {"type": "truefalse", "q": "インターネットでは、各ルーターが宛先までの全体の地図を持っていて、パケットの通り道を最初から最後まで決めている。", "answer": false, "explain": "誰も全体の地図を持っていません。各ルーターは「この宛先の範囲なら、次はあっちへ」という次の一歩の表（ルーティングテーブル）だけを持ち、パケットは駅伝のように一歩ずつリレーされます。2章のグラフの経路問題そのものです。", "ref": "7.2"}, {"type": "choice", "q": "IP パケットに付いている TTL の役割はどれ？", "choices": ["「あと何歩歩けるか」のカウンタで、設定ミスでぐるぐる回り続けるパケットを捨てる安全装置", "パケットの暗号化の鍵", "送信元のポート番号", "パケットの優先度を表す値"], "answer": 0, "explain": "TTL は一歩（ルーター1つ）ごとに減り、0 になるとパケットは捨てられます。ループへの安全装置で、traceroute はこの TTL を逆手に取って経路を可視化する道具です。", "ref": "7.2"}, {"type": "choice", "q": "IP の配達は保証なし。その上で TCP が信頼性を「作る」ために行っていることに含まれないものはどれ？", "choices": ["送ったパケットに通し番号を振る", "確認応答（ACK）が来なければ再送する", "相手の処理が追いつかなければ送る速度を加減する", "通信内容を暗号化する"], "answer": 3, "explain": "TCP は通し番号・確認応答と再送・順番の並べ直し・速度の加減で信頼性を作っています。暗号化は TCP の仕事ではなく、TLS（https の s）が担います。その前に3ウェイハンドシェイクという挨拶もあり、遠距離では接続だけで数十ミリ秒かかります。", "ref": "7.3"}, {"type": "fill", "q": "IP アドレスが「建物の住所」なら、同じサーバーの中で「どのプログラム宛てか」を仕分ける「部屋番号」にあたるものは？", "accept": ["ポート番号", "ポート", "port", "port number", "ぽーと"], "explain": "80番の部屋は Web 係、22番は SSH 係、というように、ポート番号でどのプログラム宛てかを仕分けます。16ビットの数字で、上限は3章で出た 65535 です。", "ref": "7.3"}, {"type": "choice", "q": "「DNS を切り替えたのに、しばらく古いサーバーにアクセスが来る」現象の正体はどれ？", "choices": ["ルーターが古い経路を覚えている", "世界中の DNS キャッシュが TTL（賞味期限）の切れるのを待っている", "TCP の再送が古いサーバーに向かっている", "ブラウザの Cookie に古い IP が入っている"], "answer": 1, "explain": "DNS は聞き込みリレーで名前を解決し、結果はあちこちでキャッシュされます。キャッシュの賞味期限が TTL で、「浸透に時間がかかる」の正体は世界中のキャッシュが期限切れを待っている姿です。", "ref": "7.4"}, {"type": "essay", "q": "後輩に「UDP って確認も再送もしない手抜きなのに、なんで使われてるんですか？」と聞かれた。3文くらいで説明してみよう。", "model": "UDP は確認応答も再送も順序保証もしない投げっぱなし方式ですが、それが正解の場面があります。ビデオ会議で0.5秒前の映像を再送してもらっても困るように、速さと軽さが信頼性より大事な場面では、TCP の律儀な事務作業がむしろ邪魔になります。だから動画・音声・オンラインゲーム、そして DNS のような軽い問い合わせは UDP の領分です。", "points": ["UDP は確認・再送・順序保証をしない投げっぱなし方式だと述べた", "速さ・軽さが信頼性より大事な場面がある、という理由に触れた", "動画・音声・ゲーム・DNS などの具体例を挙げた"], "ref": "7.3"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-cs-zenpen/viewer/networks"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

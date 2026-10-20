@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：6章　並行・並列と分散システム｜ずんだもんと学ぶコンピュータサイエンス：後編</title>
+<meta name="description" content="ずんだもんと学ぶコンピュータサイエンス：後編「6章　並行・並列と分散システム」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：6章　並行・並列と分散システム｜ずんだもんと学ぶコンピュータサイエンス：後編">
+<meta property="og:description" content="ずんだもんと学ぶコンピュータサイエンス：後編「6章　並行・並列と分散システム」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/cs-kouhen/06.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/cs-kouhen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#C2571F;--accent-dark:#803313}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶコンピュータサイエンス：後編</p>
+  <h1>理解度チェック：6章　並行・並列と分散システム</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-cs-kouhen/viewer/concurrency-distributed">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "cs-kouhen", "chapter": 6, "chapter_slug": "concurrency-distributed", "chapter_title": "6章　並行・並列と分散システム", "questions": [{"type": "choice", "q": "並行（concurrency）と並列（parallelism）の違いとして正しいものはどれ？", "choices": ["並行はコアが複数あるときの話、並列はコアが1つのときの話", "並行は1人の店主が切り替えながら複数の客を切り盛りする「やりくりの構造」、並列は厨房が複数あって物理的に同時に進むこと", "並行と並列は同じ意味で、分野によって呼び方が違うだけ", "並行はネットワーク用語、並列は CPU 用語"], "answer": 1, "explain": "並行は構造の話なのでコアが1つでも成立し、大事な動機は I/O の待ち時間の有効活用です。Python の GIL は「店主は常に1人」という制約で、スレッドを増やしても計算は並列になりません（I/O 待ちのやりくりには効きます）。", "ref": "6.1"}, {"type": "choice", "q": "stock = stock - 1 という1行が、2つのスレッドで同時に実行されると壊れる理由はどれ？", "choices": ["機械語レベルでは「読む・引く・書き戻す」の3手順で、Aが書き戻す前にBも古い値を読んでしまうことがあるから", "Python の整数はスレッドセーフではないから", "引き算は CPU にとって特別に遅い命令だから", "変数名が短いと衝突しやすいから"], "answer": 0, "explain": "2人とも「在庫1」を見て2人とも注文を通し、最後は0が書かれる——1個しかない餅が2人に売れます。これがレースコンディションで、対策はロックで3手順を不可分（アトミック）にするか、UPDATE ... SET qty = qty - 1 WHERE qty > 0 のように「読んで判断して書く」を1文に畳むことです。", "ref": "6.2"}, {"type": "truefalse", "q": "レースコンディションは、テストで1万回成功すれば本番でも起きないと判断してよい。", "answer": false, "explain": "レースコンディションはタイミング次第でしか起きません。テストでは1万回成功し、本番のセール日（アクセスが集中して「同時」が頻発する日）にだけ発火します。だから「テストで出ない」は安全の証拠になりません。", "ref": "6.2"}, {"type": "fill", "q": "スレッドAが在庫のロックを持って決済のロックを待ち、スレッドBが決済のロックを持って在庫のロックを待つ。「待ち」の有向グラフに閉路ができ、永遠に動かなくなるこの状態を何という？（カタカナ）", "accept": ["デッドロック", "deadlock", "dead lock", "でっどろっく"], "explain": "古典的な予防策は「ロックを取る順番を全員で統一する」で、順番が一方向なら閉路はできないというグラフ理論の応用です。データベースはデッドロックを検出すると片方の取引を失敗させて閉路を壊します。「Deadlock found」はデータベースが命を救った報告です。", "ref": "6.3"}, {"type": "choice", "q": "CAP 定理が述べていることとして正しいものはどれ？", "choices": ["分散システムは一貫性・可用性・分断耐性の3つを常に同時に満たせる", "分散システムでは一貫性を必ず諦めなければならない", "ネットワークが速ければ部分故障は起きない", "ネットワークが分断されたとき、一貫性（どのノードに聞いても同じ答え）と可用性（いつでも答えが返る）を同時には守れず、どちらかを選ぶしかない"], "answer": 3, "explain": "分散システムの本質的な闇は部分故障（相手は生きているのに届かない、処理されたのに確認できない）です。分断中に「正確な答えが出せないなら止まる（C 優先）」か「古いかもしれない答えでも返す（A 優先）」かは要件が決めます。銀行の残高は C 寄り、SNS のタイムラインは A 寄りです。", "ref": "6.4"}, {"type": "choice", "q": "サーバーBに「在庫を1減らして」と送ったが返事が来ない。安全にもう一度送れるようにするために操作に持たせるべき性質はどれ？", "choices": ["原子性（アトミック）", "分断耐性", "冪等性（同じ操作を何度実行しても結果が1回ぶんと同じ）", "可用性"], "answer": 2, "explain": "実はBが処理済みだった場合、無邪気に再送すると在庫が2回減ります。「注文番号1001の分として減らせ」のように一意な札（冪等キー）をつければ、Bは2回目を無視できます。決済 API が冪等キーを要求する理由がこれで、Terraform の apply の冪等性と同じ思想です。", "ref": "6.5"}, {"type": "essay", "q": "「分散システムでは exactly-once（1回だけ確実に届ける）は一般に実現できない。現実解は at-least-once で届けて、受け側を冪等にすること」。後輩にこの一文の意味を、3文くらいで説明してみよう。", "model": "ネットワークは配達を保証しないので、返事が来ないとき、依頼が届かなかったのか、処理されたのに返事だけ消えたのかを送り側は区別できません（部分故障）。だから「ちょうど1回」を保証する手段はなく、届くまで再送する（at-least-once）しかありませんが、そのままだと処理が2回走る危険があります。そこで受け側を冪等にして、冪等キーで「もう処理済み」と気づけるようにすれば、重複して届いても結果は1回ぶんになり、タイムアウト・リトライと組み合わせて安全に運用できます。", "points": ["返事が来ないとき届いたか処理されたかを区別できない（部分故障）ことに触れた", "届くまで再送する（at-least-once）と重複の危険に触れた", "受け側を冪等にする（冪等キー）ことで重複を無害化することに触れた"], "ref": "6.4〜6.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-cs-kouhen/viewer/concurrency-distributed"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

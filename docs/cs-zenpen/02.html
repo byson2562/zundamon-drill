@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：2章　CSを支える数学のさわり｜ずんだもんと学ぶコンピュータサイエンス：前編</title>
+<meta name="description" content="ずんだもんと学ぶコンピュータサイエンス：前編「2章　CSを支える数学のさわり」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：2章　CSを支える数学のさわり｜ずんだもんと学ぶコンピュータサイエンス：前編">
+<meta property="og:description" content="ずんだもんと学ぶコンピュータサイエンス：前編「2章　CSを支える数学のさわり」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/cs-zenpen/02.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/cs-zenpen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#118F8D;--accent-dark:#0B595D}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶコンピュータサイエンス：前編</p>
+  <h1>理解度チェック：2章　CSを支える数学のさわり</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-cs-zenpen/viewer/math-for-cs">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "cs-zenpen", "chapter": 2, "chapter_slug": "math-for-cs", "chapter_title": "2章　CSを支える数学のさわり", "questions": [{"type": "choice", "q": "条件式 not (a and b) と同じ意味になる書き換えはどれ？", "choices": ["(not a) and (not b)", "(not a) or (not b)", "a or b", "not a"], "answer": 1, "explain": "ド・モルガンの法則です。「(A かつ B) でない」は「(A でない) または (B でない)」と同じです。「有効かつ支払い済み、ではない」＝「無効、または未払い」と読むと納得できます。", "ref": "2.2"}, {"type": "fill", "q": "2つの条件式が同じ意味かどうかを、すべての真偽の組み合わせを列挙して機械的に確認する表を何という？", "accept": ["真理値表", "しんりちひょう", "truth table"], "explain": "真理値表を書けば、条件式の書き換えが正しいかを機械的に確認できます。本文では not (A and B) と (not A) or (not B) の列が完全に一致することで、ド・モルガンの法則を確かめました。Python で全パターン検証もできます。", "ref": "2.2"}, {"type": "choice", "q": "SQL の UNION・INTERSECT・EXCEPT に対応する集合の演算を、この順に並べたものはどれ？", "choices": ["差・和・積", "積・差・和", "和・積・差", "和・差・積"], "answer": 2, "explain": "UNION は和（どちらかに入っている）、INTERSECT は積（両方に入っている）、EXCEPT は差（片方だけに入っている）です。リレーショナルデータベースは集合論の上に設計されていて、SQL は「どんな集合が欲しいか」を書く言語になっています。", "ref": "2.3"}, {"type": "truefalse", "q": "「IDが重複してはいけない」という一意制約の足元には、「ID → 情報」の対応が写像（各要素に対応先が1つだけ）でなければならない、という数学がある。", "answer": true, "explain": "写像は、集合Aの各要素に集合Bの要素を1つ対応させる規則です。対応先が2つあると、どちらを返せばいいか分からず写像になりません。主キーで引くことや Python の dict も、この写像の考え方の上にあります。", "ref": "2.3"}, {"type": "choice", "q": "Terraform が「依存が循環しています」と怒るとき、グラフ理論の言葉で何が起きている？", "choices": ["依存関係の有向グラフに閉路（サイクル）があり、DAG（有向非巡回グラフ）になっていない", "グラフのノードが多すぎて処理できない", "グラフに辺が1本もない", "グラフが無向グラフになっている"], "answer": 0, "explain": "依存関係は有向グラフで表せます。「AはBを待ち、BはAを待つ」という閉路があると永遠に始まらないので、循環参照エラーになります。閉路のない有向グラフが DAG で、Terraform や CI/CD のパイプラインはこれで作る順番を決めています。", "ref": "2.4"}, {"type": "choice", "q": "log₂n の実用的な読み方として、本文が勧めているものはどれ？", "choices": ["n を2倍にし続けて100万を超えるまでの回数", "n を10進数で書いたときの桁数", "n の平方根のおおよその値", "n を半分にし続けて1になるまでの回数"], "answer": 3, "explain": "log₂n は「n を半分にし続けて1になるまでの回数」です。100万は約20回、10億でも約30回。データが1000倍になっても10回しか増えないのが対数の威力で、後編の二分探索や O(log n) を読む土台になります。", "ref": "2.5"}, {"type": "essay", "q": "「23人のクラスに同じ誕生日のペアがいる確率は約50%」という誕生日のパラドックス。なぜ直感よりずっと高いのか、そしてCSでどんな教訓になるのか、3文くらいで説明してみよう。", "model": "「自分と同じ誕生日の人」ではなく「誰かと誰か」のペアを数えると、23人では 23×22÷2 = 253組もあるので、どこかのペアが一致する確率は約50%まで上がります。CSではこれが「ランダムに割り当てても、思ったよりずっと早く衝突する」という教訓になります。ハッシュの衝突設計や、IDの桁数を決めるときの足元にある考え方です。", "points": ["ペアの数が253組と多いことに触れた", "「ランダムでも衝突は思ったより早い」という教訓に触れた", "ハッシュの衝突やID桁数設計への応用に触れた"], "ref": "2.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-cs-zenpen/viewer/math-for-cs"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
