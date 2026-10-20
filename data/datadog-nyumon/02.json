@@ -1,0 +1,66 @@
+{
+  "book": "datadog-nyumon",
+  "chapter": 2,
+  "chapter_slug": "agent-setup",
+  "chapter_title": "2章　Datadogを始める（Agent導入）",
+  "questions": [
+    {
+      "type": "truefalse",
+      "q": "Datadog のアカウント作成時に選ぶ「サイト」は、あとから自由に変更できる。",
+      "answer": false,
+      "explain": "サイトはデータが保存される Datadog 側のリージョンで、後から変更できません。DD_SITE の値やドキュメントの URL もサイトごとに違うので、自分がどのサイトかを最初にメモしておきます。",
+      "ref": "2.1"
+    },
+    {
+      "type": "choice",
+      "q": "Datadog Agent がデータを集める仕組みとして正しいものはどれ？",
+      "choices": ["Datadog 側が定期的にサーバーへ SSH して取りに来る", "サーバーに常駐する Agent が、Datadog へ送信する", "CloudWatch を経由してしか送れない", "担当者が手動でファイルをアップロードする"],
+      "answer": 1,
+      "explain": "Agent はサーバー側から Datadog の SaaS へデータを送る push 型です。外向きの HTTPS 通信ができれば動くので、外から入るための穴を開ける必要がありません。",
+      "ref": "2.2"
+    },
+    {
+      "type": "choice",
+      "q": "sudo datadog-agent status のレポートに出てくる「Forwarder」の役割はどれ？",
+      "choices": ["集めたデータを Datadog へ送信する", "ホストのメトリクスを収集する", "設定ファイルを編集する", "ホストマップを描画する"],
+      "answer": 0,
+      "explain": "Collector が収集係、Forwarder が送信係です。トラブルのときは、まずこのコマンドで「集められているか」「送れているか」を切り分けます。",
+      "ref": "2.3"
+    },
+    {
+      "type": "choice",
+      "q": "Agent 本体の設定ファイルの場所はどれ？",
+      "choices": ["~/.datadog/config", "/etc/datadog.conf", "/etc/datadog-agent/datadog.yaml", "/var/log/datadog/agent.log"],
+      "answer": 2,
+      "explain": "Agent の設定は /etc/datadog-agent/datadog.yaml に書き、編集したら sudo systemctl restart datadog-agent で反映します。status・datadog.yaml・restart の3点セットを覚えておけば、入門段階は十分です。",
+      "ref": "2.3"
+    },
+    {
+      "type": "choice",
+      "q": "Datadog が推奨する統一サービスタグ付け（Unified Service Tagging）で、3本柱すべてに同じ値で付ける3つのタグはどれ？",
+      "choices": ["host・region・team", "env・team・cost", "service・owner・tier", "env・service・version"],
+      "answer": 3,
+      "explain": "env（環境）・service（サービス名）・version（アプリのバージョン）の3つを、メトリクスにもログにもトレースにも同じ値で付けます。この3タグが、3本柱を相関させて行き来するときの接着剤になります。",
+      "ref": "2.5"
+    },
+    {
+      "type": "fill",
+      "q": "Agent が Datadog にデータを送るときの認証に使う、組織ごとに発行されるデータ送信用の鍵を何と呼ぶ？（カタカナ・英字可）",
+      "accept": ["APIキー", "API key", "apikey", "エーピーアイキー"],
+      "explain": "API キーは認証情報なので、コードに直書きせず、漏らさないことが大切です。Terraform 編で学んだアクセスキーの扱いと同じ考え方です。",
+      "ref": "2.2"
+    },
+    {
+      "type": "essay",
+      "q": "Datadog で「タグ」が最重要とされる理由と、env・service・version を「同じ値で」付ける理由を説明してみよう。",
+      "model": "Datadog ではタグがすべての機能の絞り込み軸になり、「本番だけのダッシュボード」「このサービスだけのアラート」「このチームのコスト」もタグで実現します。タグが整っていない Datadog は、検索できない図書館のようなものです。また env・service・version をメトリクス・ログ・トレースに同じ値で付けておくと、メトリクスで見つけた異常から、同じサービス・同じ環境のトレースやログへジャンプして調べられます。",
+      "points": [
+        "タグがダッシュボード・アラート・コストなど全機能の絞り込み軸になることに触れた",
+        "タグが整っていないと探せない（検索できない図書館）ことに触れた",
+        "env・service・version を3本柱すべてに同じ値で付けることに触れた",
+        "3本柱を相関させて行き来できることに触れた"
+      ],
+      "ref": "2.5"
+    }
+  ]
+}

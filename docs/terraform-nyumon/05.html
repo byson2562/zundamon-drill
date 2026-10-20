@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：5章　ハンズオン：Webサーバーを建てる｜ずんだもんと学ぶTerraform：入門編</title>
+<meta name="description" content="ずんだもんと学ぶTerraform：入門編「5章　ハンズオン：Webサーバーを建てる」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：5章　ハンズオン：Webサーバーを建てる｜ずんだもんと学ぶTerraform：入門編">
+<meta property="og:description" content="ずんだもんと学ぶTerraform：入門編「5章　ハンズオン：Webサーバーを建てる」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/terraform-nyumon/05.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/terraform-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#2E7D4F;--accent-dark:#174D2C}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶTerraform：入門編</p>
+  <h1>理解度チェック：5章　ハンズオン：Webサーバーを建てる</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-terraform-nyumon/viewer/handson-webserver">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "terraform-nyumon", "chapter": 5, "chapter_slug": "handson-webserver", "chapter_title": "5章　ハンズオン：Webサーバーを建てる", "questions": [{"type": "choice", "q": "「パブリックサブネット」の正体として、本文の説明に合うものはどれ？", "choices": ["名前に public と付けたサブネット", "セキュリティグループで80番ポートを開けたサブネット", "宛先 0.0.0.0/0 を IGW に向けたルートテーブルが紐付いたサブネット", "CIDR を /24 で区切ったサブネット"], "answer": 2, "explain": "パブリックサブネットの正体は、「0.0.0.0/0 を IGW（インターネットゲートウェイ）に向けたルートテーブル」が紐付いたサブネットです。コードにすると、散らばっていた設定が1か所で読めるので、こうした仕組みが一目で分かります。", "ref": "5.2"}, {"type": "truefalse", "q": "あとでサーバーに入れなくなると困るので、SSH（22番ポート）は 0.0.0.0/0 に開けておくのが無難だ。", "answer": false, "explain": "使わないポートは開けないのが鉄則です。22番を 0.0.0.0/0 に開けたサーバーは、世界中から数分で総当たり攻撃の的になります。シェルが必要なときも、ポートを開けない接続方法（SSM セッションマネージャー）を使うのが現代の定石です。", "ref": "5.3"}, {"type": "choice", "q": "EC2 の AMI の ID をコードに直書きせず、データソース（data \"aws_ami\"）で検索するのはなぜ？", "choices": ["AMI の ID はリージョンごとに違い、更新のたびに変わるから", "データソースを使うと EC2 の料金が安くなるから", "AMI は Terraform では参照できないから", "直書きすると plan が必ず失敗するから"], "answer": 0, "explain": "AMI の ID はリージョンごとに違い、新しい版が出るたびに変わります。データソースで「Amazon 公式の Amazon Linux 2023 のうち最新のもの」を検索すれば、ID を一度も書かずに済みます。", "ref": "5.4"}, {"type": "choice", "q": "aws_instance の user_data に書いたシェルスクリプトは、いつ実行される？", "choices": ["terraform apply の前に、手元のパソコンで実行される", "インスタンスを起動するたびに、毎回実行される", "terraform destroy のときに実行される", "インスタンスの初回起動時に、一度だけ実行される"], "answer": 3, "explain": "user_data はインスタンスの初回起動時に一度だけ実行されるスクリプトです。このハンズオンでは nginx を入れて起動し、Hello ページを置いています。", "ref": "5.4"}, {"type": "choice", "q": "順番を一行も書いていないのに、apply でサブネットが VPC より後に作られたのはなぜ？", "choices": ["サブネットが aws_vpc.main.id を参照しているので、Terraform が依存関係を判断したから", "コードの上から書いた順番に作るから", "Terraform が depends_on を自動で書き足したから", "リソースタイプのアルファベット順に作るから"], "answer": 0, "explain": "Terraform は参照をたどって依存関係（暗黙の依存）を組み立て、作る順番を決めます。依存のないもの同士は並行で作り、destroy はその逆順です。基本方針は「参照で書けるものは参照で書く」で、depends_on は最後の手段です。", "ref": "5.5"}, {"type": "fill", "q": "for_each でキー a と c のサブネットを作った（resource \"aws_subnet\" \"public\"）。キー a のサブネットの ID を参照する書き方は？", "accept": ["aws_subnet.public[\"a\"].id"], "explain": "for_each で作ったリソースは、aws_subnet.public[\"a\"].id のようにキーで指定して参照します。count で作った場合は aws_instance.web[0].id のように番号で指定します。", "ref": "5.6"}, {"type": "essay", "q": "同じリソースを複数作るとき、count と for_each をどう使い分ける？ count で起こりうる事故にも触れて説明してみよう。", "model": "単純に「台数」を指定したいなら count、名前で区別できる集まりを作るなら for_each を使います。count は番号で管理するので、3台のうち真ん中の1台を消すと後ろの番号がずれて、残したいサーバーまで作り直す計画が出ることがあります。for_each はキーで管理するので、1つ消しても他には影響しません。", "points": ["台数なら count、名前で区別できる集まりなら for_each と使い分けを説明した", "count は番号で管理するので、途中を消すと番号がずれることに触れた", "残したいリソースが作り直される事故につながることに触れた", "for_each はキーで管理するのでその事故が起きないことに触れた"], "ref": "5.6"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-terraform-nyumon/viewer/handson-webserver"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

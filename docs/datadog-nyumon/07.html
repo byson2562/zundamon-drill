@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：7章　運用に組み込む第一歩｜ずんだもんと学ぶDatadog：入門編</title>
+<meta name="description" content="ずんだもんと学ぶDatadog：入門編「7章　運用に組み込む第一歩」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：7章　運用に組み込む第一歩｜ずんだもんと学ぶDatadog：入門編">
+<meta property="og:description" content="ずんだもんと学ぶDatadog：入門編「7章　運用に組み込む第一歩」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/datadog-nyumon/07.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/datadog-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#7B22CC;--accent-dark:#5C21B7}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶDatadog：入門編</p>
+  <h1>理解度チェック：7章　運用に組み込む第一歩</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/operations-first-step">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "datadog-nyumon", "chapter": 7, "chapter_slug": "operations-first-step", "chapter_title": "7章　運用に組み込む第一歩", "questions": [{"type": "choice", "q": "本文で挙げたタグ設計の原則に含まれないものはどれ？", "choices": ["統一サービスタグ（env・service・version）は全データに必ず付ける", "env の値は dev / stg / prod だけ、のように使える値をチームで固定する", "team タグのように、所有者がわかるタグを足す", "タグの書き方は担当者ごとに自由に決めてよい"], "answer": 3, "explain": "env:prod と env:production が混在すると絞り込みが壊れます。語彙を固定し、所有者タグを足しておくと、障害時の「誰のサービス？」とコスト配分の両方で効きます。", "ref": "7.1"}, {"type": "choice", "q": "Agent を入れられない ALB や RDS などのマネージドサービスは、どうやって監視する？", "choices": ["AWS インテグレーションで、Datadog が AWS の API からメトリクスを取得する", "マネージドサービスの中に Agent を手動でインストールする", "マネージドサービスは監視できないので諦める", "ログだけを見て判断する"], "answer": 0, "explain": "データの入口は2つです。ホストの中の詳細とログ・トレースは Agent から、マネージドサービスのメトリクスは AWS インテグレーションから集めます。AWS 側には Datadog からの読み取りを許可する IAM ロールを作って信頼させます。", "ref": "7.2"}, {"type": "choice", "q": "SLO を「30日間で 99.9% 成功」と決めた。このときのエラーバジェットはどれ？", "choices": ["99.9% ぶんの失敗が許される", "失敗はゼロでなければならない", "0.1% ぶん失敗してよい予算", "毎日0.1% ずつ失敗しなければならない"], "answer": 2, "explain": "エラーバジェットは SLO が許す失敗の残り枠です。99.9% の SLO なら、0.1% ぶんが「失敗してよい予算」になります。", "ref": "7.3"}, {"type": "truefalse", "q": "エラーバジェットの考え方は、「失敗ゼロを目指し、少しでも失敗があればリリースを止める」というものだ。", "answer": false, "explain": "失敗ゼロは不可能で、追うとリリースが止まります。どこまでの失敗なら許容するかを先に合意し、その予算内で挑戦します。バジェットが減ってきたら安定化を優先し、余っていれば攻めます。", "ref": "7.3"}, {"type": "choice", "q": "Datadog のインフラ監視の主な課金単位はどれ？", "choices": ["ダッシュボードの数", "ホスト数", "ログインするユーザーの数", "作成したモニターの数"], "answer": 1, "explain": "インフラ監視と APM はホスト数が基本、ログとスパンは量で課金されます。つまりコストは、サーバーを増やすか、データを出しすぎるかで増えます。team タグがあれば、どのチームがどれだけ使っているかを見える化できます。", "ref": "7.4"}, {"type": "fill", "q": "「注文 API のリクエスト成功率」のように、ユーザー体験を代表する測定値のことを、アルファベット3文字で何と呼ぶ？", "accept": ["SLI"], "explain": "SLI（サービスレベル指標）はユーザー体験を代表する測定値、SLO（サービスレベル目標）はその目標値です。APM が集めている成功率やレイテンシーが、そのまま SLI に使えます。", "ref": "7.3"}, {"type": "essay", "q": "「CPU 使用率が50%なら健康」とは言えないのはなぜか。サービスの健康を何で測るべきか、SLI・SLO・エラーバジェットを使って説明してみよう。", "model": "CPU が低くても、ユーザーがエラーを見ていればサービスは不健康だからです。健康かどうかを決めるのはユーザー体験なので、リクエスト成功率のようなユーザー体験を代表する指標（SLI）で測ります。そのうえで「30日間で 99.9% 成功」のような目標（SLO）を決めると、許される失敗の枠（エラーバジェット）が決まります。バジェットが減ってきたら安定化を優先し、余っていれば新しいリリースで攻める、というように、監視の数字をチームの意思決定に使えます。", "points": ["CPU が低くてもユーザーがエラーを見ていれば不健康だと触れた", "ユーザー体験を代表する指標（SLI）で測ることに触れた", "SLO とエラーバジェット（許される失敗の枠）に触れた", "バジェットの残りで攻めるか守るかを判断することに触れた"], "ref": "7.3"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/operations-first-step"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

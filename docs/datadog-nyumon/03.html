@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：3章　メトリクスとダッシュボード｜ずんだもんと学ぶDatadog：入門編</title>
+<meta name="description" content="ずんだもんと学ぶDatadog：入門編「3章　メトリクスとダッシュボード」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：3章　メトリクスとダッシュボード｜ずんだもんと学ぶDatadog：入門編">
+<meta property="og:description" content="ずんだもんと学ぶDatadog：入門編「3章　メトリクスとダッシュボード」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/datadog-nyumon/03.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/datadog-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#7B22CC;--accent-dark:#5C21B7}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶDatadog：入門編</p>
+  <h1>理解度チェック：3章　メトリクスとダッシュボード</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/metrics-dashboards">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "datadog-nyumon", "chapter": 3, "chapter_slug": "metrics-dashboards", "chapter_title": "3章　メトリクスとダッシュボード", "questions": [{"type": "choice", "q": "5台のサーバーそれぞれのエラー数（count 型）を、1本のグラフにまとめたい。使うべき集約はどれ？", "choices": ["avg（平均）", "sum（合計）", "min（最小）", "max（最大）"], "answer": 1, "explain": "count は「何回起きたか」なので合計するべきです。平均すると台数で薄まってしまいます。グラフが直感と合わないときの原因は、たいてい型と集計の不一致です。", "ref": "3.1"}, {"type": "choice", "q": "メトリクスの型のうち、gauge（ゲージ）にあたるものはどれ？", "choices": ["期間内に発生したエラーの回数", "毎秒のリクエスト数", "その瞬間の CPU 使用率", "期間内に受け付けた注文の件数"], "answer": 2, "explain": "gauge は「今いくつか」というその瞬間の量（CPU 使用率・メモリ使用量など）です。回数は count、毎秒の回数のような速さは rate です。", "ref": "3.1"}, {"type": "choice", "q": "avg:system.cpu.user{env:dev} by {host} の「by {host}」の役割はどれ？", "choices": ["dev 環境のホストだけに絞り込む", "ホストごとに線を分ける（グループ分け）", "複数ホストの値を平均する", "メトリクスの名前を指定する"], "answer": 1, "explain": "{env:dev} がタグでの絞り込み（SQL の WHERE）、by {host} がグループ分け（GROUP BY）、avg: が複数ホストをまとめる空間集約です。全体の傾向は集約で見て、犯人を探すときは by で分解します。", "ref": "3.3"}, {"type": "truefalse", "q": "Linux のサーバーで見かけの空きメモリが少なければ、それだけでメモリ不足の危険な状態だと判断できる。", "answer": false, "explain": "Linux はキャッシュにメモリを使うので、見かけの空きが少なくても健康なことがよくあります。実用上は system.mem.usable（使用可能メモリ）を見ます。数字そのものより、普段との差と変化の形を見る癖をつけます。", "ref": "3.2"}, {"type": "choice", "q": "「CPU 使用率が高い順にホスト10台」を順位表で表示したい。使うウィジェットはどれ？", "choices": ["Timeseries", "Query Value", "Top List", "Note"], "answer": 2, "explain": "Top List は by {host} の結果を順位表にしたもので、犯人探しに便利です。Timeseries は時間変化のグラフ、Query Value は1つの数字を大きく出すウィジェットです。", "ref": "3.4"}, {"type": "fill", "q": "ダッシュボード上部のドロップダウンで環境を切り替えられるようにしたい。avg:system.cpu.user{［　　］} by {host} の［　　］に入るテンプレート変数は？", "accept": ["$env"], "explain": "テンプレート変数 $env をクエリに入れておけば、ドロップダウンで env:dev → env:prod と切り替えるだけで、1枚のダッシュボードが全環境に対応します。環境ごとにコピーする必要はありません。", "ref": "3.5"}, {"type": "essay", "q": "役に立つダッシュボードを作るときのポイントを、2つ以上挙げて説明してみよう。", "model": "1つ目は、見る目的から逆算して作ることです。「朝イチで健康確認する」「障害時に最初に開く」のように目的を1行で言えるダッシュボードが良く、とりあえず全メトリクスを並べた画面は障害のときに何も教えてくれません。2つ目は、テンプレート変数を使って1枚を使い回すことです。環境ごとにコピーせず、$env などで切り替えれば、修正も1か所で済みます。", "points": ["見る目的から逆算する（目的を1行で言える）ことに触れた", "全メトリクスを並べただけの画面は役に立たないことに触れた", "テンプレート変数で使い回し、コピーしないことに触れた"], "ref": "3.4〜3.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/metrics-dashboards"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

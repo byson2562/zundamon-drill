@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：6章　テストとセキュリティ｜ずんだもんと学ぶTerraform：実践編</title>
+<meta name="description" content="ずんだもんと学ぶTerraform：実践編「6章　テストとセキュリティ」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：6章　テストとセキュリティ｜ずんだもんと学ぶTerraform：実践編">
+<meta property="og:description" content="ずんだもんと学ぶTerraform：実践編「6章　テストとセキュリティ」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/terraform-jissen/06.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/terraform-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3B4C7A;--accent-dark:#1D283C}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶTerraform：実践編</p>
+  <h1>理解度チェック：6章　テストとセキュリティ</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/testing-security">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "terraform-jissen", "chapter": 6, "chapter_slug": "testing-security", "chapter_title": "6章　テストとセキュリティ", "questions": [{"type": "choice", "q": "インフラのテストのピラミッドで、「この入力なら、こういうリソースが計画されるはず」を確かめる terraform test（command = plan）はどの段にあたる？", "choices": ["第1段：文法と作法", "第2段：構成の意図", "第3段：実際に動くか", "テストのピラミッドには含まれない"], "answer": 1, "explain": "第1段は fmt・validate・tflint による文法と作法、第2段は plan の結果を検査する構成の意図、第3段は実際に apply して確かめる段です。下の段ほど高速・低コストで、上の段ほど本物に近くなります。", "ref": "6.1〜6.2"}, {"type": "truefalse", "q": "terraform test で command = plan のテストを実行すると、実リソースが作られるので料金がかかる。", "answer": false, "explain": "command = plan のテストは plan の結果だけを検査するので、実リソースを作りません。速くて無料なので、普段の CI で毎回回せます。", "ref": "6.2"}, {"type": "choice", "q": "terraform test で command = apply にしたテストの説明として正しいものはどれ？", "choices": ["実際にリソースを作って検証し、テスト終了時に自動で destroy まで行う", "plan の結果だけを検査し、リソースは作らない", "テストに合格すると本番環境に自動で適用する", "文法とインデントだけを検査する"], "answer": 0, "explain": "apply テストは本物の AWS に作るので時間も料金もかかりますが、「本当に作れるのか」はこれでしか確かめられません。モジュールの大きな変更時や夜間の定期実行で使うのが現実的です。", "ref": "6.2"}, {"type": "choice", "q": "Trivy や Checkov のようなセキュリティの静的解析ツールの役割はどれ？", "choices": ["自分たちのモジュールの意図が守られているかをテストする", "apply を自動で実行する", "コードと実環境のズレ（ドリフト）を検出する", "世の中のセキュリティ知見をまとめたルール集とコードを照合し、危険な設定を見つける"], "answer": 3, "explain": "テストは「自分たちの意図」を守るもので、意図そのものが間違っていると守れません。静的解析ツールは、SSH の全開放や S3 の暗号化なしなど「知らなかった」系の穴を、数百のルールで網羅的に見つけます。意図的な例外は、理由をコードに残して管理します。", "ref": "6.3"}, {"type": "truefalse", "q": "check ブロックの assert が失敗すると、apply も失敗して止まる。", "answer": false, "explain": "check は失敗しても警告止まりで、apply は成立します。「インフラ操作は成功させたいが、気になることは知らせてほしい」という監視寄りの用途です。止めたいときは precondition / postcondition を使います。", "ref": "6.4"}, {"type": "fill", "q": "resource の lifecycle の中に書き、「このリソースを作る前提条件」を宣言して、破れていたら plan / apply を止めるブロックの名前は？", "accept": ["precondition"], "explain": "precondition は作る前の前提条件、postcondition は作った結果が満たすべき条件です。入力の検査は variable validation、継続的な健全性の観察は check と使い分け、守りの宣言をコードの一番近くに置きます。", "ref": "6.4"}, {"type": "essay", "q": "この章でいう「ガードレール」とはどんな考え方か。なぜ必要なのかも含めて説明してみよう。", "model": "ガードレールは、人間が気をつける代わりに、危ないものを機械が止めてくれる仕組みのことです。道路のガードレールのように、自由を奪わずに崖から落ちることだけを防ぎます。全 PR を隅々までレビューで守ろうとしても、人間は疲れるし、見逃すし、入れ替わるので破綻します。そこで lint・テスト・静的解析・condition などで安全の下限を機械に守らせ、人間は設計判断に集中します。", "points": ["人間の代わりに機械が危ないものを止める仕組みだと説明した", "人間のレビューだけでは疲れ・見逃し・入れ替わりで破綻することに触れた", "安全の下限は機械、人間は設計判断に集中という分担に触れた", "lint・テスト・静的解析・condition などの具体例を挙げた"], "ref": "6.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/testing-security"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

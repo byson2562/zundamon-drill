@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：4章　ログ運用の最適化｜ずんだもんと学ぶDatadog：実践編</title>
+<meta name="description" content="ずんだもんと学ぶDatadog：実践編「4章　ログ運用の最適化」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：4章　ログ運用の最適化｜ずんだもんと学ぶDatadog：実践編">
+<meta property="og:description" content="ずんだもんと学ぶDatadog：実践編「4章　ログ運用の最適化」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/datadog-jissen/04.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/datadog-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#5A3D9E;--accent-dark:#2D1063}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶDatadog：実践編</p>
+  <h1>理解度チェック：4章　ログ運用の最適化</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-datadog-jissen/viewer/log-operations">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "datadog-jissen", "chapter": 4, "chapter_slug": "log-operations", "chapter_title": "4章　ログ運用の最適化", "questions": [{"type": "choice", "q": "アプリごとにログレベルの属性名が level・severity・status とバラバラになっている。インデックスされる前に status に揃えるパイプラインの処理はどれ？", "choices": ["Remapper（属性の付け替え）", "除外フィルター", "Sensitive Data Scanner", "ログベースメトリクス"], "answer": 0, "explain": "Remapper で、入口でバラバラな属性名を標準属性（ログレベルは status など）に揃えれば、検索するときの語彙が1つになります。パイプライン定義も Terraform で管理できます。", "ref": "4.1"}, {"type": "choice", "q": "インデックスに設定する「デイリークォータ」の役割はどれ？", "choices": ["古いログを自動で削除する", "1日あたりのインデックス上限を決め、ログが暴発しても請求が青天井にならないようにする", "ログの検索を速くする", "ログを属性に分解する"], "answer": 1, "explain": "デイリークォータは、バグでログが暴発したときの安全弁です。インデックスを複数に分けて保持期間を変えるのとあわせて、ログにも「爆発半径の分離」を持ち込みます。", "ref": "4.2"}, {"type": "choice", "q": "正常系のアクセスログの扱いとして、本文の作戦に合うものはどれ？", "choices": ["すべて30日間インデックスしておく", "取り込みも含めて一切送らない", "一部（例：10%）だけサンプリングでインデックスに残し、件数などはメトリクス化しておく", "担当者が毎日すべて目で読む"], "answer": 2, "explain": "正常系は全量インデックスする必要はありませんが、傾向確認やデバッグ用に1割残す中間解が取れます。捨てる前にログベースメトリクスを定義しておけば、件数やレイテンシーの統計は残り続けます。", "ref": "4.3"}, {"type": "truefalse", "q": "除外フィルターでできるのは、条件に合うログを「全部捨てる」ことだけだ。", "answer": false, "explain": "除外フィルターは「90%捨てて10%残す」のようなサンプリングもできます。", "ref": "4.3"}, {"type": "choice", "q": "ログに個人情報やカード番号が入らないようにする「第一の防御線」はどれ？", "choices": ["Datadog の Sensitive Data Scanner でマスクする", "ログを暗号化して保存する", "ログを検索できる人を減らす", "アプリ側で、そもそもログに出さない"], "answer": 3, "explain": "ログに書いた秘密は「社内に公開した」のと同じです。第一の防御線はアプリ側で出さないこと、第二が Datadog 側のマスキングです。Sensitive Data Scanner で検出されたら第一の防御線が破れている証拠なので、アプリの修正につなげます。", "ref": "4.4"}, {"type": "fill", "q": "カード番号やメールアドレスのような機微データのパターンを検出し、インデックスされる前にマスクやタグ付けをする Datadog の機能の名前は？（英語）", "accept": ["Sensitive Data Scanner", "SensitiveDataScanner"], "explain": "Sensitive Data Scanner は第二の防御線です。検出をアプリ側の修正につなげるループまで作って、マスキング運用は完成します。", "ref": "4.4"}, {"type": "essay", "q": "ログを「価値」で分類して、チームのログポリシーを作るとしたらどうする？ 分類ごとの扱いを説明してみよう。", "model": "まず、エラーや注文処理の記録のように障害調査ですぐ検索したいログは、全量をインデックスして30日などしっかり保持します。ヘルスチェックや正常系アクセスのように件数の傾向だけ見たいログは、ログベースメトリクスで数を残したうえで、除外フィルターで捨てるか一部だけサンプリングで残します。デバッグログのような念のため系は、3日などの短期のインデックスに入れます。こうした扱いを文書にしてチームのログポリシーにし、「とりあえず全部インデックス」をやめます。", "points": ["即応に使うログ（エラーなど）は全量インデックスすることに触れた", "数だけ要るログはメトリクス化して除外・サンプリングすることに触れた", "念のため系（デバッグログ）は短期のインデックスにすることに触れた", "文書化してチームのログポリシーにすることに触れた"], "ref": "4.2〜4.3"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-datadog-jissen/viewer/log-operations"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

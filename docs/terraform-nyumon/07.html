@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：7章　チームで使うための第一歩｜ずんだもんと学ぶTerraform：入門編</title>
+<meta name="description" content="ずんだもんと学ぶTerraform：入門編「7章　チームで使うための第一歩」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：7章　チームで使うための第一歩｜ずんだもんと学ぶTerraform：入門編">
+<meta property="og:description" content="ずんだもんと学ぶTerraform：入門編「7章　チームで使うための第一歩」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/terraform-nyumon/07.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/terraform-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#2E7D4F;--accent-dark:#174D2C}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶTerraform：入門編</p>
+  <h1>理解度チェック：7章　チームで使うための第一歩</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-terraform-nyumon/viewer/team-first-step">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "terraform-nyumon", "chapter": 7, "chapter_slug": "team-first-step", "chapter_title": "7章　チームで使うための第一歩", "questions": [{"type": "choice", "q": "チームで Terraform を使うとき、state を S3 などのリモートバックエンドに置くのはなぜ？", "choices": ["自分の PC の state を同僚は読めず、同僚が apply すると全部を新規作成する計画になってしまうから", "S3 に置くと apply が速くなるから", "state を PC に置くと Terraform が動かないから", "AWS の利用規約でそう決まっているから"], "answer": 0, "explain": "PC の中の state（ローカルバックエンド）は、同僚からは見えません。同僚が空の台帳で apply すると、全部を新規作成しようとしてしまいます。state を共有ストレージ（リモートバックエンド）に移せば、チーム全員が同じ台帳を見られます。", "ref": "7.1"}, {"type": "choice", "q": "backend \"s3\" の use_lockfile = true は何のための設定？", "choices": ["state を暗号化する", "誰かが実行中なら、他の人の実行を待たせる", "プロバイダのバージョンを固定する", "state のバックアップを自動で取る"], "answer": 1, "explain": "stateロックの設定です。2人が同時に apply すると同じ台帳に同時に書き込んで壊れてしまうので、S3 上のロックファイルで排他制御します。", "ref": "7.1"}, {"type": "truefalse", "q": "Terraform 1.10 以降でも、S3 バックエンドで state をロックするには DynamoDB のテーブルが必須である。", "answer": false, "explain": "DynamoDB を使うロック方式は昔の標準的な方法です。Terraform 1.10 以降は use_lockfile = true で、S3 だけで完結できるようになりました。", "ref": "7.1"}, {"type": "choice", "q": "Terraform プロジェクトで、.gitignore に入れずにコミットするべきファイルはどれ？", "choices": [".terraform/", "terraform.tfstate", ".terraform.lock.hcl", "terraform.tfstate.backup"], "answer": 2, "explain": ".terraform.lock.hcl は「実際に選ばれた正確なプロバイダのバージョン」の記録で、コミットしておくと全員がまったく同じプロバイダを使えます。.terraform/ は init で復元でき、state は機密を含みうるので除外します。", "ref": "7.2〜7.3"}, {"type": "truefalse", "q": "変数に sensitive = true を付けておけば、その値は state ファイルの中にも記録されない。", "answer": false, "explain": "sensitive = true は plan や apply の画面に値を表示しなくするだけで、state の中には平文で残ります。だから state の置き場所（バケット）を、暗号化やアクセス権で金庫のように守ることが大事です。", "ref": "7.2"}, {"type": "fill", "q": "ロックファイルに記録されたプロバイダのバージョンを、意図的に新しくしたい。terraform init ［　　］ の［　　］に入るオプションは？", "accept": ["-upgrade", "terraform init -upgrade", "--upgrade"], "explain": "terraform init -upgrade でロックファイルを更新し、その差分をレビューしてからコミットします。", "ref": "7.3"}, {"type": "essay", "q": "「誰が・いつ実行しても同じ結果」にするために固定するバージョンは3つある。それぞれ何を、どうやって固定するか説明してみよう。", "model": "1つ目は Terraform 本体で、terraform ブロックの required_version で範囲を宣言し、tenv のようなバージョン管理ツールと .terraform-version ファイルで全員のバージョンを揃えます。2つ目はプロバイダで、required_providers の version 制約で範囲を決めます。3つ目は .terraform.lock.hcl で、実際に選ばれた正確なプロバイダのバージョンを記録しているので、コミットしておけば全員が同じものを使えます。", "points": ["Terraform 本体を required_version（と tenv など）で固定することに触れた", "プロバイダを required_providers の version 制約で固定することに触れた", ".terraform.lock.hcl をコミットして正確なバージョンを揃えることに触れた"], "ref": "7.3"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-terraform-nyumon/viewer/team-first-step"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

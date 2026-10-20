@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：4章　stateを理解する｜ずんだもんと学ぶTerraform：入門編</title>
+<meta name="description" content="ずんだもんと学ぶTerraform：入門編「4章　stateを理解する」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：4章　stateを理解する｜ずんだもんと学ぶTerraform：入門編">
+<meta property="og:description" content="ずんだもんと学ぶTerraform：入門編「4章　stateを理解する」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/terraform-nyumon/04.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/terraform-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#2E7D4F;--accent-dark:#174D2C}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶTerraform：入門編</p>
+  <h1>理解度チェック：4章　stateを理解する</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-terraform-nyumon/viewer/understanding-state">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "terraform-nyumon", "chapter": 4, "chapter_slug": "understanding-state", "chapter_title": "4章　stateを理解する", "questions": [{"type": "choice", "q": "state（terraform.tfstate）の第一の役割はどれ？", "choices": ["AWS の認証情報を保存すること", "コード上の住所と、実リソースの ID を対応付けること", "plan の結果を保存しておくこと", "プロバイダのバージョンを固定すること"], "answer": 1, "explain": "AWS 上にバケットが100個あっても、AWS に問い合わせただけでは「どれがこのコードの管理対象か」は分かりません。コード上の住所（aws_s3_bucket.hello）と実リソースの ID の対応は、Terraform 側が state に記録しておくしかありません。", "ref": "4.1"}, {"type": "truefalse", "q": "terraform.tfstate を消してしまっても、Terraform は AWS に問い合わせて、自分が作ったリソースを判別できる。", "answer": false, "explain": "state が消えると、Terraform は自分が何を作ったかを忘れます。実リソースは AWS に残っているのに「何も管理していない」という認識になるので、apply すると同じものをもう1セット作ろうとします。", "ref": "4.1"}, {"type": "choice", "q": "terraform.tfstate の扱いとして正しいものはどれ？", "choices": ["内容の誤りに気づいたら、テキストエディタで直接直す", "誰でも見られるように Git リポジトリにそのままコミットする", "パスワードなどの機密情報が平文で入ることがあるので、置き場所とアクセス権に注意する", "apply のたびに削除して作り直す"], "answer": 2, "explain": "state は手で編集してはいけません。また、データベースの初期パスワードなどが平文で記録されることがあるので、置き場所とアクセス権はパスワードと同じ真剣さで扱います（7章のリモートバックエンドにつながる話です）。", "ref": "4.2"}, {"type": "choice", "q": "plan の最初に、state に載っているリソースについて AWS へ現状を問い合わせ、state を現実に合わせて更新する処理を何と呼ぶ？", "choices": ["リフレッシュ", "ドリフト", "インポート", "ロック"], "answer": 0, "explain": "Terraform はまずリフレッシュで state を現実に合わせ、そのうえで「コード（理想）」と比べて差分を計算します。ドリフトはコードと実環境のズレのことです。", "ref": "4.3"}, {"type": "choice", "q": "Terraform で作ったバケットに、コンソールから手動でタグ Memo を付けた。次に terraform plan を実行するとどうなる？", "choices": ["手動で付けたタグを、Terraform がコードに自動で書き足す", "手動の変更は無視され、差分は出ない", "コードにないタグなので、削除する計画（1 to change）になる", "state と実物が一致しないので、エラーで止まる"], "answer": 2, "explain": "Terraform にとっての正義はコードです。コードにないタグは「あるべきでないもの」なので、次の apply で消されます。手動変更は、いつか黙って巻き戻されるということです。", "ref": "4.4"}, {"type": "fill", "q": "いまの state が管理しているリソースの住所の一覧を表示したい。terraform state ［　　］ の［　　］に入るサブコマンドは？", "accept": ["list", "terraform state list", "state list"], "explain": "terraform state list で住所の一覧、terraform state show 住所 で特定のリソースの詳細が見られます。rm や mv のように state を書き換えるサブコマンドもありますが、入門の段階では読む系の list と show だけ使いましょう。", "ref": "4.5"}, {"type": "essay", "q": "「ドリフト」とは何か、なぜ困るのか、どう防ぐのかを説明してみよう。", "model": "ドリフトは、コンソールでの手動変更などによって、コードと実環境がズレることです。Terraform はコードを正しいものとして扱うので、手動で直した設定は次の apply で黙って巻き戻され、障害対応で直した設定が消えて再発する、といった事故が起きます。防ぐには、Terraform 管理のリソースへの変更は必ずコードを変えて plan / apply で行い、緊急時に手動変更したときは、できるだけ早くコードに反映します。", "points": ["コードと実環境のズレ（手動変更などで起きる）だと説明した", "次の apply で黙って巻き戻される危険に触れた", "変更は必ずコードを変えて plan / apply で行うことに触れた", "緊急時の手動変更は早くコードに反映することに触れた"], "ref": "4.3〜4.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-terraform-nyumon/viewer/understanding-state"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：6章　APMと分散トレーシング｜ずんだもんと学ぶDatadog：入門編</title>
+<meta name="description" content="ずんだもんと学ぶDatadog：入門編「6章　APMと分散トレーシング」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：6章　APMと分散トレーシング｜ずんだもんと学ぶDatadog：入門編">
+<meta property="og:description" content="ずんだもんと学ぶDatadog：入門編「6章　APMと分散トレーシング」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/datadog-nyumon/06.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/datadog-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#7B22CC;--accent-dark:#5C21B7}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶDatadog：入門編</p>
+  <h1>理解度チェック：6章　APMと分散トレーシング</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/apm-tracing">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "datadog-nyumon", "chapter": 6, "chapter_slug": "apm-tracing", "chapter_title": "6章　APMと分散トレーシング", "questions": [{"type": "choice", "q": "CPU もメモリも正常、エラーログもないのに「注文の表示に5秒かかる」と苦情が来た。このとき APM が解決してくれることはどれ？", "choices": ["サーバーの CPU 使用率を詳しく表示する", "リクエストの処理のどの工程で時間を使ったか（遅い場所）を特定する", "ログの保存期間を延ばす", "AWS の料金を下げる"], "answer": 1, "explain": "これまでの監視はサーバーという箱の外側からの観察でした。APM はアプリの中に計装を入れて、リクエスト1件1件の処理の内訳を記録するので、遅い場所を測定で特定できます。", "ref": "6.1"}, {"type": "choice", "q": "「スパン」の説明として正しいものはどれ？", "choices": ["1つのリクエストの始まりから終わりまでの全記録", "複数のサービスのメトリクスを合計したもの", "トレースの中の1つの作業区間", "ログに付ける属性の一種"], "answer": 2, "explain": "トレースは1つのリクエストの全記録、スパンはその中の作業区間（DB クエリ、外部 API の呼び出しなど）です。スパンは入れ子になって、どの処理が何ミリ秒かかったかを記録します。", "ref": "6.2"}, {"type": "truefalse", "q": "dd-trace で計装するには、アプリのコードを書き換えて、各処理に計装用のコードを追加する必要がある。", "answer": false, "explain": "起動コマンドを ddtrace-run で包むだけの自動計装で、Web フレームワーク・DB・HTTP クライアントなど主要ライブラリにスパンが仕込まれます。まず自動計装で始めるのが定石です。", "ref": "6.3"}, {"type": "choice", "q": "フレームグラフに、1本1本は短いが同じ形の DB クエリのスパンが100本並んでいた。典型的に疑うべきものはどれ？", "choices": ["正常な状態なので気にしなくてよい", "DB サーバーのディスク故障", "ネットワークの断線", "ループの中でクエリを発行する N+1 問題"], "answer": 3, "explain": "フレームグラフの読み方は、「一番長い棒を探す」と「同じ棒が大量に並んでいないか数える」の2つです。後者は N+1 問題の典型的な絵です。", "ref": "6.4"}, {"type": "choice", "q": "サービス監視の定番セット「RED メソッド」の3つの指標はどれ？", "choices": ["Rate（リクエスト数）・Errors（エラー率）・Duration（応答時間）", "Request・Error・Database", "Resource・Event・Disk", "Region・Environment・Deploy"], "answer": 0, "explain": "APM の Services 画面には、サービスごとのリクエスト数・エラー率・レイテンシーが自動で集計されています。7章の SLO でも主役になる指標です。", "ref": "6.4"}, {"type": "fill", "q": "ddtrace-run でアプリを起動するとき、統一サービスタグの「サービス名」を指定する環境変数の名前は？", "accept": ["DD_SERVICE"], "explain": "DD_ENV・DD_SERVICE・DD_VERSION で、2章で約束した統一サービスタグを同じ値で付けます。この律儀さが、3本柱をつなぐときに効いてきます。", "ref": "6.3"}, {"type": "essay", "q": "メトリクス・トレース・ログの3本柱をつなげた、理想の障害調査の流れを説明してみよう。それを可能にする前提条件にも触れること。", "model": "まずメトリクスのモニターが「エラー率上昇」などの異常を知らせます。次にアラートから該当サービスの APM 画面へ飛び、遅いトレースや失敗しているトレースを開いて、どこで何が起きたかを特定します。最後にトレースの詳細から、そのリクエストが出したログへジャンプして原因の本文を読みます。これができるのは、dd-trace がログにトレース ID を注入し、env・service・version の統一タグが3本柱すべてで同じ値になっているからです。", "points": ["メトリクス（モニター）で異常に気づく段階に触れた", "トレースで遅い・失敗した場所を特定する段階に触れた", "トレースから関係するログへジャンプして原因を読む段階に触れた", "前提として統一タグ（とトレース ID）が揃っていることに触れた"], "ref": "6.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/apm-tracing"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "book": "terraform-nyumon",
+  "chapter": 6,
+  "chapter_slug": "organizing-code",
+  "chapter_title": "6章　コードを整理する",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "環境名などから組み立てる「名前の接頭辞」や「共通タグ」を置く場所として、本文がすすめるのはどれ？",
+      "choices": ["variable", "locals", "output", "data"],
+      "answer": 1,
+      "explain": "外から変えたい値が variable、中で組み立てる値が locals です。利用者に調整させたいもの（環境名など）は variable、そこから導出するもの（名前の接頭辞・共通タグ）は locals に置き、local.名前 で参照します。",
+      "ref": "6.1"
+    },
+    {
+      "type": "choice",
+      "q": "tags = merge(local.common_tags, { Name = \"zundamon-dev-vpc\" }) の merge は何をする関数？",
+      "choices": ["マップ同士を合成する", "文字列を連結する", "リストの要素数を数える", "変数の値を検証する"],
+      "answer": 0,
+      "explain": "merge はマップ同士を合成する組み込み関数です。「共通タグ＋このリソース固有の Name タグ」は頻出パターンです。",
+      "ref": "6.1"
+    },
+    {
+      "type": "truefalse",
+      "q": "variable を variables.tf に分けたら、main.tf の側に「variables.tf を読み込む」という指定を書く必要がある。",
+      "answer": false,
+      "explain": "Terraform は同じディレクトリにある .tf ファイルをすべて自動で読み込みます。main.tf / variables.tf / outputs.tf という分け方は、探す場所を揃えるための人間向けの慣習です。",
+      "ref": "6.3"
+    },
+    {
+      "type": "choice",
+      "q": "変数 env に validation で「dev か prod のみ」という条件を付けた。誤って env = \"prd\" と渡すとどうなる？",
+      "choices": ["apply でリソースを作り終えたあとにエラーになる", "plan の最初の段階でエラーになり、そこで止まる", "Terraform が自動で dev に直して続行する", "警告だけ出て、そのまま prd として使われる"],
+      "answer": 1,
+      "explain": "validation は値の条件をあらかじめ宣言しておく仕組みで、打ち間違いを plan の最初の段階で止めます。エラーメッセージも自分で書けます。apply してしまうと実リソースが変わってしまうので、間違いは早く・手前で見つけるのが鉄則です。",
+      "ref": "6.2"
+    },
+    {
+      "type": "choice",
+      "q": "AWS に接続せずに、文法と内部の整合性（存在しない変数を参照していないか など）を検査するコマンドはどれ？",
+      "choices": ["terraform fmt", "terraform plan", "terraform validate", "terraform init"],
+      "answer": 2,
+      "explain": "terraform validate は plan より手前の軽い健康診断です。terraform fmt はインデントなどを公式スタイルに自動整形するコマンドです。「書いたら fmt、コミット前に validate」を習慣にし、チームでは CI に組み込みます。",
+      "ref": "6.4"
+    },
+    {
+      "type": "fill",
+      "q": "module \"vpc\" { source = \"terraform-aws-modules/vpc/aws\" ... } で作った VPC の ID（モジュールの出力 vpc_id）を output で使いたい。参照の書き方は？",
+      "accept": ["module.vpc.vpc_id"],
+      "explain": "モジュールの出力は module.モジュール名.出力名 の形で参照します。新しいモジュールを使い始めるときは、terraform init でモジュールをダウンロードするのを忘れずに。",
+      "ref": "6.5"
+    },
+    {
+      "type": "essay",
+      "q": "variable に default（既定値）を付けるかどうかは、どう判断すればいい？ 例を挙げて説明してみよう。",
+      "model": "「渡し忘れても困らないか」で判断します。リージョンのように安全な既定値を持てる値には default を付けて、渡す手間を省きます。一方、環境名のように間違えたら事故になる値には default を付けず、明示的に渡させます。default がなければ、渡し忘れた時点でエラーになって気づけるからです。",
+      "points": [
+        "「渡し忘れてよいか」で判断すると説明した",
+        "安全な既定値を持てる値（リージョンなど）には default を付ける例を挙げた",
+        "間違えたら事故になる値（環境名など）には default を付けない例を挙げた",
+        "default がなければ渡し忘れがエラーで分かることに触れた"
+      ],
+      "ref": "6.2"
+    }
+  ]
+}

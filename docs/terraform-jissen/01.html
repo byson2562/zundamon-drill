@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：1章　実践編へようこそ：チーム開発の舞台設定｜ずんだもんと学ぶTerraform：実践編</title>
+<meta name="description" content="ずんだもんと学ぶTerraform：実践編「1章　実践編へようこそ：チーム開発の舞台設定」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：1章　実践編へようこそ：チーム開発の舞台設定｜ずんだもんと学ぶTerraform：実践編">
+<meta property="og:description" content="ずんだもんと学ぶTerraform：実践編「1章　実践編へようこそ：チーム開発の舞台設定」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/terraform-jissen/01.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/terraform-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3B4C7A;--accent-dark:#1D283C}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶTerraform：実践編</p>
+  <h1>理解度チェック：1章　実践編へようこそ：チーム開発の舞台設定</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/team-setup">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "terraform-jissen", "chapter": 1, "chapter_slug": "team-setup", "chapter_title": "1章　実践編へようこそ：チーム開発の舞台設定", "questions": [{"type": "truefalse", "q": "実践編では、章ごとに別々のシステムを作って、さまざまな構成を体験する。", "answer": false, "explain": "実践編は、架空の社内サービス「ずんだオーダー」（ずんだ餅の注文を受け付ける Web API）のインフラを、最後まで1つ育てていきます。システムは同じでも、チームと時間が新しい問題を連れてきます。", "ref": "1.2"}, {"type": "choice", "q": "「メンバーが増えて、誰かの PC から apply するのが怖くなる」という事件に対応する、実践編のテーマはどれ？", "choices": ["環境分割", "モジュール設計", "CI/CD", "import"], "answer": 2, "explain": "誰かの PC からの apply をやめ、Pull Request で plan を自動実行し、レビューを通った変更だけが apply される仕組み（CI/CD）を5章で作ります。", "ref": "1.2"}, {"type": "choice", "q": "ずんだオーダーの構成で、ALB（Application Load Balancer）の役割はどれ？", "choices": ["商品画像を保管する", "複数の API サーバーへ通信を振り分ける", "注文データを保存するデータベース", "state をロックする"], "answer": 1, "explain": "ALB は複数のサーバーに通信を振り分けるロードバランサーです。その下に API サーバー（EC2）が2台、後ろにデータベースの RDS、横に画像保管の S3 があります。", "ref": "1.2"}, {"type": "choice", "q": "本文で挙げた「チームでの運用で変わる4つの前提」に含まれないものはどれ？", "choices": ["同時に作業する人がいる", "壊せない環境がある", "Terraform 導入前に手作業で作られたリソースがある", "AWS の料金体系が変わる"], "answer": 3, "explain": "変わる前提は、同時に作業する人がいる・壊せない環境がある・過去がある（手作業で作られたリソース）・人が入れ替わる、の4つです。", "ref": "1.3"}, {"type": "choice", "q": "state 置き場の S3 バケットだけは、Terraform のコードとは別枠で最初に作っておく。その理由はどれ？", "choices": ["S3 バケットは Terraform では作れないから", "別枠で作ると料金が安くなるから", "Terraform で作ろうとすると、その state を置く場所がまだない（ニワトリと卵の問題）から", "state 置き場は暗号化できないから"], "answer": 2, "explain": "state 置き場自体を Terraform で作ろうとすると、「その state はどこに置くのか」というニワトリと卵の問題になります。なお、このバケットにはバージョニング・暗号化・パブリックアクセスの全ブロックを施します。", "ref": "1.4"}, {"type": "fill", "q": "プロジェクトのルートに置き、チームで使う Terraform のバージョンを書いておくファイルの名前は？（tenv がこれを読んでバージョンを切り替える）", "accept": [".terraform-version", "terraform-version"], "explain": ".terraform-version をリポジトリに入れておけば、clone した全員が同じバージョンになります。バージョンを上げるときも、このファイルの変更が PR になるので、アップグレードがレビューの対象になります。", "ref": "1.4"}, {"type": "essay", "q": "「ひとりで作る」と「チームで運用する」では、前提が4つ変わる。それぞれの変化と、それに対して必要になることを説明してみよう。", "model": "1つ目は同時に作業する人がいることで、ロックや Pull Request ベースの流れで「誰が・いつ・何を変えるか」を調整する必要があります。2つ目は壊せない環境（本番）があることで、本番の前に同じ変更を試せるよう環境を分けます。3つ目は過去があること、つまり Terraform 導入前に手作業で作られたリソースが残っているので、それを取り込む（import する）必要があります。4つ目は人が入れ替わることで、新しい人が安全に変更できるよう、設計・テスト・ドキュメントとしてのコードで属人化を防ぎます。", "points": ["同時に作業する人がいる → ロックや PR での調整", "壊せない環境がある → 環境分割（本番の前に検証環境で試す）", "過去がある → 手作業で作られたリソースの取り込み（import）", "人が入れ替わる → 設計・テスト・ドキュメントで属人化を防ぐ"], "ref": "1.3"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/team-setup"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

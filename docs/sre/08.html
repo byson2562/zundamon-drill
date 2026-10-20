@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：8章　SREを始める（小さく始める導入ガイド）｜ずんだもんと学ぶSRE：入門編</title>
+<meta name="description" content="ずんだもんと学ぶSRE：入門編「8章　SREを始める（小さく始める導入ガイド）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：8章　SREを始める（小さく始める導入ガイド）｜ずんだもんと学ぶSRE：入門編">
+<meta property="og:description" content="ずんだもんと学ぶSRE：入門編「8章　SREを始める（小さく始める導入ガイド）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/sre/08.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/sre.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#2563C7;--accent-dark:#14306E}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶSRE：入門編</p>
+  <h1>理解度チェック：8章　SREを始める（小さく始める導入ガイド）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-sre/viewer/getting-started">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "sre", "chapter": 8, "chapter_slug": "getting-started", "chapter_title": "8章　SREを始める（小さく始める導入ガイド）", "questions": [{"type": "choice", "q": "SRE を組織に根付かせる正しい順序として、本文がすすめるのはどれ？", "choices": ["制度 → 実践 → 実績", "実践 → 実績 → 制度", "採用 → 制度 → 実践", "ツール導入 → 制度 → 実践"], "answer": 1, "explain": "まず兼任のまま小さく実践し、数字で実績を見せ、実績を根拠に時間や体制を交渉します。先に「SRE チーム」という箱を作ると、期待だけが先行して「何でも屋」化が最短距離で起きます。", "ref": "8.1"}, {"type": "truefalse", "q": "雑な SLO なら、まだ SLO がないほうがましだ。", "answer": false, "explain": "小さく始めるときの合言葉は「全部やらない・1サービスから・完璧を求めない」です。雑な SLO は SLO がないより100倍ましで、あとで直せばいいのです。", "ref": "8.1"}, {"type": "choice", "q": "本文が「明日から始める3つのプラクティス」として挙げているのはどれ？", "choices": ["SLO・ポストモーテム・トイル計測", "オンコール設計・カナリアリリース・Platform Engineering", "SRE の採用・専任チームの設立・監視ツールの導入", "カオスエンジニアリング・キャパシティプランニング・負荷試験"], "answer": 0, "explain": "この3つは、少ない労力で効果が見えやすく、次の実践を呼び込む入口です。オンコール設計やリリースエンジニアリングは効果が大きいぶん、体制や開発フローを変える調整コストが高いので後回しにします。", "ref": "8.2"}, {"type": "choice", "q": "「SLO を決めたのに、違反しても何も起きない」というアンチパターン（飾りの SLO）への解毒剤はどれ？", "choices": ["SLO の目標値をもっと高くする", "SLO の数を増やす", "エラーバジェットポリシーをセットで決め、守れないなら目標を直す", "SLO を廃止する"], "answer": 2, "explain": "SLO の本質は「この水準を下回ったら信頼性に投資する」という事前の合意です。エラーバジェットポリシーがなければ、SLO はただの飾りになります。", "ref": "8.3"}, {"type": "choice", "q": "「名前だけ SRE」のアンチパターン（運用チームの改名・飾りの SLO・ツール先行など）に共通する根っこはどれ？", "choices": ["予算が足りないこと", "メンバーの技術力が足りないこと", "形（名前・箱・ツール・儀式）を先に導入して、中身（実践・文化・数字）が置き去りになること", "外部のコンサルタントに頼らなかったこと"], "answer": 2, "explain": "共通の根っこは「形が先、中身が後回し」です。逆に、SLO・ポストモーテム・トイル計測のように中身から始めれば、名前だけ SRE には構造的になりません。", "ref": "8.3"}, {"type": "fill", "q": "この本の概念とツールの対応では、「トイル削減・環境の再現」を実装する技術として、Terraform に代表される何が挙げられている？（アルファベット3文字）", "accept": ["IaC", "Infrastructure as Code"], "explain": "IaC・監視・CI/CD はどれも SRE の実装です。Terraform で環境をコード化するのはトイルを消して再現性を得るため、Datadog で SLO を管理するのは信頼性を合意された数字で扱うためです。", "ref": "8.4"}, {"type": "essay", "q": "専任の SRE チームがない小さなチームで、明日から SRE を始めるとしたら何をする？ 本文の3つのプラクティスと、その最初の一歩を説明してみよう。", "model": "まず SLO をひとつ決めます。一番大事なユーザー行動をひとつ選んで SLI を決め、現状を2週間測り、実力の少し手前に目標を引いて1枚のドキュメントにします。次に、次の障害でポストモーテムを書きます。blameless を宣言してから始め、アクションアイテムは2〜3個に絞って担当と期限を付けます。そしてトイルログを回し、作業・所要時間・頻度を記録して、チームの時間の何%がトイルかを数字にし、常連トイルを1つ自動化して成果を見せます。この3つを回すと、バーンレートアラートやロールバック手順の整備など、次の実践が自然に呼び込まれます。", "points": ["SLO をひとつ決める（ユーザー行動・SLI・現状測定・少し手前の目標）ことに触れた", "次の障害でポストモーテムを書く（blameless・アクションアイテムに担当と期限）ことに触れた", "トイルログで計測し、常連トイルを自動化して数字で見せることに触れた", "3つを回すと次の実践が呼び込まれることに触れた"], "ref": "8.2"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-sre/viewer/getting-started"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

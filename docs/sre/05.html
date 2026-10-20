@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：5章　障害から学ぶ（ポストモーテムと非難なき文化）｜ずんだもんと学ぶSRE：入門編</title>
+<meta name="description" content="ずんだもんと学ぶSRE：入門編「5章　障害から学ぶ（ポストモーテムと非難なき文化）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：5章　障害から学ぶ（ポストモーテムと非難なき文化）｜ずんだもんと学ぶSRE：入門編">
+<meta property="og:description" content="ずんだもんと学ぶSRE：入門編「5章　障害から学ぶ（ポストモーテムと非難なき文化）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/sre/05.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/sre.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#2563C7;--accent-dark:#14306E}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶSRE：入門編</p>
+  <h1>理解度チェック：5章　障害から学ぶ（ポストモーテムと非難なき文化）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-sre/viewer/postmortem">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "sre", "chapter": 5, "chapter_slug": "postmortem", "chapter_title": "5章　障害から学ぶ（ポストモーテムと非難なき文化）", "questions": [{"type": "choice", "q": "ポストモーテムの目的として正しいものはどれ？", "choices": ["顧客や上司への謝罪", "障害を起こした犯人を見つけること", "何が起きたか・なぜ起きたか・どう再発を防ぐかを学ぶこと", "関係者を処罰すること"], "answer": 2, "explain": "ポストモーテムの目的は謝罪でも犯人探しでもなく、学習です。復旧した時点で授業料はすでに払っているので、やらないのは授業料だけ払って授業に出ないのと同じです。", "ref": "5.1"}, {"type": "choice", "q": "blameless（非難しない）がきれいごとではなく「実利」である理由として、本文が挙げるものはどれ？", "choices": ["人を責めると情報が出てこなくなり、学習の材料が消えるから", "責任者を決めなくてよくなり、会議が短くなるから", "法律で決まっているから", "報告書を書く手間が減るから"], "answer": 0, "explain": "理由は2つです。人を責めると情報が隠れて同じ障害が再発すること、そして「人が気をつける」は対策として最弱であることです。問うべきは「なぜ仕組みはそのミスを通してしまったのか」です。", "ref": "5.2"}, {"type": "truefalse", "q": "blameless は、悪意や重大な怠慢も含めて、どんな行為でも不問にするという原則である。", "answer": false, "explain": "blameless は「何でも不問」ではありません。善意で普通に働いていた人が引き起こした結果を、学習に変えるための原則です。", "ref": "5.2"}, {"type": "choice", "q": "ポストモーテムの「根本原因」の書き方として、本文がすすめるものはどれ？", "choices": ["「担当者の設定ミス」と書く", "「30秒のタイムアウトが、遅延時にコネクションプールを枯渇させた」のようにメカニズムで書く", "原因は書かずに、対策だけを書く", "「運が悪かった」と書く"], "answer": 1, "explain": "メカニズムで書けば、対策は自然と仕組みに向かいます。タイムラインは対応中の実況ログからほぼコピーできます。", "ref": "5.3"}, {"type": "choice", "q": "ポストモーテムのテンプレートに「幸運だったこと」の欄があるのはなぜ？", "choices": ["チームの運の良さを自慢するため", "報告書の分量を増やすため", "上司を安心させるため", "たまたま助かった点は次は助からない前提で、備えるため"], "answer": 3, "explain": "今回は障害が注文ピーク帯の直前だったのは完全に運で、ピーク帯なら影響は約3倍でした。「うまくいったこと」は再現すべき型として、「幸運だったこと」は次回は存在しない前提で備える材料として書きます。", "ref": "5.3"}, {"type": "fill", "q": "アクションアイテムには「担当者」と何を必ず入れる？（漢字2文字）", "accept": ["期限", "締め切り", "締切"], "explain": "「チームで検討」は誰もやらないの同義語です。名前と日付のないアクションアイテムは、書いた瞬間に死んでいます。", "ref": "5.4"}, {"type": "essay", "q": "ポストモーテムのアクションアイテムを「流さない」ための仕組みを説明してみよう。", "model": "まず担当者と期限を必ず入れます。次に、ポストモーテム文書の中だけに置かず、チームのバックログに起票して通常のタスク管理に乗せます。週次や月次の運用会議で未完了のアクションアイテムを必ず見て棚卸しし、エラーバジェットポリシーと接続して「使い切ったらアクションアイテム完了までリリース凍結」としておくと強制力が生まれます。また、対策を並べすぎると全部死ぬので、効果の大きい2〜4個に絞ります。", "points": ["担当者と期限を入れることに触れた", "バックログなど通常のタスク管理に乗せることに触れた", "定期レビューで棚卸しする（エラーバジェットポリシーとの接続を含む）ことに触れた", "数を絞ることに触れた"], "ref": "5.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-sre/viewer/postmortem"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

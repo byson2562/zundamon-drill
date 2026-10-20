@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：2章　信頼性を数字にする（SLI・SLO・エラーバジェット）｜ずんだもんと学ぶSRE：入門編</title>
+<meta name="description" content="ずんだもんと学ぶSRE：入門編「2章　信頼性を数字にする（SLI・SLO・エラーバジェット）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：2章　信頼性を数字にする（SLI・SLO・エラーバジェット）｜ずんだもんと学ぶSRE：入門編">
+<meta property="og:description" content="ずんだもんと学ぶSRE：入門編「2章　信頼性を数字にする（SLI・SLO・エラーバジェット）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/sre/02.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/sre.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#2563C7;--accent-dark:#14306E}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶSRE：入門編</p>
+  <h1>理解度チェック：2章　信頼性を数字にする（SLI・SLO・エラーバジェット）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-sre/viewer/slo-error-budget">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "sre", "chapter": 2, "chapter_slug": "slo-error-budget", "chapter_title": "2章　信頼性を数字にする（SLI・SLO・エラーバジェット）", "questions": [{"type": "choice", "q": "SRE が信頼性の「100%を目指さない」理由として、本文の説明に合わないものはどれ？", "choices": ["9を1つ増やすごとに、コストがおおよそ桁で増える", "ある水準を超えると、ユーザーは違いに気づけなくなる", "信頼性と開発速度はトレードオフの関係にある", "100%は簡単に達成できるので、目指す意味がない"], "answer": 3, "explain": "100%を目指さないのは諦めではなく、資源配分の戦略です。ユーザーが十分幸せでいられる水準を決め、それを超える余力は新しい価値を届けることに使います。", "ref": "2.1"}, {"type": "choice", "q": "ずんだオーダーの SLI として適切なのはどれ？", "choices": ["API サーバーの CPU 使用率", "注文確定 API へのリクエストのうち、5xx エラーにならなかった割合", "API サーバーの台数", "1日のデプロイ回数"], "answer": 1, "explain": "SLI はユーザーの幸せを代表する数字を選びます。CPU 使用率はサーバーの都合で、ユーザーの体験ではありません。「良いイベント÷全イベント」の割合の形に揃えると、あとの計算がきれいになります。", "ref": "2.2"}, {"type": "fill", "q": "SLO が 99.5% で、30日間のリクエストが1,000万件のとき、SLO 違反にならずに失敗してよい件数は何件？（例：〇万件）", "accept": ["5万件", "5万", "50000", "50000件"], "explain": "エラーバジェットは 100% − SLO なので 0.5%、1,000万件の 0.5% は5万件です。予算なので、使っていい失敗の枠です。", "ref": "2.4"}, {"type": "truefalse", "q": "顧客と結ぶ SLA（サービスレベル契約）は、社内目標の SLO より厳しく設定する。", "answer": false, "explain": "SLA は SLO より緩く設定します。社内目標（SLO）を 99.5%、契約（SLA）を 99% にすれば、SLA を破る前に SLO が先に警報を鳴らします。", "ref": "2.3"}, {"type": "choice", "q": "SLO の目標値の決め方として、本文がすすめる手順はどれ？", "choices": ["高いほど良いので、まず 99.99% を掲げる", "競合サービスが公表している数字に合わせる", "現状を測り、ユーザー視点で仮決めし、実力より少し手前から始めて、見直し日を決める", "インフラチームだけで決めて、ほかの部署には伝えない"], "answer": 2, "explain": "実力 99.7% なのに 99.99% を掲げるのは願望です。SLO は後から上げられますが下げるのは大変なので、低めから始めます。また SLO の本質は事前の合意なので、ビジネス側と一緒に決めます。", "ref": "2.3"}, {"type": "choice", "q": "レイテンシの SLI を「平均応答時間」ではなく「400ms 以内に返せた割合」にするのはなぜ？", "choices": ["割合のほうが計算が簡単だから", "平均は、少数の極端に遅いリクエストを隠してしまうから", "割合のほうが目標を達成しやすいから", "平均は監視ツールで測れないから"], "answer": 1, "explain": "平均では、一部のユーザーがひどく待たされていても数字に表れにくくなります。「400ms 以内に返せた割合」なら、遅かったリクエストの数がそのまま見えます。", "ref": "2.5"}, {"type": "essay", "q": "エラーバジェットが「開発と運用の対立」への答えになるのはなぜか。エラーバジェットポリシーにも触れて説明してみよう。", "model": "エラーバジェットは 100% − SLO で決まる「使っていい失敗の予算」です。予算が残っていればユーザーが許容できる失敗の枠がまだあるので、思い切ったリリースや実験に使えます。予算が尽きたら新機能を控えて信頼性の改善を優先します。攻めるか守るかが声の大きさではなく残高で決まるので、対立が起きにくくなります。そのために「使い切ったらリリースを凍結する」といったエラーバジェットポリシーを平時に文書で合意しておきます。", "points": ["100% − SLO の「使っていい失敗の予算」だと説明した", "予算が残っていれば攻め、尽きたら守ると説明した", "声の大きさではなく残高で決まることに触れた", "エラーバジェットポリシーを平時に合意しておくことに触れた"], "ref": "2.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-sre/viewer/slo-error-budget"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

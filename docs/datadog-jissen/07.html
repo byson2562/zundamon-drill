@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：7章　運用のリアル（コストとガバナンス）｜ずんだもんと学ぶDatadog：実践編</title>
+<meta name="description" content="ずんだもんと学ぶDatadog：実践編「7章　運用のリアル（コストとガバナンス）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：7章　運用のリアル（コストとガバナンス）｜ずんだもんと学ぶDatadog：実践編">
+<meta property="og:description" content="ずんだもんと学ぶDatadog：実践編「7章　運用のリアル（コストとガバナンス）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/datadog-jissen/07.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/datadog-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#5A3D9E;--accent-dark:#2D1063}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶDatadog：実践編</p>
+  <h1>理解度チェック：7章　運用のリアル（コストとガバナンス）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-datadog-jissen/viewer/cost-governance">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "datadog-jissen", "chapter": 7, "chapter_slug": "cost-governance", "chapter_title": "7章　運用のリアル（コストとガバナンス）", "questions": [{"type": "choice", "q": "Datadog の課金のうち、「量」に比例するため、デバッグログの消し忘れなどで翌月の請求が跳ねうる変動費的な部分はどれ？", "choices": ["インフラ監視のホスト数", "ログとスパン", "ダッシュボードの数", "ログインするユーザーの数"], "answer": 1, "explain": "インフラ監視はホスト数に比例する固定費的な部分、ログとスパンは量に比例する変動費的な部分です。両者を分けて説明できれば、経理との会話が成立します。", "ref": "7.1"}, {"type": "choice", "q": "Synthetic 監視の課金で「数えるもの」はどれ？", "choices": ["監視対象のホスト数", "ダッシュボードの数", "作成したモニターの数", "テストの実行回数"], "answer": 3, "explain": "Synthetic はテストの実行回数で課金され、テスト数×実行頻度×ロケーション数で増えます。「1分ごと×5拠点が本当に必要か」は削減の定番ポイントです。", "ref": "7.1"}, {"type": "choice", "q": "Datadog のコストを最適化するとき、最初にやるべきことはどれ？", "choices": ["team・service タグを使って、どのチームのどのサービスが何にいくら使っているかを可視化する", "すべての製品を一律で20%ずつ削る", "ログの送信をすべて止める", "監視そのものをやめる"], "answer": 0, "explain": "鉄則は「測れないものは最適化できない」です。Usage Attribution などで利用状況をタグ別に見てから、ログの見直し・使っていない監視の削除・Synthetic の頻度見直し・年間契約の順に手を打ちます。", "ref": "7.2"}, {"type": "truefalse", "q": "Datadog のコスト最適化は、監視の品質を下げることとほぼ同じ意味である。", "answer": false, "explain": "誰も見ないダッシュボードや無視されるモニターを消すのは、監視の健全化そのものです。ノイズを削るとお金も減るので、コスト最適化はたいてい監視品質の改善と同じ方向を向いています。", "ref": "7.2"}, {"type": "choice", "q": "Datadog を組織に広げるときのガバナンスの柱として、本文で挙げていないものはどれ？", "choices": ["役割ごとに権限を分けるアクセス制御", "Teams 機能と所有権（team タグを必須にする）", "命名規約とタグの語彙の統一", "全員に管理者権限を与えて自由に設定させる"], "answer": 3, "explain": "全員が管理者、は卒業します。特に Application キーの発行やインデックス設定のような課金に直結する操作は管理者に絞ります。規約の強制は Monitoring as Code とレビューで行います。", "ref": "7.3"}, {"type": "fill", "q": "閲覧だけの人、モニターを編集できる人、管理者、のように役割ごとに権限を分けるアクセス制御の略称は？（英大文字4文字）", "accept": ["RBAC"], "explain": "RBAC はロールベースのアクセス制御です。1チームの良識でなんとかなっていたことも、チームが増えると壊れるので、役割と権限を分けて設計します。", "ref": "7.3"}, {"type": "essay", "q": "経理から「Datadog の費用の内訳を説明して」と言われた。コストの構造と、削減の進め方を説明してみよう。", "model": "費用は大きく2つに分かれます。インフラ監視や APM はホスト数に比例する固定費的な部分で、インフラが育てば自然に増えます。ログやスパンは送ったデータの量に比例する変動費的な部分で、デバッグログの消し忘れなどで急に跳ねることがあります。削減するときは、まず team や service のタグで、どのチームのどのサービスが何に使っているかを可視化します。そのうえで、ログの除外やサンプリング、使っていないダッシュボードやモニターの削除など、効果の大きいところから手を打ちます。", "points": ["ホスト数に比例する固定費的な部分に触れた", "ログ・スパンなど量に比例する変動費的な部分に触れた", "タグで内訳を可視化してから削ることに触れた", "ログの見直しや使っていない監視の削除など具体的な削減策に触れた"], "ref": "7.1〜7.2"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-datadog-jissen/viewer/cost-governance"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

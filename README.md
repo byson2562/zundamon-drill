@@ -8,6 +8,7 @@ Zenn で無料公開している「ずんだもんと学ぶ」シリーズの、
 ## しくみ
 
 - 問題は `data/{本}/{章番号2桁}.json` に書く
+- `python3 tools/check.py <technical-books の books ディレクトリ>` で、本文と突き合わせて問題データを検査する（節番号が実在するか、章タイトルが一致するか、正解番号の範囲など）
 - `python3 tools/build.py` で `docs/` にクイズページを生成し、GitHub Pages（main ブランチの `/docs`）で公開する
 - 本を新しく追加したときは `python3 tools/build.py --ogp` でリンクカード用の画像も作る（Google Chrome を使う）
 - Zenn の章末には `@[card](https://byson2562.github.io/zundamon-drill/{本}/{章}.html)` でリンクカードを貼る

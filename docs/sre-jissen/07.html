@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：7章　セキュリティと信頼性（同じ山の両斜面）｜ずんだもんと学ぶSRE：実践編</title>
+<meta name="description" content="ずんだもんと学ぶSRE：実践編「7章　セキュリティと信頼性（同じ山の両斜面）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：7章　セキュリティと信頼性（同じ山の両斜面）｜ずんだもんと学ぶSRE：実践編">
+<meta property="og:description" content="ずんだもんと学ぶSRE：実践編「7章　セキュリティと信頼性（同じ山の両斜面）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/sre-jissen/07.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/sre-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#A03358;--accent-dark:#4A1230}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶSRE：実践編</p>
+  <h1>理解度チェック：7章　セキュリティと信頼性（同じ山の両斜面）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-sre-jissen/viewer/security-reliability">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "sre-jissen", "chapter": 7, "chapter_slug": "security-reliability", "chapter_title": "7章　セキュリティと信頼性（同じ山の両斜面）", "questions": [{"type": "choice", "q": "セキュリティの古典的な整理「CIA」の「A」が表すものはどれ？", "choices": ["Authentication（認証）", "Availability（可用性）", "Authorization（認可）", "Audit（監査）"], "answer": 1, "explain": "CIA は機密性・完全性・可用性です。SRE が SLO で守っている可用性は、セキュリティの守備範囲でもあります。", "ref": "7.1"}, {"type": "choice", "q": "SRE が相手にしてきた障害と、セキュリティが相手にする攻撃の違いとして、本文の説明に合うものはどれ？", "choices": ["故障やミスはランダムで悪意がないが、攻撃は最悪のタイミングで最悪の場所を突いてくる", "どちらもランダムに起きるので、同じ考え方でよい", "攻撃のほうがランダムで、故障は狙ってくる", "違いはなく、呼び方が違うだけ"], "answer": 0, "explain": "攻撃は確率で考えられないぶん、質が悪い敵です。この章では「SRE の道具がそのまま効く部分」と「発想を切り替える部分」を分けて見ていきます。", "ref": "7.1"}, {"type": "truefalse", "q": "自分たちのサービスが起こすリトライストームは、受ける側から見ると DDoS 攻撃と同じ顔をしている。", "answer": true, "explain": "悪意ある負荷と善意の負荷は、受ける側では同じに見えます。だから防御も共通で、入口で絞り（レートリミット）、絞った相手には品よく断り（429 ＋ Retry-After）、コア機能を縮退で守ります。", "ref": "7.2"}, {"type": "choice", "q": "セキュリティインシデントで、通常の障害対応から「切り替える」点として、本文で挙げていないものはどれ？", "choices": ["すぐ直さないことがある（証拠保全と封じ込めを優先する）", "情報統制をする（参加者や連絡経路を絞る）", "法務や広報など、関係者が増える", "役割分担やタイムラインの記録をやめる"], "answer": 3, "explain": "宣言・IC・役割分担・タイムラインという骨格は共通で、そのまま使えます。切り替わるのは、復旧より保全・公開より統制・技術より法務に傾く場面があることです。", "ref": "7.3"}, {"type": "choice", "q": "本番環境に入るための正式な非常口（break-glass 手順）を用意しておく理由はどれ？", "choices": ["誰でも常に強い権限を使えるようにするため", "監査ログを残さずに作業するため", "緊急時に入れないことも可用性のリスクで、正式な非常口がないと非公式の抜け道が作られるから", "承認者を増やして作業を慎重にするため"], "answer": 2, "explain": "深夜の大障害で承認者が寝ていて本番に入れない、は可用性リスクです。正式な非常口がないと、共有アカウントや古い鍵のような非公式の抜け道が生まれ、それが一番危険です。使ったら必ず事後レビューします。", "ref": "7.5"}, {"type": "fill", "q": "自分たちのソフトウェアが何に依存しているかをまとめた一覧（ソフトウェア部品表）の略称は？（英大文字4文字）", "accept": ["SBOM"], "explain": "SBOM をビルド時に自動生成しておけば、脆弱性が公表されたときに「うちは該当する？」に分単位で答えられます。", "ref": "7.4"}, {"type": "essay", "q": "サプライチェーン攻撃に備える運用と、それが SRE とどう合流するのかを説明してみよう。", "model": "サプライチェーン攻撃は、アプリが依存する外部パッケージやビルドの仕組み、コンテナのベースイメージなど、自分たちが取り込んでいるものを狙う攻撃です。備えとして、SBOM をビルド時に自動で作って依存関係を把握し、依存パッケージの脆弱性スキャンを CI に組み込んで更新の PR を自動で作らせます。そして深刻な脆弱性が公表されてから修正をデプロイするまでの速さは、ふだんのリリースエンジニアリングの速さそのものです。小さく頻繁に出せるチームはパッチも速く、安全のための遅いリリースはむしろセキュリティを悪くします。", "points": ["依存パッケージなど取り込んでいるものを狙う攻撃だと説明した", "SBOM で依存関係を把握することに触れた", "CI で脆弱性スキャンをすることに触れた", "修正の速さはふだんのリリースの速さだと触れた"], "ref": "7.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-sre-jissen/viewer/security-reliability"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

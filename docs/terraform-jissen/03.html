@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：3章　モジュール設計：使う側から作る側へ｜ずんだもんと学ぶTerraform：実践編</title>
+<meta name="description" content="ずんだもんと学ぶTerraform：実践編「3章　モジュール設計：使う側から作る側へ」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：3章　モジュール設計：使う側から作る側へ｜ずんだもんと学ぶTerraform：実践編">
+<meta property="og:description" content="ずんだもんと学ぶTerraform：実践編「3章　モジュール設計：使う側から作る側へ」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/terraform-jissen/03.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/terraform-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3B4C7A;--accent-dark:#1D283C}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶTerraform：実践編</p>
+  <h1>理解度チェック：3章　モジュール設計：使う側から作る側へ</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/module-design">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "terraform-jissen", "chapter": 3, "chapter_slug": "module-design", "chapter_title": "3章　モジュール設計：使う側から作る側へ", "questions": [{"type": "truefalse", "q": "モジュールには専用の書き方があり、これまで書いてきたルートモジュールとは作り方が根本的に違う。", "answer": false, "explain": "モジュールの正体は .tf ファイルが入ったただのディレクトリで、作り方はルートモジュールと変わりません。違いは「単体で apply するのではなく、呼び出されて使われる」という役割だけです。", "ref": "3.1"}, {"type": "choice", "q": "network モジュールの enable_dns_support = true は、チームの標準としていつも true にしている。この値の扱いとして、本文の方針に合うのはどれ？", "choices": ["柔軟にしておくため variable にして、環境ごとに指定させる", "チームの決定事項なので variable にせず、モジュールの中に直接書く", "output にして、ほかのモジュールに渡す", "data で既存の VPC から読み取る"], "answer": 1, "explain": "variables は「環境（呼び出し側）が決めるべきこと」だけにします。迷ったら「この値を dev と prod で変える正当な理由はあるか？」と自問します。社内モジュールは「うちの標準」を焼き込んで変数を減らすほうが価値が出ます。", "ref": "3.3"}, {"type": "choice", "q": "モジュールの粒度（どの単位でまとめるか）の目安として、本文がすすめるのはどれ？", "choices": ["1つのリソースごとに1つのモジュールにする", "システム一式をまとめて、1つの大きなモジュールにする", "一緒に変更されるものをまとめ、それ単体で意味の通る役割にする", "ファイルが100行を超えたら分割する"], "answer": 2, "explain": "変更の境界がモジュールの境界です。ずんだオーダーなら network・app・database の3分割が自然です。全部入りは影響範囲が読めず再利用もできず、1リソース1モジュールは間接化のコストだけ払って何の決定もまとめていません。", "ref": "3.4"}, {"type": "choice", "q": "source = \"../../modules/network\" のようなローカルパス参照の性質として正しいものはどれ？", "choices": ["全環境が常に最新のモジュールを見る", "環境ごとに別のバージョンのモジュールを使える", "モジュールの変更が自動でテストされる", "terraform init が不要になる"], "answer": 0, "explain": "ローカルパス参照では全環境が同じ最新のモジュールを見るので、dev で試してから prod に適用する流れは運用の順序で守ります。環境ごとにバージョンを変えたくなったら、Git 参照とバージョンタグ（?ref=v1.2.0 など）に進化させます。", "ref": "3.5"}, {"type": "choice", "q": "モジュールの outputs を決めるときの方針として、本文の説明に合うものはどれ？", "choices": ["将来誰かが使うかもしれないので、全属性を出しておく", "variables と同じ数だけ出す", "outputs は使わず、data で読ませる", "実際に必要になったものだけを足す"], "answer": 3, "explain": "outputs はモジュールの公開 API なので、一度出すと簡単には消せません。入口（variables）も出口（outputs）も狭く始めて、必要に応じて広げるのがインターフェース設計の鉄則です。", "ref": "3.3"}, {"type": "fill", "q": "environments/dev/main.tf で、network モジュールの出力 public_subnet_ids を app モジュールに渡したい。subnet_ids = ［　　］ の［　　］に入る参照は？", "accept": ["module.network.public_subnet_ids"], "explain": "モジュールの出力は module.モジュール名.出力名 で参照します。モジュール同士も参照でつながるので、作る順番は Terraform が自動で決めます（入門編5章の暗黙の依存と同じ理屈です）。", "ref": "3.6"}, {"type": "essay", "q": "「変数の数は、利用者に転嫁した判断の数」とはどういう意味か。社内モジュールの variables をどう決めるべきかも含めて説明してみよう。", "model": "モジュールの変数が多いほど、呼び出す側は多くの判断を迫られ、設定ミスの機会もそのぶん増えるという意味です。モジュールの価値は柔軟さではなく、良い決定が済んでいることにあります。そのため社内モジュールでは、CIDR のように環境ごとに変える正当な理由がある値だけを variable にし、チームの標準として決まっている値はモジュールの中に直接書いて、変数を減らします。", "points": ["変数が多いと呼び出し側の判断と設定ミスの機会が増えることに触れた", "モジュールの価値は「良い決定が済んでいること」だと触れた", "環境ごとに変える正当な理由がある値だけを variable にすることに触れた", "チームの標準はモジュールの中に直接書く（焼き込む）ことに触れた"], "ref": "3.3"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/module-design"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

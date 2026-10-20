@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：4章　モニターとアラート｜ずんだもんと学ぶDatadog：入門編</title>
+<meta name="description" content="ずんだもんと学ぶDatadog：入門編「4章　モニターとアラート」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：4章　モニターとアラート｜ずんだもんと学ぶDatadog：入門編">
+<meta property="og:description" content="ずんだもんと学ぶDatadog：入門編「4章　モニターとアラート」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/datadog-nyumon/04.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/datadog-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#7B22CC;--accent-dark:#5C21B7}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶDatadog：入門編</p>
+  <h1>理解度チェック：4章　モニターとアラート</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/monitors-alerts">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "datadog-nyumon", "chapter": 4, "chapter_slug": "monitors-alerts", "chapter_title": "4章　モニターとアラート", "questions": [{"type": "choice", "q": "ダッシュボードとモニターの違いとして正しいものはどれ？", "choices": ["ダッシュボードは条件を満たすと知らせに来て、モニターは人が見に行く", "ダッシュボードは人が見に行く道具で、モニターは条件を満たしたら知らせに来る道具", "どちらも同じもので、呼び方が違うだけ", "モニターはグラフを表示するだけで、通知はできない"], "answer": 1, "explain": "人間がダッシュボードを見張り続けるのは監視ではありません。見張りは機械の仕事で、モニターは「条件」と「通知」のセットとして定義します。", "ref": "4.1"}, {"type": "choice", "q": "avg:system.disk.in_use{env:dev} by {host} をモニターのクエリにした。by {host} があるとき、判定はどう行われる？", "choices": ["全ホストの平均値で1回だけ判定する", "最初に見つかったホストだけを判定する", "ホスト名の順に並べて表示するだけで、判定には影響しない", "ホストごとに独立して判定する（マルチアラート）"], "answer": 3, "explain": "by {host} が付いていると、ホストごとに独立して判定されます。これをマルチアラートと呼びます。", "ref": "4.2"}, {"type": "choice", "q": "モニターの評価ウィンドウ（どのくらい続いたら異常とみなすか）の決め方として、本文がすすめるのはどれ？", "choices": ["どのモニターも一律で1分にする", "どのモニターも一律で1時間にする", "この異常に、何分以内に気づきたいかから逆算する", "しきい値と同じ数字にする"], "answer": 2, "explain": "短すぎると瞬間的なスパイクで鳴りまくり、長すぎると検知が遅れます。ディスクのようにジワジワ進む問題は長め、死活のように即応したい問題は短めにします。", "ref": "4.2"}, {"type": "truefalse", "q": "ホストが完全に停止すれば、CPU 使用率のしきい値モニターが必ずアラートを出してくれる。", "answer": false, "explain": "ホストが死ぬとメトリクスそのものが届かなくなるので、しきい値モニターは沈黙します。「異常な値」と「値が来ない」は別の異常です。死活監視では No Data アラートを必ず有効にします。", "ref": "4.4"}, {"type": "choice", "q": "毎週日曜3時の計画メンテナンスで、毎回アラートが鳴ってしまう。メンテナンスの時間帯だけモニターを黙らせる機能はどれ？", "choices": ["リカバリ通知", "ダウンタイム", "No Data アラート", "マルチアラート"], "answer": 1, "explain": "計画メンテナンス中はダウンタイムでモニターを黙らせます。鳴るのが分かっているアラートを放置すると、チームがアラートを無視する癖を学習してしまいます。", "ref": "4.4"}, {"type": "fill", "q": "通知メッセージには、受け取った人がまず何をすべきかが分かるよう、対応手順書へのリンクを入れるのが定番だ。この対応手順書をカタカナ5文字で何と呼ぶ？", "accept": ["ランブック", "runbook"], "explain": "アラートを受け取るのは、深夜に叩き起こされた寝ぼけた未来の自分や同僚です。良いアラートは、何が起きたかに加えて、対応の第一歩まで教えてくれます。", "ref": "4.3"}, {"type": "essay", "q": "「アラート疲れ」とは何か。なぜ危険なのか、どう防ぐのかを説明してみよう。", "model": "アラート疲れは、鳴りすぎるアラートにチームが慣れて、全部を無視するようになる状態です。そうなると本物の障害のアラートまで見逃されるので、監視が無いのと同じになります。防ぐには、受け取ったときに対応する行動があるものだけを鳴らします。そして鳴ったのに何もしなかったアラートを週次で振り返り、しきい値を直す・Warning に落とす・通知先を変える・消す、のどれかを選びます。", "points": ["鳴りすぎてチームが無視するようになる状態だと説明した", "本物のアラートまで見逃される危険に触れた", "対応する行動があるものだけ鳴らす、という原則に触れた", "鳴ったのに何もしなかったアラートを振り返って見直すことに触れた"], "ref": "4.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-datadog-nyumon/viewer/monitors-alerts"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

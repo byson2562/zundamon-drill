@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：5章　CI/CDパイプライン｜ずんだもんと学ぶTerraform：実践編</title>
+<meta name="description" content="ずんだもんと学ぶTerraform：実践編「5章　CI/CDパイプライン」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：5章　CI/CDパイプライン｜ずんだもんと学ぶTerraform：実践編">
+<meta property="og:description" content="ずんだもんと学ぶTerraform：実践編「5章　CI/CDパイプライン」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/terraform-jissen/05.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/terraform-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3B4C7A;--accent-dark:#1D283C}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶTerraform：実践編</p>
+  <h1>理解度チェック：5章　CI/CDパイプライン</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/cicd-pipeline">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "terraform-jissen", "chapter": 5, "chapter_slug": "cicd-pipeline", "chapter_title": "5章　CI/CDパイプライン", "questions": [{"type": "choice", "q": "「誰かの PC から apply する」運用の問題として、本文で挙げていないものはどれ？", "choices": ["実行環境が属人化し、その PC に強い権限が溜まる", "手元の未コミットの変更が混ざっていないと保証できない", "いつ・誰が・どの plan を確認して apply したか記録が残らない", "Terraform のバージョンが勝手に新しくなりすぎる"], "answer": 3, "explain": "本文の3つの問題は、属人化・実行内容が保証されない・記録が残らない、です。コード化したのに「実行だけ手作業」のまま、という状態でした。", "ref": "5.1"}, {"type": "choice", "q": "GitHub Actions から AWS に入る OIDC 認証の説明として正しいものはどれ？", "choices": ["アクセスキーを発行して GitHub の Secrets に保存し、ワークフローで読み込む", "GitHub Actions が実行のたびに署名付きの ID トークンを発行し、AWS の IAM ロールが検証して短命の一時認証情報を渡す", "IAM ユーザーのパスワードでコンソールにログインする", "ルートユーザーの認証情報を環境変数で渡す"], "answer": 1, "explain": "OIDC 方式では保存される長期キーがどこにもないので「キーレス」です。漏えいリスクもローテーションの手間もありません。IAM ロールの信頼ポリシーで、リポジトリやブランチを条件で絞るのが重要です。", "ref": "5.3"}, {"type": "truefalse", "q": "plan 用の IAM ロールにも、apply 用と同じ強い権限を与えておくのがよい。", "answer": false, "explain": "plan は差分を見るだけなので、plan 用のロールには読み取り中心の権限しか与えません。強い権限の apply 用ロールは、main ブランチのワークフローからしか引き受けられないように信頼ポリシーで絞ります。", "ref": "5.2"}, {"type": "choice", "q": "CI の apply で -auto-approve（確認なし）を使ってよいのはなぜ？", "choices": ["PR で plan をレビューして承認・マージした一連の流れが「yes」の代わりになっているから", "CI で実行すると差分が出ないから", "apply が内部で plan を実行しなくなるから", "失敗しても GitHub が自動で元に戻すから"], "answer": 0, "explain": "確認の場所が変わっただけです。PR の段階で plan がコメントされ、人間がレビューして承認し、マージした——それが「yes」の代わりです。そのうえで prod には GitHub Environments の承認を挟みます。", "ref": "5.5"}, {"type": "choice", "q": "存在しないインスタンスタイプ t2.micro2 の指定を検出できるのはどれ？（文法としては正しい書き方とする）", "choices": ["terraform fmt -check", "terraform validate", "tflint", "terraform init -backend=false"], "answer": 2, "explain": "validate は文法と内部整合性まで、tflint はその先のプロバイダの知識や作法を検査する linter です。AWS のルールセットを使えば、存在しないインスタンスタイプのような値の誤りも検出できます。", "ref": "5.6"}, {"type": "fill", "q": "prod の apply ジョブに「指定したレビュアーの承認があるまで開始しない」という保護ルールを付けたい。ワークフローの environment: と紐付ける GitHub の機能の名前は？（英語）", "accept": ["GitHub Environments", "Environments", "Environment", "GitHubEnvironments"], "explain": "GitHub Environments に保護ルールを設定すると、prod へのジョブは承認まで待ちます。出発点として「dev はマージで全自動、prod は承認付き」が堅実で、自動化は段階的に信頼を積んでいくものです。", "ref": "5.5"}, {"type": "essay", "q": "インフラの PR レビューでは「コード差分と plan 差分をセットで見る」のが鉄則とされる。その理由と、それを仕組みで支える方法を説明してみよう。", "model": "インフラでは、コードの差分が小さくても実環境への影響が大きいことがあるからです。たとえばリソース名の変更はコード上は1行ですが、plan を見ると destroy して create する、つまり作り直しだと分かります。そこで tfcmt などで plan の要約を PR コメントに自動で出し、destroy の数がゼロでない PR ではレビュアーが必ず立ち止まれるようにします。", "points": ["コード差分が小さくても実環境への影響が大きいことがあると触れた", "リソース名の変更が作り直し（destroy と create）になる例などに触れた", "plan の destroy の数に注目することに触れた", "plan を PR コメントに自動で出す（tfcmt など）ことに触れた"], "ref": "5.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-terraform-jissen/viewer/cicd-pipeline"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

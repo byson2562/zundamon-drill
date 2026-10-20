@@ -1,0 +1,65 @@
+{
+  "book": "terraform-nyumon",
+  "chapter": 3,
+  "chapter_slug": "hcl-basics",
+  "chapter_title": "3章　HCLの基本文法",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "variable \"bucket_name\" で宣言した変数を、resource の中で使うときの書き方はどれ？",
+      "choices": ["bucket_name", "var.bucket_name", "variable.bucket_name", "input.bucket_name"],
+      "answer": 1,
+      "explain": "variable ブロックで宣言した変数は、使うところで var.変数名 と書いて参照します。値そのものは terraform.tfvars などで渡します。",
+      "ref": "3.2"
+    },
+    {
+      "type": "truefalse",
+      "q": "terraform.tfvars に書いた値は、コマンドで明示的に指定しないと読み込まれない。",
+      "answer": false,
+      "explain": "terraform.tfvars は実行時に自動で読み込まれます。「コード（.tf）には構造を、tfvars には値を」という分担にしておけば、環境ごとに tfvars を差し替えて同じコードを使い回せます。",
+      "ref": "3.2"
+    },
+    {
+      "type": "choice",
+      "q": "data（データソース）の説明として正しいものはどれ？",
+      "choices": ["apply の結果から値を取り出して表示するもの", "値をコードから切り離すためのもの", "Terraform で作って管理するリソース", "Terraform では作らないが、情報だけ読みたいものを扱うもの"],
+      "answer": 3,
+      "explain": "data は「作らないけど読みたい」既存リソースのための仕組みで、data.タイプ.呼び名.属性名 で参照します。1つ目は output、2つ目は variable、3つ目は resource の説明です。",
+      "ref": "3.6"
+    },
+    {
+      "type": "choice",
+      "q": "map(string) 型の変数 common_tags から、キー Project の値を取り出す書き方はどれ？",
+      "choices": ["var.common_tags[0]", "var.common_tags[\"Project\"]", "var.common_tags(\"Project\")", "common_tags[\"Project\"]"],
+      "answer": 1,
+      "explain": "マップは var.common_tags[\"Project\"] のようにキーで取り出します。番号で取り出すのはリスト（var.allowed_cidrs[0] など）です。変数を使うときは var. を付けるのを忘れずに。",
+      "ref": "3.4"
+    },
+    {
+      "type": "fill",
+      "q": "変数 bucket_name の値の後ろに -logs を付けたバケット名にしたい。bucket = \"［　　］-logs\" の［　　］に入る式は？",
+      "accept": ["${var.bucket_name}"],
+      "explain": "文字列の中に式を埋め込む文字列補間は \"${式}\" の形で書きます。bucket = \"${var.bucket_name}-logs\" とすれば、たとえば zundamon-hello-20261003-logs になります。",
+      "ref": "3.5"
+    },
+    {
+      "type": "choice",
+      "q": "output \"bucket_arn\" の値を、シェルスクリプトから余計な記号なしで取り出して後続の処理に渡したい。使うコマンドはどれ？",
+      "choices": ["terraform output -raw bucket_arn", "terraform state list", "terraform plan", "terraform show -json"],
+      "answer": 0,
+      "explain": "terraform output -raw 名前 で値だけを取り出せます。output は人間が見るためだけでなく、自動化の接続口にもなります。",
+      "ref": "3.3"
+    },
+    {
+      "type": "essay",
+      "q": "aws_s3_bucket_versioning の bucket に、バケット名を直接書かずに aws_s3_bucket.hello.id と参照で書くのはなぜ？ 説明してみよう。",
+      "model": "参照で書けば、バケット名を定義する場所が1箇所になり、同じ名前を2回書かずに済みます。直接書くと、片方だけ直したときに名前がズレて別のバケットを指してしまう事故が起きますが、参照ならその心配がありません。また参照には、apply 時に AWS が決めた値（ID や ARN など）がそのまま入ります。",
+      "points": [
+        "値を1箇所で定義して使い回せる（2回書かずに済む）ことに触れた",
+        "片方だけ直したときのズレの事故を防げることに触れた",
+        "apply 時に AWS が決めた値を使えることに触れた"
+      ],
+      "ref": "3.5"
+    }
+  ]
+}
