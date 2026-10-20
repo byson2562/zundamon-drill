@@ -38,14 +38,20 @@ PAGE = """<!doctype html>
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{ogp}">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
 <link rel="stylesheet" href="../assets/quiz.css">
 <style>:root{{--accent:{accent};--accent-dark:{dark}}}</style>
 </head>
 <body>
 <header class="header"><div class="header-inner">
-  <p class="book">{book_title}</p>
-  <h1>理解度チェック：{chapter_title}</h1>
-  <p class="lead">全{n}問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  <div class="header-text">
+    <p class="book">{book_title}</p>
+    <h1>理解度チェック：{chapter_title}</h1>
+    <p class="lead">全{n}問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
 </div></header>
 <div id="score-slot"></div>
 <main id="quiz"></main>
@@ -66,13 +72,19 @@ INDEX = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ずんだもんドリル</title>
 <meta name="description" content="Zennの「ずんだもんと学ぶ」シリーズの理解度チェック（自動採点クイズ）">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
 <link rel="stylesheet" href="assets/quiz.css">
 </head>
 <body>
 <header class="header"><div class="header-inner">
-  <p class="book">「ずんだもんと学ぶ」シリーズ</p>
-  <h1>ずんだもんドリル</h1>
-  <p class="lead">各章の理解度チェック（自動採点クイズ）です。本文は <a href="https://zenn.dev/bonobono" style="color:#fff">Zenn</a> で無料公開しています。</p>
+  <div class="header-text">
+    <p class="book">「ずんだもんと学ぶ」シリーズ</p>
+    <h1>ずんだもんドリル</h1>
+    <p class="lead">各章の理解度チェック（自動採点クイズ）です。本文は <a href="https://zenn.dev/bonobono">Zenn</a> で無料公開しています。</p>
+  </div>
+  <img class="header-chara" src="assets/chara/zunda-joy.png" alt="ずんだもん" width="118" height="127">
 </div></header>
 <main>{books}</main>
 <footer class="footer"><p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p></footer>
@@ -101,10 +113,11 @@ def build():
         open(os.path.join(DOCS, d["book"], name), "w", encoding="utf-8").write(page)
         listing.setdefault(d["book"], []).append((name, d["chapter_title"], n))
         print("wrote", d["book"], name, f"({n}問)")
+    order = [b for b in BOOKS if b in listing]   # 一覧はシリーズの刊行順（BOOKS の定義順）
     books = "".join(
-        f'<h2 class="book-title">{html.escape(BOOKS[b]["title"])}</h2><ul class="book-list">'
-        + "".join(f'<li><a href="{b}/{name}">{html.escape(t)}（全{n}問）</a></li>' for name, t, n in items)
-        + "</ul>" for b, items in listing.items())
+        f'<section class="book-sheet" style="--accent:{BOOKS[b]["accent"]}"><h2 class="book-title">{html.escape(BOOKS[b]["title"])}</h2><ul class="book-list">'
+        + "".join(f'<li><span class="ch">{int(name[:2])}</span><a href="{b}/{name}">{html.escape(t)}<span class="n">全{n}問</span></a></li>' for name, t, n in listing[b])
+        + "</ul></section>" for b in order)
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(INDEX.format(books=books))
     open(os.path.join(DOCS, ".nojekyll"), "w").write("")
     return listing

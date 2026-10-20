@@ -6,10 +6,21 @@
   const data = JSON.parse(document.getElementById("quiz-data").textContent);
   const root = document.getElementById("quiz");
   const CHARA = "../assets/chara/";
-  const TYPE_LABEL = { truefalse: "○×", choice: "選択", fill: "穴埋め", essay: "説明してみよう" };
+  const TYPE_LABEL = { truefalse: "○×", choice: "選択", fill: "穴埋め", essay: "説明" };
 
-  const state = data.questions.map(() => ({ done: false, correct: false }));
-  const autoCount = data.questions.filter((q) => q.type !== "essay").length;
+  const RETRY_KEY = `drill-retry:${data.book}/${data.chapter}`;
+  let retryIdx = null;
+  try {
+    const raw = sessionStorage.getItem(RETRY_KEY);
+    if (raw) { sessionStorage.removeItem(RETRY_KEY); retryIdx = JSON.parse(raw); }
+  } catch (e) {}
+  if (!Array.isArray(retryIdx) || !retryIdx.length || retryIdx.some((i) => !data.questions[i])) retryIdx = null;
+  if (retryIdx) {
+    // 出題しない問題は「回答済み・正解扱い」にして、再挑戦分だけ採点する
+    data.questions = data.questions.map((q, i) => (retryIdx.includes(i) ? q : Object.assign({}, q, { skipped: true })));
+  }
+  const state = data.questions.map((q) => ({ done: !!q.skipped, correct: !!q.skipped && q.type !== "essay" }));
+  const autoCount = data.questions.filter((q) => q.type !== "essay" && !q.skipped).length;
 
   function el(tag, attrs, ...children) {
     const e = document.createElement(tag);
@@ -104,11 +115,19 @@
   const result = el("section", { class: "result", hidden: "" });
 
   function updateScore() {
-    const answered = state.filter((s, i) => s.done && data.questions[i].type !== "essay").length;
-    const correct = state.filter((s) => s.correct === true).length;
+    const answered = state.filter((s, i) => s.done && data.questions[i].type !== "essay" && !data.questions[i].skipped).length;
+    const correct = state.filter((s, i) => s.correct === true && !data.questions[i].skipped).length;
     const pts = root.querySelectorAll(".point input");
     const self = pts.length ? `・説明 ${root.querySelectorAll(".point input:checked").length}/${pts.length}` : "";
-    scoreBar.textContent = `正解 ${correct}/${autoCount}問（回答済み ${answered}問）${self}`;
+    const segs = el("div", { class: "segs" },
+      data.questions.map((q, i) => {
+        const s = state[i];
+        const cls = q.skipped || !s.done ? "" : q.type === "essay" ? " essay" : s.correct ? " ok" : " ng";
+        return el("span", { class: "seg" + cls, title: `Q${i + 1}` });
+      }));
+    scoreBar.replaceChildren(el("div", { class: "score-inner" },
+      el("span", {}, "Q1"), segs, el("span", {}, `Q${data.questions.length}`),
+      el("span", { class: "count" }, `正解 ${correct}/${autoCount}${self}`)));
     if (answered === autoCount) showResult(correct);
   }
 
@@ -118,7 +137,13 @@
       rate === 1 ? ["zunda-joy.png", "全問正解なのだ！ この章はもう後輩に説明できるのだ！"] :
       rate >= 0.6 ? ["zunda-normal.png", "あと少しなのだ。間違えた問題の節だけ読み返すのだ。"] :
                     ["zunda-sad.png", "まだあやしいのだ……。本文をもう一度読んでから再挑戦するのだ。"];
-    const missed = data.questions.filter((q, i) => state[i].correct === false).map((q) => q.ref);
+    const missedIdx = data.questions.map((q, i) => i)
+      .filter((i) => state[i].done && state[i].correct === false && data.questions[i].type !== "essay" && !data.questions[i].skipped);
+    const missed = missedIdx.map((i) => data.questions[i].ref);
+    const retryMissed = () => {
+      try { sessionStorage.setItem(RETRY_KEY, JSON.stringify(missedIdx)); } catch (e) {}
+      location.reload();
+    };
     result.replaceChildren(
       el("img", { src: CHARA + img, alt: "ずんだもん", class: "result-chara" }),
       el("div", { class: "result-body" },
@@ -127,11 +152,17 @@
         missed.length ? el("p", { class: "result-missed" }, `読み返す節：${[...new Set(missed)].join("、")}`) : null,
         el("div", { class: "result-actions" },
           el("a", { href: data.chapter_url, target: "_blank", rel: "noopener", class: "button" }, "本文に戻る"),
-          el("button", { type: "button", class: "button secondary", onclick: () => location.reload() }, "もう一度解く"))));
+          missed.length ? el("button", { type: "button", class: "button secondary", onclick: retryMissed }, "間違えた問題だけもう一度") : null,
+          el("button", { type: "button", class: "button secondary", onclick: () => location.reload() }, "全部もう一度"))));
     result.hidden = false;
   }
 
+  if (retryIdx) {
+    root.append(el("p", { class: "retry-note" }, `間違えた ${retryIdx.length} 問だけ出題しています。`,
+      el("a", { href: location.pathname, onclick: (e) => { e.preventDefault(); location.reload(); } }, "全問に戻す")));
+  }
   data.questions.forEach((q, i) => {
+    if (q.skipped) return;
     const card = el("section", { class: "card" },
       el("div", { class: "card-head" },
         el("span", { class: "qno" }, `Q${i + 1}`),
