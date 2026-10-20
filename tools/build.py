@@ -47,7 +47,7 @@ PAGE = """<!doctype html>
 <body>
 <header class="header"><div class="header-inner">
   <div class="header-text">
-    <p class="book">{book_title}</p>
+    <p class="book"><a href="../#{book_key}">{book_title}</a></p>
     <h1>理解度チェック：{chapter_title}</h1>
     <p class="lead">全{n}問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
   </div>
@@ -55,6 +55,13 @@ PAGE = """<!doctype html>
 </div></header>
 <div id="score-slot"></div>
 <main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext">{prev_link}{next_link}</div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list">{chapter_list}</ul>
+  </section>
+</nav>
 <footer class="footer">
   <p><a href="{chapter_url}">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
   <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
@@ -94,28 +101,46 @@ INDEX = """<!doctype html>
 
 
 def build():
-    listing = {}
+    chapters = {}   # book -> [data, ...]（章順）
     for path in sorted(glob.glob(os.path.join(ROOT, "data", "*", "*.json"))):
         d = json.load(open(path, encoding="utf-8"))
-        book = BOOKS[d["book"]]
-        d["chapter_url"] = f"{ZENN}/{book['slug']}/viewer/{d['chapter_slug']}"
-        name = f"{d['chapter']:02d}.html"
-        url = f"{BASE_URL}/{d['book']}/{name}"
-        title = f"理解度チェック：{d['chapter_title']}｜{book['title']}"
-        n = len(d["questions"])
-        page = PAGE.format(
-            title=html.escape(title), desc=html.escape(f"{book['title']}「{d['chapter_title']}」の内容を確認する全{n}問のクイズ（自動採点）。"),
-            url=url, ogp=f"{BASE_URL}/assets/ogp/{d['book']}.png", accent=book["accent"], dark=book["dark"],
-            book_title=html.escape(book["title"]), chapter_title=html.escape(d["chapter_title"]), n=n,
-            chapter_url=d["chapter_url"],
-            data=json.dumps(d, ensure_ascii=False).replace("</", "<\\/"))
-        os.makedirs(os.path.join(DOCS, d["book"]), exist_ok=True)
-        open(os.path.join(DOCS, d["book"], name), "w", encoding="utf-8").write(page)
-        listing.setdefault(d["book"], []).append((name, d["chapter_title"], n))
-        print("wrote", d["book"], name, f"({n}問)")
+        d["chapter_url"] = f"{ZENN}/{BOOKS[d['book']]['slug']}/viewer/{d['chapter_slug']}"
+        d["page"] = f"{d['chapter']:02d}.html"
+        chapters.setdefault(d["book"], []).append(d)
+    listing = {}
+    for b, ds in chapters.items():
+        ds.sort(key=lambda d: d["chapter"])
+        book = BOOKS[b]
+        for i, d in enumerate(ds):
+            prev_d = ds[i - 1] if i > 0 else None
+            next_d = ds[i + 1] if i + 1 < len(ds) else None
+            if next_d:   # 結果画面の「次の章へ」に使う
+                d["next"] = {"url": next_d["page"], "title": next_d["chapter_title"]}
+            name = d["page"]
+            url = f"{BASE_URL}/{b}/{name}"
+            title = f"理解度チェック：{d['chapter_title']}｜{book['title']}"
+            n = len(d["questions"])
+            chapter_list = "".join(
+                f'<li class="{"is-current" if c is d else ""}"><span class="ch">{c["chapter"]}</span>'
+                + (f'<span class="current">{html.escape(c["chapter_title"])}<span class="n">いまここ</span></span>' if c is d
+                   else f'<a href="{c["page"]}">{html.escape(c["chapter_title"])}<span class="n">全{len(c["questions"])}問</span></a>')
+                + "</li>" for c in ds)
+            page = PAGE.format(
+                title=html.escape(title), desc=html.escape(f"{book['title']}「{d['chapter_title']}」の内容を確認する全{n}問のクイズ（自動採点）。"),
+                url=url, ogp=f"{BASE_URL}/assets/ogp/{b}.png", accent=book["accent"], dark=book["dark"],
+                book_key=b, book_title=html.escape(book["title"]), chapter_title=html.escape(d["chapter_title"]), n=n,
+                chapter_url=d["chapter_url"],
+                prev_link=(f'<a class="nav-link prev" href="{prev_d["page"]}"><span class="dir">← 前の章</span><span class="t">{html.escape(prev_d["chapter_title"])}</span></a>' if prev_d else '<span class="nav-link empty"></span>'),
+                next_link=(f'<a class="nav-link next" href="{next_d["page"]}"><span class="dir">次の章 →</span><span class="t">{html.escape(next_d["chapter_title"])}</span></a>' if next_d else '<span class="nav-link empty"></span>'),
+                chapter_list=chapter_list,
+                data=json.dumps(d, ensure_ascii=False).replace("</", "<\\/"))
+            os.makedirs(os.path.join(DOCS, b), exist_ok=True)
+            open(os.path.join(DOCS, b, name), "w", encoding="utf-8").write(page)
+            listing.setdefault(b, []).append((name, d["chapter_title"], n))
+            print("wrote", b, name, f"({n}問)")
     order = [b for b in BOOKS if b in listing]   # 一覧はシリーズの刊行順（BOOKS の定義順）
     books = "".join(
-        f'<section class="book-sheet" style="--accent:{BOOKS[b]["accent"]}"><h2 class="book-title">{html.escape(BOOKS[b]["title"])}</h2><ul class="book-list">'
+        f'<section class="book-sheet" id="{b}" style="--accent:{BOOKS[b]["accent"]}"><h2 class="book-title">{html.escape(BOOKS[b]["title"])}</h2><ul class="book-list">'
         + "".join(f'<li><span class="ch">{int(name[:2])}</span><a href="{b}/{name}">{html.escape(t)}<span class="n">全{n}問</span></a></li>' for name, t, n in listing[b])
         + "</ul></section>" for b in order)
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(INDEX.format(books=books))

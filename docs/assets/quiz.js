@@ -153,7 +153,8 @@
         el("div", { class: "result-actions" },
           el("a", { href: data.chapter_url, target: "_blank", rel: "noopener", class: "button" }, "本文に戻る"),
           missed.length ? el("button", { type: "button", class: "button secondary", onclick: retryMissed }, "間違えた問題だけもう一度") : null,
-          el("button", { type: "button", class: "button secondary", onclick: () => location.reload() }, "全部もう一度"))));
+          el("button", { type: "button", class: "button secondary", onclick: () => location.reload() }, "全部もう一度"),
+          data.next ? el("a", { href: data.next.url, class: "button secondary" }, "次の章のドリルへ →") : null)));
     result.hidden = false;
   }
 
