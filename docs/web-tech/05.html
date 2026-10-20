@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：5章　Web APIとSPA（画面を返すWebから、データを返すWebへ）｜ずんだもんと学ぶWeb技術</title>
+<meta name="description" content="ずんだもんと学ぶWeb技術「5章　Web APIとSPA（画面を返すWebから、データを返すWebへ）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：5章　Web APIとSPA（画面を返すWebから、データを返すWebへ）｜ずんだもんと学ぶWeb技術">
+<meta property="og:description" content="ずんだもんと学ぶWeb技術「5章　Web APIとSPA（画面を返すWebから、データを返すWebへ）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/web-tech/05.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/web-tech.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#B8359B;--accent-dark:#5A1456}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶWeb技術</p>
+  <h1>理解度チェック：5章　Web APIとSPA（画面を返すWebから、データを返すWebへ）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-web-tech/viewer/web-api-spa">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "web-tech", "chapter": 5, "chapter_slug": "web-api-spa", "chapter_title": "5章　Web APIとSPA（画面を返すWebから、データを返すWebへ）", "questions": [{"type": "truefalse", "q": "Web APIは、画面を返す従来のWebとは別の専用プロトコルを使って通信する。", "answer": false, "explain": "土台はまったく同じHTTPです。URLがあり、メソッドがあり、ステータスコードとヘッダがあり、ステートレス。違うのはボディの中身だけで、HTMLの代わりにデータ形式（JSON）で返します。2章で学んだことがそのまま通用します。", "ref": "5.1"}, {"type": "fill", "q": "APIがJSONを返すとき、レスポンスの Content-Type ヘッダに入る値は？（text/html に相当するもの）", "accept": ["application/json", "application/json; charset=utf-8", "json"], "explain": "Content-Type: application/json が「データを返すWeb」の目印です。4章までの text/html との違いが、2つのスタイルの違いそのものです。", "ref": "5.2"}, {"type": "choice", "q": "RESTの作法に沿った「商品 z01 を取得する」API はどれ？", "choices": ["GET /api/getItem?id=z01", "GET /api/items/z01", "POST /api/items/fetch（ボディに id=z01）", "GET /api/doItemSearch/z01"], "answer": 1, "explain": "RESTの骨子は「URLはモノ（リソース）を指し、動詞を入れない」「操作はHTTPメソッドで言う」「結果はステータスコードで言う」の3つです。/api/items/z01 に GET、が作法どおり。HTTPを仕様どおり正しく使い切る申し合わせなので、初見でも推測できます。", "ref": "5.3"}, {"type": "choice", "q": "SPA（Single Page Application）のしくみとして正しい説明はどれ？", "choices": ["クリックのたびにサーバーがHTMLを組み立て、ページを丸ごと差し替える", "すべてのページをビルド時に作り置きして、静的ファイルとして配信する", "最初の1回だけHTML（ほぼ空の器）とJavaScript一式を受け取り、以後はAPIからJSONだけ取得してブラウザ内で画面を部分更新する", "サーバーが画面とデータを1つのレスポンスにまとめて返す"], "answer": 2, "explain": "SPAは画面の組み立て工場をサーバーからブラウザに引っ越す方式です。利点はアプリのような操作感と、同じAPIをWebとスマホアプリで共用できること。代償は初回の読み込みの重さや検索エンジン対応なので、ページの性質で混ぜて使うのが現実解です。", "ref": "5.4"}, {"type": "choice", "q": "ブラウザの「オリジン」を構成する3つの組はどれ？", "choices": ["scheme＋host＋port", "host＋path＋query", "scheme＋path＋Cookie", "host＋User-Agent＋port"], "answer": 0, "explain": "オリジンは scheme＋host＋port の組です。https://zunda-order.example と https://api.zunda-order.example はホストが違うので別オリジンになり、同一オリジンポリシーの対象になります。", "ref": "5.5"}, {"type": "choice", "q": "SPAからAPIを呼んだらコンソールに「blocked by CORS policy」と出た。直すべき場所はどこ？", "choices": ["ブラウザの設定で同一オリジンポリシーを無効にする", "SPAのJavaScriptに、ブロックを回避するコードを足す", "ユーザーに別のブラウザを使ってもらう", "APIサーバーの設定で、Access-Control-Allow-Origin にそのオリジンを許可する"], "answer": 3, "explain": "CORSの許可ヘッダ（Access-Control-Allow-Origin）を返すのはAPI側の役目です。あのエラーは「API側があなたのオリジンを許可リストに入れていない」という意味なので、直す場所はブラウザでもSPAのコードでもなく、APIサーバーの設定です。", "ref": "5.5"}, {"type": "essay", "q": "後輩に「同一オリジンポリシーって、正当なAPI呼び出しまでブロックして不便なだけじゃないですか？ なんであるんですか？」と聞かれた。3文くらいで説明してみよう。", "model": "同一オリジンポリシーは「ページ上のJavaScriptは、そのページと同じオリジンにしか自由にリクエストできない」というブラウザの防御線です。これがないと、悪意あるサイトを開いただけで、そのページのJavaScriptがあなたのCookie付きで銀行サイトのAPIを呼び放題になってしまいます（Cookieはブラウザが自動で添付するからです）。正当な別オリジンの呼び出しは、API側がCORSのヘッダで許可を出すという正式な通用口を通して行います。", "points": ["JavaScriptは同じオリジンにしか自由にリクエストできない、という内容に触れた", "Cookieが自動添付されるため、ないと他サイトのAPIを勝手に呼べてしまう危険に触れた", "正当な呼び出しはCORS（API側が許可ヘッダを返す）で通すことに触れた"], "ref": "5.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-web-tech/viewer/web-api-spa"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

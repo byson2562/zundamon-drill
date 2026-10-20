@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：8章　Webシステムの全体像（1台の外側へ）｜ずんだもんと学ぶWeb技術</title>
+<meta name="description" content="ずんだもんと学ぶWeb技術「8章　Webシステムの全体像（1台の外側へ）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：8章　Webシステムの全体像（1台の外側へ）｜ずんだもんと学ぶWeb技術">
+<meta property="og:description" content="ずんだもんと学ぶWeb技術「8章　Webシステムの全体像（1台の外側へ）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/web-tech/08.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/web-tech.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#B8359B;--accent-dark:#5A1456}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶWeb技術</p>
+  <h1>理解度チェック：8章　Webシステムの全体像（1台の外側へ）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-web-tech/viewer/web-system-architecture">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "web-tech", "chapter": 8, "chapter_slug": "web-system-architecture", "chapter_title": "8章　Webシステムの全体像（1台の外側へ）", "questions": [{"type": "choice", "q": "Webで、1台を強くするスケールアップより台数を増やすスケールアウトが本命になる理由はどれ？", "choices": ["スケールアウトの方が設定が簡単だから", "スケールアップは法律で制限されているから", "スケールアウトならサーバーをステートフルにできるから", "1台の強化には天井と割高な価格がある一方、横に並べれば（ほぼ）無限に足せ、1台壊れても残りで受けられるから"], "answer": 3, "explain": "性能と可用性の一石二鳥です。並べた瞬間に必要になるのがロードバランサで、振り分けとヘルスチェック（返事のないサーバーには振らない）が仕事です。", "ref": "8.1"}, {"type": "truefalse", "q": "ロードバランサがどのAPサーバーに自由に振り分けてもよいためには、APサーバーがステートレスである（セッションを外部のストアに出している）必要がある。", "answer": true, "explain": "4章の伏線の回収です。セッションを各サーバーのメモリに持っていると、振り分け先が変わった瞬間に「はじめまして」になります。HTTPのステートレス設計（2章）→ セッション外出し（4章）→ 自由に振れるLB（8章）は一本の線です。", "ref": "8.1"}, {"type": "choice", "q": "次のうち、リバースプロキシやCDNのキャッシュに「絶対に乗せてはいけない」ものはどれ？", "choices": ["ログイン中ユーザーのカートページ", "ずんだ餅の商品画像", "全ページ共通のCSSファイル", "サイトのロゴ画像"], "answer": 0, "explain": "人ごとに違うページをキャッシュに乗せると、他人のカートが見える大事故になります。キャッシュは速さの道具であると同時に、設計を間違えると情報漏洩装置になります。誰が見ても同じ画像やCSSは、手前で返すほど速くなります。", "ref": "8.2"}, {"type": "fill", "q": "「この画像は1日取っておいてよい」「このページは絶対にキャッシュするな」のように、作る側がキャッシュの可否を指定するレスポンスヘッダの名前は？", "accept": ["Cache-Control", "cache control", "Cache-Controlヘッダ", "cachecontrol"], "explain": "Cache-Control ヘッダは、ブラウザのキャッシュ・CDN・リバースプロキシのキャッシュをまとめて制御する荷札です。2章で名前だけ出た常連ヘッダが、ここで主役になります。", "ref": "8.2"}, {"type": "choice", "q": "サーバーを移転してDNSの登録を変えたのに、しばらく古いサーバーにアクセスが来続ける。原因はどれ？", "choices": ["ロードバランサのヘルスチェックが古いサーバーを健全と判定しているから", "DNSの回答があちこちにキャッシュされ、TTL（有効期限）が切れるまで古い住所が使われ続けるから", "ブラウザのCookieに古いIPアドレスが保存されているから", "CDNが古いサーバーの証明書を保持しているから"], "answer": 1, "explain": "DNSの回答はTTLが切れるまでキャッシュされます。「移転したのに古い方にアクセスが来る」の正体はこの時差で、切り替え作業の前にTTLを短くしておくのがインフラ運用の定番の段取りです。dig で住所とTTLを確認できます。", "ref": "8.3"}, {"type": "choice", "q": "コンテナの説明として正しいものはどれ？", "choices": ["1台の物理マシンを複数の仮想的なマシンに分割し、分単位で貸し出すしくみ", "1台のマシンにアプリを直接インストールする方式で、調達に数週間かかる", "アプリと依存物一式を「荷箱」に詰めてどこでも同じように動かすしくみで、VMより軽く秒で起動する", "荷箱の大群を管理するための道具で、Terraformの別名"], "answer": 2, "explain": "コンテナは三層構造の各部品が規格化された荷箱になったものです。台数を増やすのも、壊れたら捨てて新品に替えるのも、開発と本番の環境を揃えるのも簡単になります。荷箱の大群を管理するのがKubernetes、置き場と周辺設備をコードで宣言するのがTerraformです。", "ref": "8.4"}, {"type": "essay", "q": "スマホのブラウザで https://zunda-order.example/item?id=z01 を開いてから、商品ページのHTMLが届くまでに何が起きるか。DNS・TLS・CDN・ロードバランサ・三層構造の登場順に、4〜5文で実況してみよう。", "model": "まずブラウザが zunda-order.example の住所をDNSに聞き、CDNの住所を受け取ります。次にCDNの拠点とTLSのハンドシェイクをして、証明書で相手が本物だと確認し、以後の会話を暗号化します。GET /item?id=z01 を送ると、画像やCSSはCDNのキャッシュが近所から返し、HTML本体はキャッシュ不可なので奥へ回されます。入口のリバースプロキシ兼ロードバランサが、ヘルスチェック済みのAPサーバーに振り分けます。APサーバーのアプリがルーティングで処理を選び、DBから在庫を取り、テンプレートに流し込んでHTMLを返します。", "points": ["DNSで名前から住所（CDN）を引くことに触れた", "TLSのハンドシェイクと証明書による本物確認・暗号化に触れた", "画像やCSSはCDNのキャッシュが返し、HTML本体は奥へ回ることに触れた", "ロードバランサがヘルスチェック済みのAPサーバーに振り分けることに触れた", "APサーバーの「ルーティング→DB→テンプレート」の3段に触れた"], "ref": "8.1〜8.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-web-tech/viewer/web-system-architecture"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

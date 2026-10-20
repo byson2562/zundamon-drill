@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：6章　認証と認可（「あなたは誰？」「何をしていい？」）｜ずんだもんと学ぶWeb技術</title>
+<meta name="description" content="ずんだもんと学ぶWeb技術「6章　認証と認可（「あなたは誰？」「何をしていい？」）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：6章　認証と認可（「あなたは誰？」「何をしていい？」）｜ずんだもんと学ぶWeb技術">
+<meta property="og:description" content="ずんだもんと学ぶWeb技術「6章　認証と認可（「あなたは誰？」「何をしていい？」）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/web-tech/06.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/web-tech.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#B8359B;--accent-dark:#5A1456}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <p class="book">ずんだもんと学ぶWeb技術</p>
+  <h1>理解度チェック：6章　認証と認可（「あなたは誰？」「何をしていい？」）</h1>
+  <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-web-tech/viewer/auth-and-authz">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "web-tech", "chapter": 6, "chapter_slug": "auth-and-authz", "chapter_title": "6章　認証と認可（「あなたは誰？」「何をしていい？」）", "questions": [{"type": "choice", "q": "「ログイン済みなら注文履歴APIを呼べる」とだけ実装したら、ログイン済みの他人の注文履歴 /api/orders?user=metan が見えてしまった。何を忘れていた？", "choices": ["認証（本人確認）", "認可（この人がこの対象を操作していいかの確認）", "パスワードのハッシュ化", "HTTPS化"], "answer": 1, "explain": "認証（あなたは誰？）だけ確認して、認可（あなたは何をしていい？）を忘れた、Webで最も多い脆弱性のひとつです。すべての操作で「この人が、この対象に、この操作をしていいか」を両方確認します。401が認証、403が認可の問題でした。", "ref": "6.1"}, {"type": "truefalse", "q": "パスワードは SHA-256 でハッシュ化して保存すれば十分で、ソルトを混ぜる必要はない。", "answer": false, "explain": "同じパスワードは同じハッシュになるので、漏れたハッシュに「よくあるパスワードのハッシュ集（レインボーテーブル）」を当てると大量に割れてしまいます。ユーザーごとに違うソルトを混ぜれば作り置きの表が効きません。さらに実務では、わざと遅い専用ハッシュ（bcrypt・scrypt・Argon2）を使います。", "ref": "6.2"}, {"type": "choice", "q": "パスワードの保存に、SHA-256 のような速いハッシュではなく、bcrypt や Argon2 のような「わざと遅い」ハッシュを使うのはなぜ？", "choices": ["遅い方がハッシュ値が長くなり、DBの検索が速くなるから", "速いハッシュは逆算できてしまうから", "遅いハッシュならソルトが不要になるから", "攻撃者が漏れたハッシュに総当たりを仕掛けるとき、1回の計算が遅いほど総当たりが割に合わなくなるから"], "answer": 3, "explain": "攻撃者は漏れたハッシュに総当たりを仕掛けます。1回の計算が遅ければ遅いほど、総当たりの費用が跳ね上がって割に合わなくなります。定石は「平文保存は論外、ソルト付きの遅いハッシュ、そして自作しない」です。", "ref": "6.2"}, {"type": "truefalse", "q": "JWT は暗号化されているので、ペイロード（中身）はサーバーの秘密鍵がないと読めない。", "answer": false, "explain": "JWTは暗号化ではなく署名です。ペイロードは Base64 でデコードすれば誰でも読めます。ただし3つ目の部分（署名）があるので、改ざんすると検証で弾けます。「role を admin に書き換える」はできないが「中に秘密を書く」のはダメ、というのがJWTの光と影です。", "ref": "6.3"}, {"type": "choice", "q": "トークン認証（JWTなど）の弱みとして、本文で挙げられているものはどれ？", "choices": ["発行後に取り消しにくい（「このトークンだけ今すぐ無効化」が素直にはできない）", "サーバー側に大きなセッションストアが必要になる", "スマホアプリやサーバー間通信では使えない", "Cookieでしか運べない"], "answer": 0, "explain": "トークン認証の強みはサーバー側に保管庫が要らないこと（ステートレス）ですが、裏返しとして発行後に取り消しにくいのが弱みです。有効期限を短くして更新用トークンと組み合わせる運用になります。「APIだからJWT」と反射で選ばず、取り消しの要件から考えます。", "ref": "6.3"}, {"type": "fill", "q": "端末の中に秘密鍵を作り、サイトには公開鍵だけを登録して、ログイン時は「サイトから来た問いに秘密鍵で署名して返す」認証方式（WebAuthn）を何という？（カタカナ）", "accept": ["パスキー", "passkey", "passkeys", "ぱすきー", "WebAuthn"], "explain": "パスキーは公開鍵暗号を使った認証で、秘密がネットワークを一度も流れないので盗聴もフィッシングも効きにくく、サイトごとに鍵が別なので使い回し問題も消えます。そもそも「保存するパスワードがない」世界です。", "ref": "6.5"}, {"type": "essay", "q": "後輩に「『Googleでログイン』って、うちがその人のGoogleのパスワードを預かってるんですか？」と聞かれた。3文くらいで説明してみよう。", "model": "預かっていません。土台のOAuth 2.0は「パスワードを渡さずに権限の一部を委譲する」取り決めで、ユーザーがパスワードを入れる相手はGoogleだけです。Googleは同意を得たあと1回限りの引換券（認可コード）を付けてユーザーを送り返し、うちはそれを裏口でアクセストークンと交換して、許可された範囲の情報だけを取得します。ログインとして使うにはOAuth 2.0の上にOpenID Connectを重ね、本人確認のIDトークンを受け取ります。", "points": ["パスワードはうちを一度も通らない（入力する相手はGoogleだけ）ことに触れた", "OAuth 2.0 は「パスワードを渡さずに権限を委譲する」取り決めだと述べた", "認可コード（引換券）をアクセストークンと交換する流れに触れた", "ログインの本人確認は OpenID Connect（IDトークン）が担うことに触れた"], "ref": "6.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-web-tech/viewer/auth-and-authz"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
