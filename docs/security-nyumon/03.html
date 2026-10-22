@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：3章　アイデンティティとアクセス管理（IAM）｜ずんだもんと学ぶセキュリティ：入門編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：入門編「3章　アイデンティティとアクセス管理（IAM）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：3章　アイデンティティとアクセス管理（IAM）｜ずんだもんと学ぶセキュリティ：入門編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：入門編「3章　アイデンティティとアクセス管理（IAM）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-nyumon/03.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3E5872;--accent-dark:#2B3A4D}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-nyumon">ずんだもんと学ぶセキュリティ：入門編</a></p>
+    <h1>理解度チェック：3章　アイデンティティとアクセス管理（IAM）</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="02.html"><span class="dir">← 前の章</span><span class="t">2章　攻撃者の視点（侵入の流れを知って守りに活かす）</span></a><a class="nav-link next" href="04.html"><span class="dir">次の章 →</span><span class="t">4章　ネットワークの境界（公開面を最小にする）</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　セキュリティとはなにか（守るもの・脅威・リスク）<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　攻撃者の視点（侵入の流れを知って守りに活かす）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">3</span><span class="current">3章　アイデンティティとアクセス管理（IAM）<span class="n">いまここ</span></span></li><li class=""><span class="ch">4</span><a href="04.html">4章　ネットワークの境界（公開面を最小にする）<span class="n">全7問</span></a></li><li class=""><span class="ch">5</span><a href="05.html">5章　サーバーとコンテナの堅牢化<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　秘密情報の管理（鍵・パスワード・トークン）<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　検知と対応（ログ・監査・インシデント対応）<span class="n">全7問</span></a></li><li class=""><span class="ch">8</span><a href="08.html">8章　総合演習——ずんだオーダーのセキュリティレビュー<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/iam-access">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-nyumon", "chapter": 3, "chapter_slug": "iam-access", "chapter_title": "3章　アイデンティティとアクセス管理（IAM）", "questions": [{"type": "truefalse", "q": "IAM は既定で全部拒否で、ポリシーで許可を足していく仕組みである。", "answer": true, "explain": "何も付けなければ何もできません。だから「動くまで足す」をやると、どこまで足したか分からない権限の山ができます。狭く付けて足すほうが、最後に残る権限はずっと小さくなります。", "ref": "3.1"}, {"type": "choice", "q": "IAM ポリシーを読むときのコツとして、本文の説明に合わないものはどれ？", "choices": ["Action や Resource に * を見たら「本当に全部必要？」と問う", "明示的な Deny は Allow に勝つので、ガードレールに使える", "Condition で MFA 済みや送信元 IP に絞れる", "必要な権限が分からないときは、まず AdministratorAccess を付けてから削る"], "answer": 3, "explain": "最初から広く付けて削るより、読み取り系（Describe・Get・List）だけで試し、足りない操作をエラーメッセージから拾って足すほうが、最後に残る権限はずっと小さくなります。", "ref": "3.2"}, {"type": "choice", "q": "IAM ユーザーの長期アクセスキーをやめて、ロールを引き受けて得る一時クレデンシャルを使う一番の理由はどれ？", "choices": ["一時クレデンシャルのほうが通信が速いから", "長期キーは無効化するまで永遠に有効だが、一時クレデンシャルには有効期限があり、落としても勝手に死ぬから", "長期キーは料金がかかるから", "一時クレデンシャルは MFA が不要だから"], "answer": 1, "explain": "ロールを引き受けて得る鍵は既定で1時間で失効します。人間は IAM Identity Center でログインしてロールをかぶり、IAM ユーザーを人の数だけ作って鍵を配る時代は終わっています。", "ref": "3.3"}, {"type": "fill", "q": "GitHub Actions が長期キーを持たずに AWS のロールを引き受けるために使う連携方式を何という？（アルファベット4文字）", "accept": ["OIDC", "oidc", "OpenID Connect", "openid connect", "OIDC連携"], "explain": "GitHub が「このリポジトリのこのブランチのジョブです」という署名付きトークンを発行し、AWS がそれを検証して期限付きの鍵を渡します。鍵は最初から存在しないので、漏れる鍵もありません。", "ref": "3.4"}, {"type": "choice", "q": "本文の信頼ポリシーで、token.actions.githubusercontent.com:sub の条件に書いた値は何を絞っている？", "choices": ["どの AWS アカウントからの引き受けか", "どのリポジトリの・どのブランチからの引き受けか", "どの IAM ユーザーからの引き受けか", "どのリージョンからの引き受けか"], "answer": 1, "explain": "repo:zunda-order/zunda-order:ref:refs/heads/main のように書くことで、フォークや別ブランチからは引き受けられなくなります。aud の条件は sts.amazonaws.com に固定します。", "ref": "3.5"}, {"type": "choice", "q": "漏れた鍵への対応として、本文が「無効化して終わりではない」と言っている理由はどれ？", "choices": ["鍵を無効化すると本番が止まるから", "CloudTrail で、その鍵が実際に使われていないことを確かめて初めて終わるから", "AWS サポートへの連絡が必要だから", "無効化した鍵は自動で復活するから"], "answer": 1, "explain": "AccessKeyId で CloudTrail を引き、sourceIPAddress が正規のもの（GitHub Actions など）だけなら安心です。見慣れない IP から ListBuckets や RunInstances が並んでいたら侵入の証拠で、7章の手順に進みます。", "ref": "3.5"}, {"type": "essay", "q": "後輩に「EC2 の中で動くアプリは、AWS の鍵をどこに置けばいいんですか？」と聞かれた。「鍵を置かない」の原則で、3文くらいで答えてみよう。", "model": "AWS の中で動くもの（EC2・ECS・Lambda）にはロールを直接付けられるので、鍵をどこにも置きません。EC2 のインスタンスロールや ECS のタスクロールを付けておけば、SDK が自動で期限付きの鍵を取りに行くので、コードにも環境変数にも鍵を書かずに済みます。付けるロールは最小権限にして、乗っ取られても被害がそこで止まるようにします。", "points": ["ロールを直接付ける（インスタンスロール・タスクロール）ことに触れた", "SDK が期限付きの鍵を自動で取りに行くので鍵を書かない、に触れた", "付けるロールを最小権限にすることに触れた"], "ref": "3.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/iam-access", "page": "03.html", "next": {"url": "04.html", "title": "4章　ネットワークの境界（公開面を最小にする）"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：7章　検知と対応（ログ・監査・インシデント対応）｜ずんだもんと学ぶセキュリティ：入門編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：入門編「7章　検知と対応（ログ・監査・インシデント対応）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：7章　検知と対応（ログ・監査・インシデント対応）｜ずんだもんと学ぶセキュリティ：入門編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：入門編「7章　検知と対応（ログ・監査・インシデント対応）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-nyumon/07.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3E5872;--accent-dark:#2B3A4D}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-nyumon">ずんだもんと学ぶセキュリティ：入門編</a></p>
+    <h1>理解度チェック：7章　検知と対応（ログ・監査・インシデント対応）</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="06.html"><span class="dir">← 前の章</span><span class="t">6章　秘密情報の管理（鍵・パスワード・トークン）</span></a><a class="nav-link next" href="08.html"><span class="dir">次の章 →</span><span class="t">8章　総合演習——ずんだオーダーのセキュリティレビュー</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　セキュリティとはなにか（守るもの・脅威・リスク）<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　攻撃者の視点（侵入の流れを知って守りに活かす）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　アイデンティティとアクセス管理（IAM）<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　ネットワークの境界（公開面を最小にする）<span class="n">全7問</span></a></li><li class=""><span class="ch">5</span><a href="05.html">5章　サーバーとコンテナの堅牢化<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　秘密情報の管理（鍵・パスワード・トークン）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">7</span><span class="current">7章　検知と対応（ログ・監査・インシデント対応）<span class="n">いまここ</span></span></li><li class=""><span class="ch">8</span><a href="08.html">8章　総合演習——ずんだオーダーのセキュリティレビュー<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/detection-response">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-nyumon", "chapter": 7, "chapter_slug": "detection-response", "chapter_title": "7章　検知と対応（ログ・監査・インシデント対応）", "questions": [{"type": "choice", "q": "本文が「侵入の手口より怖い」と言っているものはどれ？", "choices": ["侵入から発覚までの時間", "攻撃者の技術力", "攻撃に使われるツールの値段", "侵入の回数"], "answer": 0, "explain": "数か月間、気づかれずに居座られていた例が珍しくなく、その間に横展開も持ち出しも済んでしまいます。壁だけの家は帰ってくるまで破られたことに気づけません。検知はセンサーです。", "ref": "7.1"}, {"type": "truefalse", "q": "CloudTrail のイベント履歴は直近90日分しか見られないので、それより前を追うには証跡（Trail）を作って S3 に残しておく必要がある。", "answer": true, "explain": "保管期間の目安は1年以上です。ログのバケットは書き込み専用にして削除を拒否し、できれば別の AWS アカウントに送って、本番の管理者でも消せないようにします。ログに秘密を書かないことも約束事です。", "ref": "7.2"}, {"type": "choice", "q": "GuardDuty の検出結果 UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.OutsideAWS が意味するものはどれ？", "choices": ["ルートユーザーが使われた", "全開のポートが外から探られている", "EC2 のロールの資格情報が AWS の外から使われた", "インスタンスが暗号資産の採掘用ドメインと通信した"], "answer": 2, "explain": "2章の「踏み台を乗っ取って鍵を持ち出す」の検知です。GuardDuty の名前には Recon や UnauthorizedAccess のように連鎖の段階が付いています。", "ref": "7.3"}, {"type": "choice", "q": "インシデント対応の初動で「隔離」をするとき、本文が「してはいけない」と言っているものはどれ？", "choices": ["セキュリティグループを隔離用のものに差し替える", "影響を受けたサーバーの電源を切る・削除する", "EBS のスナップショットを取る", "関係するログの期間を保存する"], "answer": 1, "explain": "止めるとメモリ上の痕跡が消え、「何をされたか」が分からなくなり、「顧客データは漏れていない」と言い切れなくなります。隔離は「通信を切る」であって「電源を切る」ではありません。", "ref": "7.4"}, {"type": "fill", "q": "「この時刻より前に発行されたセッションをすべて拒否する」ポリシーで使う、Condition の DateLessThan に指定するキーは？", "accept": ["aws:TokenIssueTime", "TokenIssueTime", "aws:tokenissuetime"], "explain": "Deny は Allow に勝つので、その時刻より前にもらった鍵は全部無効になり、新しく引き受け直した人だけが動けます。一時クレデンシャルの期限（1時間）を待てないときに使います。", "ref": "7.4"}, {"type": "choice", "q": "CloudTrail の lookup-events で CloudTrailEvent を jq で読むとき、本文で使った処理はどれ？", "choices": ["--output json で受け取り、.[] | fromjson で JSON 文字列を開いてから sourceIPAddress などを取り出す", "--output table で受け取り、grep で IP を探す", "--output text をそのまま jq に渡す", "jq は使わず Excel に貼る"], "answer": 0, "explain": "イベント本体は CloudTrailEvent に JSON の文字列として入っています。sourceIPAddress が正規の IP だけなら「使われていない」と言い切れますし、見慣れない IP からの AccessDenied が並んでいれば権限を探られた痕跡です。", "ref": "7.5"}, {"type": "essay", "q": "GuardDuty の High の通知が鳴った。初動で何を、どんな順番でやるか、4文くらいで説明してみよう。", "model": "まず影響を受けたサーバーのセキュリティグループを隔離用に差し替えて通信を切ります。電源は切りません。直後に EBS のスナップショットを取り、関係する CloudTrail・フローログ・アプリログの期間を保存して証拠を残します。次に使われた可能性のある鍵や資格情報を無効化し、必要なら TokenIssueTime のポリシーでセッションも失効させます。並行して社内の責任者と法務に連絡し、分かっていないことも含めて事実だけを伝えます。", "points": ["隔離（通信を切る、電源は切らない）に触れた", "証拠保全（スナップショット・ログの保存）に触れた", "鍵・セッションの失効に触れた", "連絡（責任者・法務、事実だけ）に触れた"], "ref": "7.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/detection-response", "page": "07.html", "next": {"url": "08.html", "title": "8章　総合演習——ずんだオーダーのセキュリティレビュー"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

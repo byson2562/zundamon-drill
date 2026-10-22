@@ -23,6 +23,7 @@ BOOKS = {
     "cs-zenpen": dict(title="ずんだもんと学ぶコンピュータサイエンス：前編", slug="zundamon-cs-zenpen", accent="#118F8D", dark="#0B595D"),
     "cs-kouhen": dict(title="ずんだもんと学ぶコンピュータサイエンス：後編", slug="zundamon-cs-kouhen", accent="#C2571F", dark="#803313"),
     "web-tech": dict(title="ずんだもんと学ぶWeb技術", slug="zundamon-web-tech", accent="#B8359B", dark="#5A1456"),
+    "security-nyumon": dict(title="ずんだもんと学ぶセキュリティ：入門編", slug="zundamon-security-nyumon", accent="#3E5872", dark="#2B3A4D"),
 }
 
 PAGE = """<!doctype html>

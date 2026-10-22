@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：5章　サーバーとコンテナの堅牢化｜ずんだもんと学ぶセキュリティ：入門編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：入門編「5章　サーバーとコンテナの堅牢化」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：5章　サーバーとコンテナの堅牢化｜ずんだもんと学ぶセキュリティ：入門編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：入門編「5章　サーバーとコンテナの堅牢化」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-nyumon/05.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3E5872;--accent-dark:#2B3A4D}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-nyumon">ずんだもんと学ぶセキュリティ：入門編</a></p>
+    <h1>理解度チェック：5章　サーバーとコンテナの堅牢化</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="04.html"><span class="dir">← 前の章</span><span class="t">4章　ネットワークの境界（公開面を最小にする）</span></a><a class="nav-link next" href="06.html"><span class="dir">次の章 →</span><span class="t">6章　秘密情報の管理（鍵・パスワード・トークン）</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　セキュリティとはなにか（守るもの・脅威・リスク）<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　攻撃者の視点（侵入の流れを知って守りに活かす）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　アイデンティティとアクセス管理（IAM）<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　ネットワークの境界（公開面を最小にする）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">5</span><span class="current">5章　サーバーとコンテナの堅牢化<span class="n">いまここ</span></span></li><li class=""><span class="ch">6</span><a href="06.html">6章　秘密情報の管理（鍵・パスワード・トークン）<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　検知と対応（ログ・監査・インシデント対応）<span class="n">全7問</span></a></li><li class=""><span class="ch">8</span><a href="08.html">8章　総合演習——ずんだオーダーのセキュリティレビュー<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/hardening">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-nyumon", "chapter": 5, "chapter_slug": "hardening", "chapter_title": "5章　サーバーとコンテナの堅牢化", "questions": [{"type": "truefalse", "q": "OS やコンテナイメージの初期状態は「便利さ優先」で、安全優先ではない。ハードニングはその既定値を自分の用途に必要な最小限まで削る作業である。", "answer": true, "explain": "インストール直後の OS には使わないサービスが動き、公式イメージは root で動く前提で、ミドルウェアは自分のバージョンを名乗ります。全部を自分で考えず、CIS Benchmarks のような推奨設定集を参考にします。", "ref": "5.1"}, {"type": "choice", "q": "脆弱性への対応を急ぐ順番を決めるとき、CVSS の点数に加えて本文が重視する2つの要素はどれ？", "choices": ["インターネットに面しているか・KEV に載って実際に悪用されているか", "ベンダーの知名度・発見者の所属", "脆弱性の発見日・CVE 番号の大きさ", "修正パッチのファイルサイズ・再起動の要否"], "answer": 0, "explain": "CVSS は影響の大きさの片側でしかありません。公開面にあるものを最優先に、CISA の KEV（実際に悪用が確認された脆弱性の一覧）に載っていれば CVSS が 7 でも 10 の未悪用より急ぎます。", "ref": "5.2"}, {"type": "choice", "q": "OS のハードニングで本文が挙げた4つの基本に含まれないものはどれ？", "choices": ["セキュリティパッチの自動更新", "不要なサービスを止める", "アプリを root で動かさない", "すべてのポートをファイアウォールで閉じる"], "answer": 3, "explain": "4つは、自動更新・不要なサービスを止める・権限分離（非 root）・SSH の設定（パスワード認証と root ログインを切る）です。それに「名乗らない」（server_tokens off）を足します。", "ref": "5.3"}, {"type": "choice", "q": "サーバーに自動更新を入れても、コンテナの中のライブラリが古いままになるのはなぜ？", "choices": ["コンテナは自動更新に対応していないから", "イメージは焼き固めてあり、パッチは「ベースイメージを新しくして作り直す」しか当てようがないから", "コンテナの中のライブラリは脆弱性にならないから", "自動更新はサーバーの再起動が必要だから"], "answer": 1, "explain": "だからイメージのスキャン（Trivy）が要ります。加えて、USER を書いて非 root で動かす、最小イメージを選ぶ、イメージに秘密を入れない、の3つがコンテナの守りです。", "ref": "5.4"}, {"type": "fill", "q": "Trivy の出力で、修正版が出ていない脆弱性を除いて「上げれば直るもの」だけを表示するオプションは？", "accept": ["--ignore-unfixed", "ignore-unfixed", "--ignore-unfixed オプション"], "explain": "見るべき列は Status と Fixed Version です。古いベースで 125 件あった High 以上のうち、直せる 81 件はベース更新と pip の除去でゼロになりました。残りは定期的な作り直しで修正版を取り込むか、影響を確認して記録付きで受容します。", "ref": "5.5"}, {"type": "choice", "q": "本文の実験で、サイズの小さい distroless イメージをスキャンしたら High 以上が 63 件あった。ここから得た結論はどれ？", "choices": ["distroless は使ってはいけない", "小ささより、ベースイメージが新しいかのほうが効く", "脆弱性の数はイメージのサイズに比例する", "スキャン結果は信用できない"], "answer": 1, "explain": "古い Debian 12 ベースなら、小さくても数は多くなります。現場の結論は「公式の slim 系を使い、ベースを定期的に更新して作り直し、CI でスキャンして直せる High 以上が出たらビルドを止める」です。", "ref": "5.5"}, {"type": "essay", "q": "後輩が書いた Dockerfile に USER がなく、FROM が2年前のベースイメージだった。何が問題で、どう直すかを3文くらいで説明してみよう。", "model": "USER がないとコンテナは root で動くので、コンテナからの脱出が起きたときに被害がホストへ及びやすくなります。古いベースイメージは既知の脆弱性を焼き固めたままで、サーバー側の自動更新では直りません。ベースを現行の slim 系に替えて作り直し、専用ユーザーを作って USER で切り替え、CI で Trivy をかけて直せる High 以上が出たら止めるようにします。", "points": ["root で動く危険（USER がない）に触れた", "古いベースは作り直さないと直らないことに触れた", "ベース更新・USER 追加・CI でのスキャン、のいずれかの対処に触れた"], "ref": "5.4〜5.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/hardening", "page": "05.html", "next": {"url": "06.html", "title": "6章　秘密情報の管理（鍵・パスワード・トークン）"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

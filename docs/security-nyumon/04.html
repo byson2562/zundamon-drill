@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：4章　ネットワークの境界（公開面を最小にする）｜ずんだもんと学ぶセキュリティ：入門編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：入門編「4章　ネットワークの境界（公開面を最小にする）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：4章　ネットワークの境界（公開面を最小にする）｜ずんだもんと学ぶセキュリティ：入門編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：入門編「4章　ネットワークの境界（公開面を最小にする）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-nyumon/04.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3E5872;--accent-dark:#2B3A4D}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-nyumon">ずんだもんと学ぶセキュリティ：入門編</a></p>
+    <h1>理解度チェック：4章　ネットワークの境界（公開面を最小にする）</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="03.html"><span class="dir">← 前の章</span><span class="t">3章　アイデンティティとアクセス管理（IAM）</span></a><a class="nav-link next" href="05.html"><span class="dir">次の章 →</span><span class="t">5章　サーバーとコンテナの堅牢化</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　セキュリティとはなにか（守るもの・脅威・リスク）<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　攻撃者の視点（侵入の流れを知って守りに活かす）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　アイデンティティとアクセス管理（IAM）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">4</span><span class="current">4章　ネットワークの境界（公開面を最小にする）<span class="n">いまここ</span></span></li><li class=""><span class="ch">5</span><a href="05.html">5章　サーバーとコンテナの堅牢化<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　秘密情報の管理（鍵・パスワード・トークン）<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　検知と対応（ログ・監査・インシデント対応）<span class="n">全7問</span></a></li><li class=""><span class="ch">8</span><a href="08.html">8章　総合演習——ずんだオーダーのセキュリティレビュー<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/network-boundary">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-nyumon", "chapter": 4, "chapter_slug": "network-boundary", "chapter_title": "4章　ネットワークの境界（公開面を最小にする）", "questions": [{"type": "choice", "q": "ALB の後ろにいる ECS タスクにパブリック IP が付いていた。本文がこれを問題視した理由はどれ？", "choices": ["パブリック IP は料金が高いから", "ALB 経由でしか来ないつもりでも、インターネットから直接触れる位置にあり、入口が増えているから", "パブリック IP があると ALB が動かないから", "ECS はパブリック IP を付けられない仕様だから"], "answer": 1, "explain": "攻撃者が触れるのは「インターネットに向いている面」だけです。入口は ALB の1つのつもりが、実際は踏み台と ECS を含めて3つありました。公開面を最小にするのが守る側の第一目標です。", "ref": "4.1"}, {"type": "choice", "q": "セキュリティグループ（SG）の性質として正しいものはどれ？", "choices": ["リソース（ENI）ごとに付き、許可のみを書くステートフルな許可リストである", "サブネットごとに付き、許可と拒否を番号順に評価する", "戻りの通信も明示的に書く必要がある", "送信元には IP アドレスしか指定できない"], "answer": 0, "explain": "SG は許可リストで、行きを許可すれば戻りは自動（ステートフル）です。送信元に別の SG を指定できるので、ALB → アプリ → DB の連鎖で書けます。NACL はサブネットごとの、許可と拒否を書けるステートレスな粗い網です。", "ref": "4.2"}, {"type": "truefalse", "q": "本文の Terraform では DB のセキュリティグループに egress を書いていない。これは DB から外へ出ていく経路をなくし、横展開への壁にするためである。", "answer": true, "explain": "DB サーバーが乗っ取られても、外部へデータを送る経路がありません。出口を絞る発想は、入口を絞るのと同じくらい効きます。", "ref": "4.3"}, {"type": "choice", "q": "SSM Session Manager を使うと、サーバー側で受信ポートを一切開けずに運用アクセスができる。そのしくみはどれ？", "choices": ["SSM が特別な秘密のポートを使うから", "サーバー上の SSM エージェントが「中から」SSM に接続を張るので、外から入る口が不要だから", "VPN を自動で張るから", "SSH の 22 番を SSM が代わりに開けるから"], "answer": 1, "explain": "条件は、SSM エージェントが入っていること、サーバーのロールに AmazonSSMManagedInstanceCore 相当の権限があること、サーバーから SSM のエンドポイントへ出ていけること（NAT か VPC エンドポイント）の3つです。IAM で認証され、操作は記録されます。", "ref": "4.4"}, {"type": "fill", "q": "「ネットワークの位置で信頼を決めない。毎回、誰が・何で・どこからを確かめる」という考え方を何という？（カタカナ）", "accept": ["ゼロトラスト", "zero trust", "zerotrust", "ゼロ・トラスト", "ぜろとらすと"], "explain": "VPC の中は信頼できる、という前提は危険です。SSM は「IAM で認証された人だから入れる」、SG の連鎖は「ALB からだけ通す」で、どちらも「位置より身元」の原則です。", "ref": "4.5"}, {"type": "choice", "q": "唯一の公開面である ALB の 443 を守る道具について、本文の説明に合うものはどれ？", "choices": ["WAF を付ければアプリ側の守り（Web技術7章）は不要になる", "WAF のレートリミットは使ってはいけない", "Shield Standard は ALB に自動で付いていて、ネットワーク層の大規模攻撃を吸収する", "DDoS 対策には 22 番を開けておく必要がある"], "answer": 2, "explain": "WAF はもう一枚の壁であって、アプリの守りの代わりにはなりません（すり抜けは必ずある）。アプリ層の「大量だが正規に見えるリクエスト」は WAF のレートリミットで受けます。", "ref": "4.5"}, {"type": "essay", "q": "後輩に「踏み台サーバーをなくして、どうやって本番に入るんですか？」と聞かれた。3文くらいで説明してみよう。", "model": "SSM Session Manager を使います。サーバー上のエージェントが中から SSM に接続を張るので、22 番を開ける必要もパブリック IP も要らず、IAM の期限付きの資格情報と MFA で認証されます。DB にはポートフォワードで届き、誰がいつ何を打ったかはセッションログに残るので、踏み台そのものを引退させられます。", "points": ["SSM Session Manager を使うことに触れた", "受信ポートもパブリック IP も不要（中から接続する）ことに触れた", "IAM 認証・操作の記録・ポートフォワードのいずれかに触れた"], "ref": "4.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/network-boundary", "page": "04.html", "next": {"url": "05.html", "title": "5章　サーバーとコンテナの堅牢化"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

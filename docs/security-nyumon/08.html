@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：8章　総合演習——ずんだオーダーのセキュリティレビュー｜ずんだもんと学ぶセキュリティ：入門編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：入門編「8章　総合演習——ずんだオーダーのセキュリティレビュー」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：8章　総合演習——ずんだオーダーのセキュリティレビュー｜ずんだもんと学ぶセキュリティ：入門編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：入門編「8章　総合演習——ずんだオーダーのセキュリティレビュー」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-nyumon/08.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-nyumon.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#3E5872;--accent-dark:#2B3A4D}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-nyumon">ずんだもんと学ぶセキュリティ：入門編</a></p>
+    <h1>理解度チェック：8章　総合演習——ずんだオーダーのセキュリティレビュー</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="07.html"><span class="dir">← 前の章</span><span class="t">7章　検知と対応（ログ・監査・インシデント対応）</span></a><span class="nav-link empty"></span></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　セキュリティとはなにか（守るもの・脅威・リスク）<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　攻撃者の視点（侵入の流れを知って守りに活かす）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　アイデンティティとアクセス管理（IAM）<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　ネットワークの境界（公開面を最小にする）<span class="n">全7問</span></a></li><li class=""><span class="ch">5</span><a href="05.html">5章　サーバーとコンテナの堅牢化<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　秘密情報の管理（鍵・パスワード・トークン）<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　検知と対応（ログ・監査・インシデント対応）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">8</span><span class="current">8章　総合演習——ずんだオーダーのセキュリティレビュー<span class="n">いまここ</span></span></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/security-review">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-nyumon", "chapter": 8, "chapter_slug": "security-review", "chapter_title": "8章　総合演習——ずんだオーダーのセキュリティレビュー", "questions": [{"type": "choice", "q": "本文の「セキュリティレビュー」の説明として正しいものはどれ？", "choices": ["外部の専門家が年に一度行う監査のこと", "自分たちで、決まった観点のチェックリストで、定期的に構成を点検すること", "ペネトレーションテストのこと", "全項目を○にするまで終わらない作業"], "answer": 1, "explain": "観点は ID・境界・ホスト・秘密・検知の5つで、各章の内容がそのまま項目になります。「半日で回せて、四半期に一度やれる」サイズに保つのが大事で、100項目の立派なリストは誰も回さなくなります。", "ref": "8.1"}, {"type": "truefalse", "q": "レビューの目的は全項目を○にすることなので、×が残った状態で終えてはいけない。", "answer": false, "explain": "残るのが正常です。レビューの目的は「何が×で、それをいつまでにどうするか決める」ことです。ずんだオーダーでも WAF・MFA の2名・証跡の別アカウント送付などが残りました。", "ref": "8.2"}, {"type": "choice", "q": "残った項目に順番をつけるとき、本文がリスクに加えて足した軸はどれ？", "choices": ["担当者の好み", "直しやすさ", "AWS の推奨度", "コストの安さだけ"], "answer": 1, "explain": "リスクが同じなら、すぐ直せるものを先にやります。MFA 未設定の2名は「リスク高・易しい」ので今日やる、社内 Wiki の権限は「低・易しい」ので記録付きで受容、と判断します。表を日付付きでチケットにして次回のレビューで見直します。", "ref": "8.3"}, {"type": "choice", "q": "「続ける仕組み」の3つの柱に含まれないものはどれ？", "choices": ["CI や AWS Config・Security Hub で自動で回るチェック", "Terraform で管理して手変更を差分で検出する IaC のガードレール", "「回す・受ける・決める」を決めた責任分担", "セキュリティ専任チームの新設"], "answer": 3, "explain": "専任がいなくても「レビューを回す人・通知を受ける人・決める人」が決まっていれば続きます。加えて開発者全員への小さな教育（秘密は commit しない、* を見たら身構える）を新しい人が入るたびに繰り返します。", "ref": "8.4"}, {"type": "fill", "q": "物理設備やハイパーバイザは AWS、その上の設定・データ・アクセス管理は利用者、という責任の分け方を何という？（漢字4文字＋「モデル」）", "accept": ["責任共有モデル", "責任共有", "shared responsibility model", "Shared Responsibility Model", "せきにんきょうゆうもでる"], "explain": "この本でやったことは全部「利用者の責任」の側です。責任共有モデルを押さえたうえで、社内で誰が回す・受ける・決めるかを決めます。", "ref": "8.4"}, {"type": "choice", "q": "本文が「無料で読める一次情報」として挙げた、実際に悪用が確認された脆弱性の一覧はどれ？", "choices": ["OWASP Top 10", "CIS Benchmarks", "CISA KEV", "AWS Well-Architected Framework"], "answer": 2, "explain": "KEV はパッチの優先順位の根拠に使います。OWASP Top 10 は Web アプリの重大リスク、CIS Benchmarks は推奨設定集、Well-Architected の「セキュリティの柱」は5観点の体系的な整理です。", "ref": "8.5"}, {"type": "essay", "q": "「セキュリティチームがいない会社で、何から始めればいいですか？」と聞かれた。コラムの順番に沿って、4文くらいで答えてみよう。", "model": "まず1章の CLI 3本で、全開のセキュリティグループ・公開バケット・長期アクセスキーを数えます。次に人間には MFA を付け、CI は OIDC でロールを引き受けるようにして、長期キーをなくします。GuardDuty をコマンド1つで有効化して通知を繋ぎ、CI に Trivy と gitleaks を足します。ここまでで侵入口トップ3の大半が塞がるので、そのうえで5観点のチェックリストを四半期に一度回します。", "points": ["CLI 3本で現状を数えることに触れた", "MFA と OIDC（長期キーの廃止）に触れた", "GuardDuty の有効化、または CI へのスキャン追加に触れた", "チェックリストを定期的に回すことに触れた"], "ref": "8.5"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-nyumon/viewer/security-review", "page": "08.html"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
