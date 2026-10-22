@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：4章　公開面の守りを深める（WAF・ボット・API）｜ずんだもんと学ぶセキュリティ：実践編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：実践編「4章　公開面の守りを深める（WAF・ボット・API）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：4章　公開面の守りを深める（WAF・ボット・API）｜ずんだもんと学ぶセキュリティ：実践編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：実践編「4章　公開面の守りを深める（WAF・ボット・API）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-jissen/04.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#345B66;--accent-dark:#1E3A42}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-jissen">ずんだもんと学ぶセキュリティ：実践編</a></p>
+    <h1>理解度チェック：4章　公開面の守りを深める（WAF・ボット・API）</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="03.html"><span class="dir">← 前の章</span><span class="t">3章　ソフトウェアサプライチェーンを守る</span></a><a class="nav-link next" href="05.html"><span class="dir">次の章 →</span><span class="t">5章　データを守る（分類・暗号化・秘匿化・バックアップ）</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　実践編へようこそ：半年後のずんだオーダーとマルチアカウント<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　ソフトウェアサプライチェーンを守る<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">4</span><span class="current">4章　公開面の守りを深める（WAF・ボット・API）<span class="n">いまここ</span></span></li><li class=""><span class="ch">5</span><a href="05.html">5章　データを守る（分類・暗号化・秘匿化・バックアップ）<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　検知と対応の自動化<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　ポリシーをコードにする（ガードレールと監査）<span class="n">全7問</span></a></li><li class=""><span class="ch">8</span><a href="08.html">8章　演習とセキュリティプログラム<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/edge-protection">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-jissen", "chapter": 4, "chapter_slug": "edge-protection", "chapter_title": "4章　公開面の守りを深める（WAF・ボット・API）", "questions": [{"type": "choice", "q": "誤検知で本番を止めないために、本文が勧めた WAF の入れ方はどれ？", "choices": ["カウント→観察→調整→ブロックの段階導入", "最初から全ルールをブロックにする", "WAF は入れない", "全部許可のまま運用する"], "answer": 0, "explain": "WAF は『入れる・入れない』ではなく『どう入れるか』。まずカウント（記録だけ）で入れ、1〜2週間ログを見て誤検知を調整してから、ルール単位でブロックに切り替えます。", "ref": "4.1"}, {"type": "truefalse", "q": "Common Rule Set は誤検知が少ないので、最初からブロックにして問題ない。", "answer": false, "explain": "Common Rule Set は効き目が大きい反面、レビュー欄の自由入力などで誤検知も出やすい。だからカウントで観察し、当たるルールだけ除外してから切り替えます。誤検知が少ないのは Known Bad Inputs や IP Reputation のほうです。", "ref": "4.2"}, {"type": "choice", "q": "レートリミットの閾値設計として、本文が勧めたのはどれ？", "choices": ["全パス一律の閾値にする", "状態を変える操作は厳しく・閲覧は緩く、閾値はログの正規の最大値を見てから決める", "検索エンジンも含めて一律ブロックする", "閾値は付けない"], "answer": 1, "explain": "ログインや申し込みのような状態を変える操作は厳しく、閲覧は緩く。閾値は WAF のログで『正規の最大値』を見てから決めます。善意のクローラーと悪意の自動化を分けるのが狙いです。", "ref": "4.3"}, {"type": "choice", "q": "Webhook の署名の比較に、通常の == ではなく hmac.compare_digest を使う理由はどれ？", "choices": ["計算が速いから", "処理時間が入力で変わらず、タイミング攻撃を防げるから", "メモリを節約できるから", "署名を短くできるから"], "answer": 1, "explain": "== は最初に違う文字を見つけた時点で終わるため、処理時間の差から正しい署名を1文字ずつ推測されえます（タイミング攻撃）。compare_digest は長さが同じなら常に同じ時間で比べます。", "ref": "4.4"}, {"type": "fill", "q": "WAF は HTTP の「形」を見る壁で、「◯◯」は見られない——だから API 自身の認可が要る。◯◯に入る語は？", "accept": ["意味", "内容", "意味（内容）"], "explain": "『このユーザーが他人の契約 ID を指定している』のような“意味”は WAF では止められません。だから認証・認可・スキーマ検証・署名検証という API 自身の守りが要ります。", "ref": "4.4"}, {"type": "truefalse", "q": "Webhook は署名が正しければ、その内容（支払い成功など）をそのまま信じて契約を確定してよい。", "answer": false, "explain": "署名検証は『本物の通知か』を確かめるだけ。『本当に成功したか』は、決済代行の API に問い合わせて確定します。署名が正しくても内容をそのまま信じないのが2章で決めた設計です。", "ref": "4.4"}, {"type": "essay", "q": "「WAF を入れたら正規のお客さんが止まって売上が落ちた」と聞いて導入をためらう同僚に、どう勧めるか。", "model": "WAF は『入れる・入れない』ではなく『どう入れるか』の問題だと伝えます。いきなり全ブロックにするから正規のお客さんが止まるのであって、段階導入すれば避けられます。まずカウントモードで入れ、止めずに『当たったら記録だけ』する。1〜2週間ログを見て、何に・どれくらい当たったか、正規のリクエストが当たっていないかを確かめます。誤検知するルールはパス単位で除外し、調整が済んだルールから、誤検知の少ないものを先にブロックへ切り替える。実際、レビュー投稿が数百件もルールに当たっていた例があり、最初から全ブロックなら正規のレビューが消えていました。『止める前に、止めたらどうなるかを見る』——これで安全に導入できます。", "points": ["『入れる・入れない』ではなく『どう入れるか（段階導入）』", "まずカウントで入れて記録だけ取る", "ログで誤検知を観察し、パス単位・ルール単位で調整", "誤検知の少ないものから順にブロックへ切り替える"], "ref": "4.1"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/edge-protection", "page": "04.html", "next": {"url": "05.html", "title": "5章　データを守る（分類・暗号化・秘匿化・バックアップ）"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

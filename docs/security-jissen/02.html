@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）｜ずんだもんと学ぶセキュリティ：実践編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：実践編「2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）｜ずんだもんと学ぶセキュリティ：実践編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：実践編「2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-jissen/02.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#345B66;--accent-dark:#1E3A42}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-jissen">ずんだもんと学ぶセキュリティ：実践編</a></p>
+    <h1>理解度チェック：2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="01.html"><span class="dir">← 前の章</span><span class="t">1章　実践編へようこそ：半年後のずんだオーダーとマルチアカウント</span></a><a class="nav-link next" href="03.html"><span class="dir">次の章 →</span><span class="t">3章　ソフトウェアサプライチェーンを守る</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　実践編へようこそ：半年後のずんだオーダーとマルチアカウント<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">2</span><span class="current">2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）<span class="n">いまここ</span></span></li><li class=""><span class="ch">3</span><a href="03.html">3章　ソフトウェアサプライチェーンを守る<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　公開面の守りを深める（WAF・ボット・API）<span class="n">全7問</span></a></li><li class=""><span class="ch">5</span><a href="05.html">5章　データを守る（分類・暗号化・秘匿化・バックアップ）<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　検知と対応の自動化<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　ポリシーをコードにする（ガードレールと監査）<span class="n">全7問</span></a></li><li class=""><span class="ch">8</span><a href="08.html">8章　演習とセキュリティプログラム<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/threat-modeling">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-jissen", "chapter": 2, "chapter_slug": "threat-modeling", "chapter_title": "2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）", "questions": [{"type": "choice", "q": "データフロー図と信頼境界を描いたとき、本文が「脅威はたいてい起きる」と言った場所はどこ？", "choices": ["データストアの内部", "信頼境界を越えるデータフロー（矢印）の上", "プロセスに付けた名前", "構成図の凡例"], "answer": 1, "explain": "信頼境界は「ここを越えると信頼のレベルが変わる」線です。脅威はたいてい、その境界を越える矢印の上で起きます。だから境界を越える矢印に STRIDE を当てます。", "ref": "2.1"}, {"type": "choice", "q": "STRIDE の「S」が指す脅威はどれ？", "choices": ["なりすまし（Spoofing）", "サービス拒否（Denial of service）", "権限昇格（Elevation of privilege）", "改ざん（Tampering）"], "answer": 0, "explain": "STRIDE は Spoofing（なりすまし）・Tampering（改ざん）・Repudiation（否認）・Information disclosure（情報漏えい）・Denial of service（サービス拒否）・Elevation of privilege（権限昇格）の頭文字です。", "ref": "2.2"}, {"type": "truefalse", "q": "ずんだサブスクは、カード番号を自社の DB に保存したうえで、万一に備えて暗号化している。", "answer": false, "explain": "カード番号は自社に持ちません。ユーザーは決済代行のフォームに直接入力し、自社が受け取るのは顧客トークンだけ。入門編1章の「回避」で、持たなければ漏れません。", "ref": "2.3"}, {"type": "choice", "q": "決済代行からの「支払い成功」Webhook に対し、本文が求めた守りの組み合わせは？", "choices": ["署名検証だけで十分", "署名を検証し、さらに代行の API に問い合わせて状態を確定する", "送信元の IP アドレスだけで判断する", "金額さえ合っていれば信用する"], "answer": 1, "explain": "署名検証は「本物の通知か」、API への問い合わせは「本当に成功したか」。決済代行からの通知も『信用しない入力』として、二重に確認します。", "ref": "2.3"}, {"type": "fill", "q": "同じ課金要求が二重に処理されても一度しか課金しないように、契約 ID と請求月から作って付けるキーを何という？", "accept": ["冪等キー", "べき等キー", "冪等性キー", "idempotency key", "idempotencyキー"], "explain": "二重送信や Webhook の再送に備えて冪等キーを付け、重複は無視します。SRE 実践編2章と CS 後編6章でやった冪等性です。", "ref": "2.3"}, {"type": "choice", "q": "すべての機能で行う脅威モデリングの「10分版」に含まれない問いはどれ？", "choices": ["新しく越える信頼境界はあるか", "新しく扱うデータは何か", "乗っ取られたら何が起きるか", "使用するプログラミング言語は何か"], "answer": 3, "explain": "10分版は「新しい境界・新しいデータ・乗っ取られたら」の3問。1つでも『ある』なら本格版に進みます。言語の選択は脅威モデリングの問いではありません。", "ref": "2.5"}, {"type": "essay", "q": "見つけた脅威を「リスク登録簿」に残す意義と、入門編の表との違いを説明してみよう。", "model": "脅威モデリングの成果物は、図そのものではなくリスク登録簿です。見つけた脅威を、影響・起こりやすさだけでなく『対処・担当・期限・状態』まで書いて記録します。これが入門編の『大・中・小』の表との違いで、脅威を見つける作業と対処を決める作業を分け、決めたことを追跡できるようにします。『受容』した項目も消さずに残すことで、取引先の質問票の『リスク管理のプロセスは』にも、この表そのもので答えられます。", "points": ["成果物は図ではなくリスク登録簿（表）である", "対処・担当・期限・状態を持つ点が入門編の表と違う", "受容した項目も消さずに残す", "質問票のリスク管理プロセスへの答えになる"], "ref": "2.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/threat-modeling", "page": "02.html", "next": {"url": "03.html", "title": "3章　ソフトウェアサプライチェーンを守る"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

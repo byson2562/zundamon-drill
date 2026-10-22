@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：8章　演習とセキュリティプログラム｜ずんだもんと学ぶセキュリティ：実践編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：実践編「8章　演習とセキュリティプログラム」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：8章　演習とセキュリティプログラム｜ずんだもんと学ぶセキュリティ：実践編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：実践編「8章　演習とセキュリティプログラム」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-jissen/08.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#345B66;--accent-dark:#1E3A42}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-jissen">ずんだもんと学ぶセキュリティ：実践編</a></p>
+    <h1>理解度チェック：8章　演習とセキュリティプログラム</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="07.html"><span class="dir">← 前の章</span><span class="t">7章　ポリシーをコードにする（ガードレールと監査）</span></a><span class="nav-link empty"></span></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　実践編へようこそ：半年後のずんだオーダーとマルチアカウント<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　ソフトウェアサプライチェーンを守る<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　公開面の守りを深める（WAF・ボット・API）<span class="n">全7問</span></a></li><li class=""><span class="ch">5</span><a href="05.html">5章　データを守る（分類・暗号化・秘匿化・バックアップ）<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　検知と対応の自動化<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　ポリシーをコードにする（ガードレールと監査）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">8</span><span class="current">8章　演習とセキュリティプログラム<span class="n">いまここ</span></span></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/security-program">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-jissen", "chapter": 8, "chapter_slug": "security-program", "chapter_title": "8章　演習とセキュリティプログラム", "questions": [{"type": "choice", "q": "テーブルトップ演習（机上演習）の説明として正しいのはどれ？", "choices": ["システムには触れず、シナリオに口頭で対応して「決めごとの穴」を見つける", "本番環境に実際の攻撃を撃ち込む", "脆弱性スキャンの一種", "ペネトレーションテストの別名"], "answer": 0, "explain": "机上演習はシステムに触れず、進行役が読むシナリオに参加者が口頭で対応します。本番を壊す心配がなく、連絡先がない・手順がないといった『決めごとの穴』を安全に見つけられます。", "ref": "8.1"}, {"type": "choice", "q": "Stratus Red Team を使った「センサーの演習」の目的はどれ？", "choices": ["本番を攻撃して壊すこと", "サンドボックスで攻撃手法を再現し、自分たちの検知が鳴るかを確かめること", "脆弱性を自動で直すこと", "ログを消すこと"], "answer": 1, "explain": "必ずサンドボックスアカウントで、攻撃手法（MITRE ATT&CK に対応）を安全に再現し、『この手法で検知は鳴るか』を確かめます。本番ではやりません。鳴らなかった手法が、検知の穴です。", "ref": "8.1"}, {"type": "truefalse", "q": "ペネトレーションテストは、脆弱性スキャンと同じく、既知のパターンを機械的に照合するだけのものである。", "answer": false, "explain": "スキャンは既知のパターンの機械照合ですが、ペンテストは人が仕様を理解して『この順番の呼び出しなら他人の契約を操作できるのでは』と考えて試します。認可の不備やビジネスロジックの穴は、スキャンではまず見つかりません。", "ref": "8.2"}, {"type": "choice", "q": "脆弱性開示ポリシー（VDP）の最小構成として、本文が挙げたのはどれ？", "choices": ["バグバウンティの報奨金制度", "連絡先を置く security.txt と、範囲・禁止事項・セーフハーバーを書いたポリシー", "WAF の導入", "SOC 2 の取得"], "answer": 1, "explain": "最小構成は、連絡先を機械可読に置く security.txt と、対象範囲・やってよいこと・セーフハーバー・こちらの約束を書いたポリシー本文。報奨金を足したものがバグバウンティで、まずは VDP から始めます。", "ref": "8.3"}, {"type": "fill", "q": "ポリシーを守って善意で報告した人を法的に追及しない、という報告をためらわせないための約束を何という？（カタカナ）", "accept": ["セーフハーバー", "safe harbor", "セーフ・ハーバー", "セーフハーバー条項"], "explain": "セーフハーバーがあると、見つけた人が『通報したら怒られるかも』とためらわずに報告できます。これがないと、最悪そのまま公表されてしまいます。", "ref": "8.3"}, {"type": "choice", "q": "経営への「1枚の報告」に、本文が必ず入れるとしたものはどれ？", "choices": ["検知件数の生データ", "判断のお願い（予算や意思決定）", "サーバーの構成図", "全ログの一覧"], "answer": 1, "explain": "報告は『状況・やったこと・判断のお願い・計画』の4つ。報告は自慢ではなく『決める人に決めてもらう』場なので、判断のお願いを必ず入れます。", "ref": "8.4"}, {"type": "essay", "q": "「うちのセキュリティは大丈夫？」と経営に聞かれたとき、どう測って・どう報告すればよいか説明してみよう。", "model": "『がんばっています』は測れず、判断材料になりません。かといって検知件数の生データも経営には意味が読めません。そこで、重大な設定不備の未解決数、脆弱性の修正リードタイム（深刻度ごとの日数と SLA 達成率）、特権アクセスの回数と時間、演習の実施と宿題の消化、という4つの指標を『体温計』として測ります。指標は成績表にすると演技が始まるので、『この数字が悪いのはどこに手当てが要るか』を話す道具として使います。報告は1枚にまとめ、状況・やったこと・判断のお願い・来期の計画の4つを書く。とくに『判断のお願い（予算や意思決定）』を必ず入れて、決める人に決めてもらう場にします。", "points": ["『がんばり』も生データも報告にならない", "4つの指標（未解決数・修正リードタイム・特権アクセス・演習の消化）で測る", "指標は成績表でなく体温計として使う", "1枚で状況・やったこと・判断のお願い・計画を報告する"], "ref": "8.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/security-program", "page": "08.html"}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

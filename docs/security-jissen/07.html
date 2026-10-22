@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：7章　ポリシーをコードにする（ガードレールと監査）｜ずんだもんと学ぶセキュリティ：実践編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：実践編「7章　ポリシーをコードにする（ガードレールと監査）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：7章　ポリシーをコードにする（ガードレールと監査）｜ずんだもんと学ぶセキュリティ：実践編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：実践編「7章　ポリシーをコードにする（ガードレールと監査）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-jissen/07.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#345B66;--accent-dark:#1E3A42}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-jissen">ずんだもんと学ぶセキュリティ：実践編</a></p>
+    <h1>理解度チェック：7章　ポリシーをコードにする（ガードレールと監査）</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="06.html"><span class="dir">← 前の章</span><span class="t">6章　検知と対応の自動化</span></a><a class="nav-link next" href="08.html"><span class="dir">次の章 →</span><span class="t">8章　演習とセキュリティプログラム</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　実践編へようこそ：半年後のずんだオーダーとマルチアカウント<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　ソフトウェアサプライチェーンを守る<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　公開面の守りを深める（WAF・ボット・API）<span class="n">全7問</span></a></li><li class=""><span class="ch">5</span><a href="05.html">5章　データを守る（分類・暗号化・秘匿化・バックアップ）<span class="n">全7問</span></a></li><li class=""><span class="ch">6</span><a href="06.html">6章　検知と対応の自動化<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">7</span><span class="current">7章　ポリシーをコードにする（ガードレールと監査）<span class="n">いまここ</span></span></li><li class=""><span class="ch">8</span><a href="08.html">8章　演習とセキュリティプログラム<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/policy-as-code">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-jissen", "chapter": 7, "chapter_slug": "policy-as-code", "chapter_title": "7章　ポリシーをコードにする（ガードレールと監査）", "questions": [{"type": "choice", "q": "ガードレールの3層（CI・SCP・Config）が効くタイミングの組み合わせとして正しいのはどれ？", "choices": ["CI=マージ前・SCP=API を呼んだ瞬間・Config=変更の数分後", "CI=変更の数分後・SCP=マージ前・Config=API の瞬間", "3つとも同じタイミングで効く", "CI だけで十分なので他は不要"], "answer": 0, "explain": "CI（Conftest）はマージ前の plan、SCP は API を呼んだ瞬間、Config は変更の数分後。どの層にもすり抜けがあるので重ねます。予防的・発見的・是正的統制という監査の言葉に対応します。", "ref": "7.1"}, {"type": "choice", "q": "Terraform 実践編6章の Trivy/Checkov と、7章の Conftest（Rego）の役割分担として正しいのはどれ？", "choices": ["どちらもまったく同じもの", "Trivy/Checkov は世の中で知られた危ない設定、Conftest は自分たちの組織が決めたルール", "Conftest は既知の脆弱性だけを見る", "Trivy は組織固有のルールを書くための道具"], "answer": 1, "explain": "Trivy/Checkov は世の中の知見を内蔵し、公開バケットや全開 SG を見つけます。『機密のバケットは KMS で暗号化』のような自社固有のルールは一般論ではないので、Conftest（Rego）で書きます。", "ref": "7.2"}, {"type": "truefalse", "q": "Conftest のポリシーの例外は、理由・期限・チケットつきで書き、期限が過ぎると自動で deny（失敗）に戻る。", "answer": true, "explain": "例外を『ルールを消す』で済ませるとガードレールは静かに外れます。例外はファイルに理由・期限・チケットを書き、期限が過ぎたら自動で deny に戻すことで、一時的な例外が永久化するのを防ぎます。", "ref": "7.2"}, {"type": "choice", "q": "Config の自動修復で「自動で直してよい」と本文がしたのはどれ？", "choices": ["機密データの暗号化の鍵を別のものに変える", "公開アクセスブロックを true に戻す（正しく作られたバケットなら誰も困らない）", "非準拠のリソースを削除する", "本番の SG のルールを消す"], "answer": 1, "explain": "自動修復は『直しても誰も困らない』ものだけにします。公開ブロックを戻すのは安全ですが、鍵の変更（読めなくなる人が出る）・SG の削除（通信が止まる）・削除（不可逆）は人に残します。", "ref": "7.3"}, {"type": "choice", "q": "SOC 2 の「Type 2」が評価するものはどれ？", "choices": ["ある時点で管理策が適切に設計されているか", "一定期間、管理策が実際に運用され続けていたか", "会社の売上の推移", "サーバーの台数"], "answer": 1, "explain": "Type 1 は『ある時点での設計』、Type 2 は『一定期間、実際に運用され続けていたか』を見ます。だから監査は『ルールがある』ではなく『守られ続けていた証拠』を求めます。", "ref": "7.4"}, {"type": "fill", "q": "バケットごとの設定とは別に、そのアカウントでは一切公開できなくする S3 の設定を何という？", "accept": ["アカウント単位の公開アクセスブロック", "アカウントレベルの公開アクセスブロック", "アカウント単位の公開ブロック", "Account Public Access Block", "アカウント公開アクセスブロック"], "explain": "アカウント単位の公開ブロックを有効にすると、バケット側の設定がどうであれ公開できなくなります。これを層1の予防にし、SCP で『ベースラインを配るロール以外は外せない』と固定します。", "ref": "7.5"}, {"type": "essay", "q": "取引先の質問票「監査ログの保管期間と改ざん防止は？」に、本文のしくみでどう答えるか。", "model": "全アカウントの操作ログ（CloudTrail）を、組織の証跡で専用のログアーカイブアカウントに集約しています。保存先のバケットはオブジェクトロックで保護しており、本番の管理者を含め、保持期間中は誰も削除・上書きできません。証跡の停止や削除は、組織のポリシー（SCP）で禁止しています。さらに Config の設定履歴でこれらの状態を常時記録し、月に一度、準拠状況のスナップショットを消せない場所に残しています。つまり『何をしているか』だけでなく『それが仕組みで保証されている』ことまで示せる状態です。", "points": ["組織の証跡で全アカウントのログを専用アカウントに集約", "オブジェクトロックで保持期間中は誰も消せない・書き換えられない", "SCP で証跡の停止・削除を禁止している", "Config の履歴・月次スナップショットで証拠を残す"], "ref": "7.4"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/policy-as-code", "page": "07.html", "next": {"url": "08.html", "title": "8章　演習とセキュリティプログラム"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

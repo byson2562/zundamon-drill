@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：6章　検知と対応の自動化｜ずんだもんと学ぶセキュリティ：実践編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：実践編「6章　検知と対応の自動化」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：6章　検知と対応の自動化｜ずんだもんと学ぶセキュリティ：実践編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：実践編「6章　検知と対応の自動化」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-jissen/06.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#345B66;--accent-dark:#1E3A42}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-jissen">ずんだもんと学ぶセキュリティ：実践編</a></p>
+    <h1>理解度チェック：6章　検知と対応の自動化</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="05.html"><span class="dir">← 前の章</span><span class="t">5章　データを守る（分類・暗号化・秘匿化・バックアップ）</span></a><a class="nav-link next" href="07.html"><span class="dir">次の章 →</span><span class="t">7章　ポリシーをコードにする（ガードレールと監査）</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　実践編へようこそ：半年後のずんだオーダーとマルチアカウント<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　ソフトウェアサプライチェーンを守る<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　公開面の守りを深める（WAF・ボット・API）<span class="n">全7問</span></a></li><li class=""><span class="ch">5</span><a href="05.html">5章　データを守る（分類・暗号化・秘匿化・バックアップ）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">6</span><span class="current">6章　検知と対応の自動化<span class="n">いまここ</span></span></li><li class=""><span class="ch">7</span><a href="07.html">7章　ポリシーをコードにする（ガードレールと監査）<span class="n">全7問</span></a></li><li class=""><span class="ch">8</span><a href="08.html">8章　演習とセキュリティプログラム<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/detection-automation">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-jissen", "chapter": 6, "chapter_slug": "detection-automation", "chapter_title": "6章　検知と対応の自動化", "questions": [{"type": "choice", "q": "アカウントと道具が増えて検知が「ばらばら」になった問題への、本文の答えはどれ？", "choices": ["検知の種類をもっと増やす", "検知結果を見る場所を1つに決めて集める（Security Hub / Datadog Cloud SIEM）", "検知を止めて静かにする", "アカウントを1つに戻す"], "answer": 1, "explain": "AWS の検知は Security Hub に集約して採点、AWS の外も含む相関は Datadog Cloud SIEM。大事なのは『検知結果を見る場所を1つに決める』ことで、6か所を巡回する運用は見落としを生みます。", "ref": "6.1"}, {"type": "truefalse", "q": "抑制ルールを広げて、鳴る量を減らせば減らすほどよい。", "answer": false, "explain": "抑制を広げすぎると本物も消えます。『鳴りすぎ』はアラート疲れを生みますが、『鳴らなすぎ』も危険。検知の SLO で鳴る量を測り、足したり減らしたりして調整します。", "ref": "6.2"}, {"type": "choice", "q": "本文が「自動対応にしてよい」とした操作はどれ？", "choices": ["インスタンスの削除", "SG の差し替えやセッション失効のような、可逆で確度の高い初動", "顧客への連絡", "誤検知で本番の全ロールを失効させる操作"], "answer": 1, "explain": "可逆で、確度が高く、誤検知の被害が小さい初動（隔離・失効・保全・連絡）だけを自動にします。不可逆な操作や影響範囲の判断が要るものは人に残します。", "ref": "6.3"}, {"type": "choice", "q": "1章で集めた組織の証跡を、全アカウント・全期間にわたって SQL で横断検索するのに使う道具はどれ？", "choices": ["Athena", "GuardDuty", "WAF", "KMS"], "answer": 0, "explain": "Athena は S3 上のデータに SQL を投げるサービスで、組織の証跡を全アカウント横断で検索できます。関係を眺めてたどるなら Detective。『仮説を SQL で確かめる』のが Athena、『仮説を立てるために眺める』のが Detective です。", "ref": "6.4"}, {"type": "fill", "q": "自動対応を本番で有効化する前に、「やるつもりだった」通知だけを出して誤検知がないか確かめる段階を何という？（カタカナ）", "accept": ["ドライラン", "dry run", "dry-run", "ドライ・ラン"], "explain": "AUTO_RESPONSE_ENABLED=false で始め、2週間ドライランで誤検知を確かめてから true にします。4章の WAF の『カウント→ブロック』と同じ段階導入です。", "ref": "6.5"}, {"type": "truefalse", "q": "自動対応を組むときは、動かす仕組みより先に「止める仕組み（キルスイッチ）」を作る。", "answer": true, "explain": "自動対応は誤検知のとき自動で本番を壊す仕組みにもなりえます。だからキルスイッチ・対象の限定・回数の上限・必ず通知を先に用意します。『自動で動くものには、自動で止まる条件を付ける』のが原則です。", "ref": "6.5"}, {"type": "essay", "q": "検知の自動対応で「何を自動にし、何を人に残すか」を、どう線引きすればよいか説明してみよう。", "model": "自動にしてよいのは、可逆で（やりすぎても戻せる）、検知の確度が高く、誤検知の被害が小さく、『人が見るまでの時間』に被害が広がるものです。SG の差し替え、セッションの失効、スナップショットの取得などが当たります。人に残すのは、不可逆な操作（インスタンスやデータの削除）、誤検知だと本番が止まるもの（本番の全ロールの失効など）、影響範囲の判断が要るもの（顧客への連絡、法務への報告）です。つまり『自動で隔離してから人に知らせる』までが機械、『その先どうするか』は人。自動対応は初動を速くするものであって、人を不要にするものではありません。そして暴走に備え、キルスイッチや対象の限定、必ず通知する仕組みを先に作ります。", "points": ["可逆・高確度・小さい誤検知被害・時間が勝負、なら自動", "不可逆・本番停止リスク・影響範囲の判断が要る、なら人", "『自動で初動→人に知らせる』までが機械、その先は人", "暴走に備えキルスイッチ等の止める仕組みを先に作る"], "ref": "6.3"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/detection-automation", "page": "06.html", "next": {"url": "07.html", "title": "7章　ポリシーをコードにする（ガードレールと監査）"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

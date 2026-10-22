@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解度チェック：5章　データを守る（分類・暗号化・秘匿化・バックアップ）｜ずんだもんと学ぶセキュリティ：実践編</title>
+<meta name="description" content="ずんだもんと学ぶセキュリティ：実践編「5章　データを守る（分類・暗号化・秘匿化・バックアップ）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="理解度チェック：5章　データを守る（分類・暗号化・秘匿化・バックアップ）｜ずんだもんと学ぶセキュリティ：実践編">
+<meta property="og:description" content="ずんだもんと学ぶセキュリティ：実践編「5章　データを守る（分類・暗号化・秘匿化・バックアップ）」の内容を確認する全7問のクイズ（自動採点）。">
+<meta property="og:url" content="https://byson2562.github.io/zundamon-drill/security-jissen/05.html">
+<meta property="og:image" content="https://byson2562.github.io/zundamon-drill/assets/ogp/security-jissen.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/quiz.css">
+<style>:root{--accent:#345B66;--accent-dark:#1E3A42}</style>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+  <div class="header-text">
+    <p class="book"><a href="../#security-jissen">ずんだもんと学ぶセキュリティ：実践編</a></p>
+    <h1>理解度チェック：5章　データを守る（分類・暗号化・秘匿化・バックアップ）</h1>
+    <p class="lead">全7問。選択・○×・穴埋めは自動で採点されます。「説明してみよう」は解答例と見比べて自己採点してください。</p>
+  </div>
+  <img class="header-chara" src="../assets/chara/metan-smile.png" alt="四国めたん" width="118" height="133">
+</div></header>
+<div id="score-slot"></div>
+<main id="quiz"></main>
+<nav class="chapter-nav" aria-label="ほかの章のドリル">
+  <div class="nav-prevnext"><a class="nav-link prev" href="04.html"><span class="dir">← 前の章</span><span class="t">4章　公開面の守りを深める（WAF・ボット・API）</span></a><a class="nav-link next" href="06.html"><span class="dir">次の章 →</span><span class="t">6章　検知と対応の自動化</span></a></div>
+  <section class="book-sheet">
+    <h2 class="book-title">この本のドリル</h2>
+    <ul class="book-list"><li class=""><span class="ch">1</span><a href="01.html">1章　実践編へようこそ：半年後のずんだオーダーとマルチアカウント<span class="n">全7問</span></a></li><li class=""><span class="ch">2</span><a href="02.html">2章　脅威モデリングの実践（ずんだサブスクの決済フローを題材に）<span class="n">全7問</span></a></li><li class=""><span class="ch">3</span><a href="03.html">3章　ソフトウェアサプライチェーンを守る<span class="n">全7問</span></a></li><li class=""><span class="ch">4</span><a href="04.html">4章　公開面の守りを深める（WAF・ボット・API）<span class="n">全7問</span></a></li><li class="is-current"><span class="ch">5</span><span class="current">5章　データを守る（分類・暗号化・秘匿化・バックアップ）<span class="n">いまここ</span></span></li><li class=""><span class="ch">6</span><a href="06.html">6章　検知と対応の自動化<span class="n">全7問</span></a></li><li class=""><span class="ch">7</span><a href="07.html">7章　ポリシーをコードにする（ガードレールと監査）<span class="n">全7問</span></a></li><li class=""><span class="ch">8</span><a href="08.html">8章　演習とセキュリティプログラム<span class="n">全7問</span></a></li></ul>
+  </section>
+</nav>
+<footer class="footer">
+  <p><a href="https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/data-protection">本文（Zenn）に戻る</a>　／　<a href="../">ドリル一覧</a></p>
+  <p>立ち絵：坂本アヒル（ずんだもん立ち絵素材・四国めたん立ち絵素材）</p>
+</footer>
+<script type="application/json" id="quiz-data">{"book": "security-jissen", "chapter": 5, "chapter_slug": "data-protection", "chapter_title": "5章　データを守る（分類・暗号化・秘匿化・バックアップ）", "questions": [{"type": "choice", "q": "データ分類の「台帳」に載せる列として、本文が挙げていないものはどれ？", "choices": ["区分（公開・社内・機密・極秘）", "置き場所", "触れる主体（どのロール）", "バケットの料金プラン"], "answer": 3, "explain": "台帳には『どのデータが・どの区分で・どこに置かれ・誰が触れ・いつまで持つか』を書きます。料金プランは分類の台帳とは関係ありません。", "ref": "5.1"}, {"type": "choice", "q": "本文が「暗号化の本体」と言ったのはどれ？", "choices": ["暗号化しているか・していないか", "誰がその鍵を使えるか", "鍵の長さ", "アルゴリズムの名前"], "answer": 1, "explain": "暗号化は『しているか』ではなく『誰がその鍵を使えるか』が本体です。データに触れるには、データへの権限と鍵への権限の両方が要る——最小権限が二重になります。", "ref": "5.2"}, {"type": "truefalse", "q": "カスタマー管理キー（CMK）で暗号化したデータに触れるには、データへの権限と鍵への権限の両方が必要になる。", "answer": true, "explain": "鍵を分けると、入門編3章の最小権限が二重になります。だから機密・極秘のデータは CMK で暗号化し、鍵ポリシーで『使えるロール』を絞ります。", "ref": "5.2"}, {"type": "choice", "q": "ログに秘密を出さないための方針として、本文が採ったのはどれ？", "choices": ["リクエスト全体をそのまま出す", "「出していいフィールドだけ」を許可リストで出し、基盤側のデータ保護ポリシーで二重にマスクする", "ログを一切取らない", "暗号化すれば中身は何を出してもよい"], "answer": 1, "explain": "アプリ側で『出していいものだけ出す』許可リスト（一次）と、CloudWatch Logs のデータ保護ポリシーによる基盤側のマスク（安全網）の二重で守ります。", "ref": "5.3"}, {"type": "choice", "q": "バックアップがランサムウェア対策になるための条件として、本文が挙げたのはどれ？", "choices": ["本番と同じアカウントに置く", "別アカウントに置き、オブジェクトロック等で消せない・書き換えられないようにし、復元を定期的に試す", "1日1回取れば十分", "暗号化だけすればよい"], "answer": 1, "explain": "攻撃者は本番を暗号化する前にバックアップを先に消します。だから別アカウントに置き、消せない設定にし、『取ってある』だけでなく『戻せる』を復元訓練で確かめます。", "ref": "5.4"}, {"type": "fill", "q": "S3 で「指定した期間は誰も（ルートでも）削除・上書きできない」ようにする設定を何という？", "accept": ["オブジェクトロック", "Object Lock", "object lock", "オブジェクト・ロック", "S3 オブジェクトロック"], "explain": "オブジェクトロック（COMPLIANCE モード）は、期間中は誰にも解除できません。1章のログアーカイブでも同じ技術を使いました。作成時にしか有効化できないので、機密データの置き場は最初からこの形で作ります。", "ref": "5.4"}, {"type": "essay", "q": "データ分類の台帳を作る意義と、それが7章でどう効くかを説明してみよう。", "model": "台帳は『どのデータが・どの区分（公開・社内・機密・極秘）で・どこに置かれ・誰が触れ・いつまで持つか』を一覧にしたものです。これを作ると、守りの強さを区分に合わせられ、『アプリログは機密を含んではいけない』のような要件も明文化されます。そして台帳は紙で終わらせず、リソースのタグ（DataClassification=confidential など）にします。タグにしておくと、7章のポリシーのコード化で『機密のバケットは KMS 暗号化とアクセスログが必須』というルールを機械が点検できるようになり、人の注意に頼らず分類どおりの守りを保てます。", "points": ["区分ごとに守りの強さを合わせられる", "要件（ログは機密を含まない等）が明文化される", "台帳をリソースのタグにして機械可読にする", "7章で Config/Conftest がタグを見て自動点検できる"], "ref": "5.1"}], "chapter_url": "https://zenn.dev/bonobono/books/zundamon-security-jissen/viewer/data-protection", "page": "05.html", "next": {"url": "06.html", "title": "6章　検知と対応の自動化"}}</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
