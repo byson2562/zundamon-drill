@@ -19,7 +19,7 @@
     },
     {
       "type": "choice",
-      "q": "Terraform 実践編6章の Trivy/Checkov と、7章の Conftest（Rego）の役割分担として正しいのはどれ？",
+      "q": "Trivy/Checkov のような IaC スキャナと、7章の Conftest（Rego）の役割分担として正しいのはどれ？",
       "choices": [
         "どちらもまったく同じもの",
         "Trivy/Checkov は世の中で知られた危ない設定、Conftest は自分たちの組織が決めたルール",
