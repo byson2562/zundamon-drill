@@ -2,7 +2,7 @@
   "book": "sre-jissen",
   "chapter": 7,
   "chapter_slug": "security-reliability",
-  "chapter_title": "7章　セキュリティと信頼性（同じ山の両斜面）",
+  "chapter_title": "7章　セキュリティと信頼性（可用性という共通点）",
   "questions": [
     {
       "type": "choice",

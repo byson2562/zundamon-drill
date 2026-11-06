@@ -8,13 +8,13 @@
       "type": "choice",
       "q": "ガードレールの3層（CI・SCP・Config）が効くタイミングの組み合わせとして正しいのはどれ？",
       "choices": [
-        "CI=マージ前・SCP=API を呼んだ瞬間・Config=変更の数分後",
-        "CI=変更の数分後・SCP=マージ前・Config=API の瞬間",
+        "CI=マージ前・SCP=API を呼んだ時点・Config=変更の数分後",
+        "CI=変更の数分後・SCP=マージ前・Config=API を呼んだ時点",
         "3つとも同じタイミングで効く",
         "CI だけで十分なので他は不要"
       ],
       "answer": 0,
-      "explain": "CI（Conftest）はマージ前の plan、SCP は API を呼んだ瞬間、Config は変更の数分後。どの層にもすり抜けがあるので重ねます。予防的・発見的・是正的統制という監査の言葉に対応します。",
+      "explain": "CI（Conftest）はマージ前の plan、SCP は API を呼んだ時点、Config は変更の数分後。どの層にもすり抜けがあるので重ねます。予防的・発見的・是正的統制という監査の言葉に対応します。",
       "ref": "7.1"
     },
     {
