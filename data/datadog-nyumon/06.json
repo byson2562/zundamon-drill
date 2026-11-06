@@ -47,7 +47,7 @@
       "type": "fill",
       "q": "ddtrace-run でアプリを起動するとき、統一サービスタグの「サービス名」を指定する環境変数の名前は？",
       "accept": ["DD_SERVICE"],
-      "explain": "DD_ENV・DD_SERVICE・DD_VERSION で、2章で約束した統一サービスタグを同じ値で付けます。この律儀さが、3本柱をつなぐときに効いてきます。",
+      "explain": "DD_ENV・DD_SERVICE・DD_VERSION で、2章で約束した統一サービスタグを同じ値で付けます。そろえておくと、3本柱をつなぐときに役に立ちます。",
       "ref": "6.3"
     },
     {

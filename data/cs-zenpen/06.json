@@ -39,7 +39,7 @@
     },
     {
       "type": "fill",
-      "q": "夜中にアプリのプロセスが黙って消え、ログに「Killed」とだけ残っていた。dmesg に犯行声明を残す、この犯人の名前は？",
+      "q": "夜中にアプリのプロセスがいつの間にか消え、ログに「Killed」とだけ残っていた。dmesg に犯行声明を残す、この犯人の名前は？",
       "accept": ["OOM Killer", "OOMKiller", "OOM-Killer", "oom killer", "OOM", "Out Of Memory Killer"],
       "explain": "物理メモリが足りず、スワップの退避先もなくなったとき、Linux はメモリを大量に使っているプロセスを強制的に殺してシステム全体の死を回避します。それが OOM Killer（Out Of Memory Killer）です。",
       "ref": "6.4"

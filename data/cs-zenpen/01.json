@@ -2,7 +2,7 @@
   "book": "cs-zenpen",
   "chapter": 1,
   "chapter_slug": "what-is-cs",
-  "chapter_title": "1章　コンピュータサイエンスという地図",
+  "chapter_title": "1章　コンピュータサイエンスの全体像",
   "questions": [
     {
       "type": "choice",
